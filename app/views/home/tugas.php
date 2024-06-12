@@ -24,15 +24,149 @@
       2 days ago
     </div>
   </div>
+  <hr>
 </div>
 
 
 
+<div id="tugas" class="container">
+  <?php if(!empty($data['bkerja'])): ?>
+  <section id="bkerja">
+    <div class="row justify-content-evenly">
+      <?php foreach ($data['bkerja'] as $key => $value): ?>
+        <div class='col-12 col-md-6'>
+          <div class="card border-secondary" id="tugas-<?= $value['id']?>">
+            <div class="card-header">
+              <div class="w-100 d-flex h-100">
+                <h3 class='flex-fill'>{$nama} - {$kelas}</h3>
+                <p class="p-2 m-auto fw-bold text-light bg-secondary" style="border-radius: .3rem;">
+                  Belum Dikerjakan
+                </p>
+              </div>
+            </div>
+            <div class='card-body'>
+              <h5 class='card-text' id="text-soal-{$id}">{$soal}</h5>
+              <div class='form-modal'>
+                <input type="hidden" name="idTugas" value="{$id}">
+                <input type="hidden" name="namaTugas" value="{$nama}">
+              </div>
+              <div class="ket">
+                <p class="m-0">{$ket}</p>
+              </div>
+            </div>
+            <div class='card-footer p-3 text-body-secondary d-flex gap-2' style="justify-content: center;">
+              <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" width="360" height="80" style="display: block; margin: 0px a uto; border: 0px;"></iframe>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </section>
+  <?php endif; ?>
 
-
-<?php foreach ($data['bkerja'] as $key => $value): ?>
-  <section id="bkerja"><?php var_dump($value) ?></section>
-<?php endforeach; ?>
-<section id="Dikumpul"></section>
-<section id="Dinilai"></section>
-<section id="Ditolak"></section>
+  <hr class="mb-1 border-secondary">
+  <?php if(!empty($data['ditolak'])): ?>
+    <hr class="mt-0 border-danger">
+    <section id="ditolak">
+      <div class="row justify-content-evenly">
+        <?php foreach ($data['ditolak'] as $key => $value) :?>
+          <div class='col-12 col-md-6'>
+            <div class="card border-danger" id="tugas-<?= $value['idTugas'] ?>">
+              <div class="card-header">
+                <div class="w-100 d-flex h-100">
+                  <h3 class='flex-fill'>{$nama} - {$kelas}</h3>
+                  <p class="p-2 m-auto fw-bold text-light bg-secondary" style="border-radius: .3rem;">
+                    Belum Dikerjakan
+                  </p>
+                </div>
+              </div>
+              <div class='card-body'>
+                <h5 class='card-text' id="text-soal-{$id}">{$soal}</h5>
+                <div class='form-modal'>
+                  <input type="hidden" name="idTugas" value="{$id}">
+                  <input type="hidden" name="namaTugas" value="{$nama}">
+                </div>
+                <div class="ket">
+                  <p class="m-0">{$ket}</p>
+                </div>
+              </div>
+              <div class='card-footer p-3 text-body-secondary d-flex gap-2' style="justify-content: center;">
+                <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" width="360" height="80" style="display: block; margin: 0px a uto; border: 0px; overflow: hidden;"></iframe>
+              </div>
+            </div>
+          </div>
+        <?php endforeach ?>
+      </div>
+    </section>
+    <hr class="mb-1 border-danger">
+  <?php endif; ?>
+  <?php if(!empty($data['dikumpul'])) : ?>
+    <hr class="mt-0 border-warning">
+    <section id="dikumpul">
+      <div class="row justify-content-evenly">
+        <?php foreach ($data['dikumpul'] as $key => $value) : ?>
+          <div class='col-12 col-md-6'>
+            <div class="card border-warning" id="tugas-<?= $value['idTugas'] ?>">
+              <div class="card-header">
+                <div class="w-100 d-flex h-100">
+                  <h3 class='flex-fill'>{$nama} - {$kelas}</h3>
+                  <p class="p-2 m-auto fw-bold text-light bg-secondary" style="border-radius: .3rem;">
+                    Belum Dikerjakan
+                  </p>
+                </div>
+              </div>
+              <div class='card-body'>
+                <h5 class='card-text' id="text-soal-{$id}">{$soal}</h5>
+                <div class='form-modal'>
+                  <input type="hidden" name="idTugas" value="{$id}">
+                  <input type="hidden" name="namaTugas" value="{$nama}">
+                </div>
+                <div class="ket">
+                  <p class="m-0">{$ket}</p>
+                </div>
+              </div>
+              <div class='card-footer p-3 text-body-secondary d-flex gap-2' style="justify-content: center;">
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+    <hr class="mb-1 border-warning">
+  <?php endif; ?>
+  <?php if(!empty($data['dinilai'])) : ?>
+    <hr class="mt-0 border-success">
+    <section id="dinilai">
+      <div class="row justify-content-evenly">
+        <?php foreach ($data['dikumpul'] as $key => $value) : ?>
+          <div class='col-12 col-md-6'>
+            <div class="card border-warning" id="tugas-<?= $value['idTugas'] ?>">
+              <div class="card-header">
+                <div class="w-100 d-flex h-100">
+                  <h3 class='flex-fill'>{$nama} - {$kelas}</h3>
+                  <p class="p-2 m-auto fw-bold text-light bg-secondary" style="border-radius: .3rem;">
+                    Belum Dikerjakan
+                  </p>
+                </div>
+              </div>
+              <div class='card-body'>
+                <h5 class='card-text' id="text-soal-{$id}">{$soal}</h5>
+                <div class='form-modal'>
+                  <input type="hidden" name="idTugas" value="{$id}">
+                  <input type="hidden" name="namaTugas" value="{$nama}">
+                </div>
+                <div class="ket">
+                  <p class="m-0">{$ket}</p>
+                </div>
+              </div>
+              <div class='card-footer p-3 text-body-secondary d-flex gap-2' style="justify-content: center;">
+                <p>nilai: <?= $value['nilai'] ?></p>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </section>
+    <hr class="mb-1 border-success">
+  <?php endif; ?>
+</div>

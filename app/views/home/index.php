@@ -4,7 +4,7 @@
   	<div class="container-fluid container">
     	<a class="navbar-brand" href="#">KumpulTugas II</a>
 		<div class="d-flex">
-        	<a href="<?=BASE_URL?>guru/login" class="btn btn-outline-primary">Masuk</a>
+        	<a href="<?=BASE_URL?>Guru" class="btn btn-outline-primary">Masuk</a>
       	</div>
     </div>
   </div>

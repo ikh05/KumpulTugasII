@@ -23,7 +23,7 @@ class Model_kumpul {
 		return $tugas;
 	}
 	public function filterByStatus_siswa($kumpul, $status){
-		foreach ($kumpul as $key => $value) if($value['status'] === 'status') unset($kumpul[$key]);
+		foreach ($kumpul as $key => $value) if($value['status'] !== $status) unset($kumpul[$key]);
 		return $kumpul;
 	}
 }

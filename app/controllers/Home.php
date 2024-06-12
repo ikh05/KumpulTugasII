@@ -33,8 +33,8 @@ class Home extends Controller{
 
 					$data['bkerja'] = $this->model('Model_kumpul')->filterBKerja_siswa($data['tugas']);
 					$data['dikumpul'] = $this->model('Model_kumpul')->filterByStatus_siswa($data['tugasDikerjakan'], 'dikumpul');
-					// $data['dinilai'] = $this->model('Model_kumpul')->getBySiswaDinilai($data['tugas']);
-					// $data['ditolak'] = $this->model('Model_kumpul')->getBySiswaDitolak($data['tugas']);
+					$data['dinilai'] = $this->model('Model_kumpul')->filterByStatus_siswa($data['tugasDikerjakan'], 'dinilai');
+					$data['ditolak'] = $this->model('Model_kumpul')->filterByStatus_siswa($data['tugasDikerjakan'], 'ditolak');
 					break;
 			}
 		}
