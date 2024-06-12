@@ -15,7 +15,7 @@ if($_SERVER['SERVER_NAME'] === 'localhost'){
 	define('DB_HOST', 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
-	define('DB_NAME', 'amat_DB');
+	define('DB_NAME', 'kumpultugasii');
 	define('BASE_URL', ($_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME'].'/KumpulTugasII/public/'));
 }else{
 	// DB Hosting
@@ -28,4 +28,6 @@ if($_SERVER['SERVER_NAME'] === 'localhost'){
 
 
 // Constant
-
+define('C_MESSAGE', 'KTII_message');
+define('C_SISWA', 'KTII_data-siswa');
+define('BASE_VENDOR', "http://localhost/vendor/");

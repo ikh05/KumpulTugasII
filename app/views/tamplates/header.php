@@ -15,6 +15,10 @@
 </head>
 <body>
 
-
+<?php if(isset($data[C_MESSAGE])) : ?>
 	<!-- Message -->
-	<!-- <div id="div-message"><?= (isset($data["_MESSAGE"])) ? $data["_MESSAGE"] : ''; ?></div> -->
+	<div class="alert alert-<?= (isset($data[C_MESSAGE]['warna']) ? $data[C_MESSAGE]['warna'] : 'success')  ?> alert-dismissible fade show fixed-top" role="alert">
+		<strong><?= (isset($data[C_MESSAGE]['strong']) ? $data[C_MESSAGE]['strong'] : '')  ?></strong> <?= $data[C_MESSAGE]['pesan'] ?>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+<?php endif; ?>

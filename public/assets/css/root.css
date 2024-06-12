@@ -1,4 +1,7 @@
 * {
 	transition: all 1s;
-	overflow: hidden;
+/* 	overflow: hidden; */
+}
+form .form-floating label {
+	left: .5rem;
 }

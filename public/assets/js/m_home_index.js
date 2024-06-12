@@ -1,32 +1,24 @@
-import {ajax, btnIconToggle} from './modules/functions.js';
+import {btnIconToggle} from './modules/functions.js';
 
-const identitas = document.getElementById('identitas');
-const inputIdentitas = identitas.children[1];
-const heightInputIdentitas = inputIdentitas.offsetHeight;
-inputIdentitas.style.height = heightInputIdentitas+"px";
-const btnUpDown = document.getElementById('upDown');
-const inputNama = document.querySelector('[name=nama]');
-const inputEmail = document.querySelector('[name=email]');
-const inputNoWa = document.querySelector('[name=noWa]');
-const inputToken = document.querySelector('[name=token]');
-// const inputSekolah = document.querySelector('[name=sekolah]');
-const inputPass = document.querySelector('[name=pass]');
+const inputNama = document.getElementById('input-nama');
+const inputEmail = document.getElementById('input-email');
+const inputNoWa = document.getElementById('input-noWa');
+const inputToken = document.getElementById('input-token');
+const inputPass = document.getElementById('input-password');
 const btnCari = document.getElementById('btn-cari');
 const btnPass = document.getElementById('eye-password');
-const tugas = document.getElementById('tugas');
 cekIdentitas('nama');
 cekIdentitas('email');
 cekIdentitas('noWa');
 cekIdentitas('token');
-// cekIdentitas('sekolah');
-cekIdentitas('pass');
+cekIdentitas('pass', function (input){
+	console.log(input);
+	if(input.value.length > 20) input.classList.add('is-invalid');
+	else input.classList.remove('is-invalid');
+});
 cekButtonCari();
 
 
-btnUpDown.addEventListener('click', ()=>{
-	inputIdentitas.style.height = inputIdentitas.offsetHeight > 0 ? '0px' : (heightInputIdentitas+'px');
-	btnIconToggle(btnUpDown);
-})
 btnPass.addEventListener('click', ()=>{
 	if(inputPass.getAttribute('type') === 'password'){
 		inputPass.setAttribute('type', 'text');
@@ -38,21 +30,23 @@ btnPass.addEventListener('click', ()=>{
 	btnIconToggle(btnPass);
 })
 
-function cekIdentitas (key) {
+function cekIdentitas (key, f=null) {
 	let input = document.querySelector('[name='+key+']');
 	input.value = localStorage.getItem('kumpuTugasII_'+key) || '';
+	if(typeof(f) === 'function') f(input);
 	input.addEventListener('input', ()=>{
 		localStorage.setItem('kumpuTugasII_'+key, input.value);
+		if(typeof(f) === 'function') f(input);
 		cekButtonCari();
 	})
 }
 function cekButtonCari () {
 	if(inputNama.value !== '' && 
 	   inputEmail.value !== '' && 
-	   // inputSekolah.value !== '' && 
 	   inputToken.value !== '' && 
 	   inputNoWa.value !== '' && 
-	   inputPass.value !== '')
+	   inputPass.value !== '' &&
+	   inputPass.value.length <= 20)
 	{
 		btnCari.removeAttribute('disabled');
 	}else {
