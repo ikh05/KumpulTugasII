@@ -30,4 +30,4 @@ if($_SERVER['SERVER_NAME'] === 'localhost'){
 // Constant
 define('C_MESSAGE', 'KTII_message');
 define('C_SISWA', 'KTII_data-siswa');
-define('BASE_VENDOR', "http://localhost/vendor/");
+define('C_GURU', "KTII_data-guru");
