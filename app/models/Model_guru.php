@@ -8,8 +8,8 @@ class Model_guru{
 	}
 	public function masuk($data){
 		$data = $this->bersihkan($data);
-		$username = $data['username'];
-		$password = $data['password'];
+		$username = $data['m-username'];
+		$password = $data['m-password'];
 		$this->db->query("SELECT * FROM $this->tabel WHERE username=:username");
 		$this->db->bind('username', $username);
 		$res = $this->db->single();
@@ -63,6 +63,9 @@ class Model_guru{
 	public function getSession(){
 		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
 		$this->db->bind('id', $_SESSION[C_GURU]);
-		return $this->db->single();
+		$res = $this->db->single();
+		$json = json_decode($res['tokenKelas']);
+		$res['tokenKelas'] = is_null($json) ? [] : $json;
+		return $res;
 	}
 }

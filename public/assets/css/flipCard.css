@@ -1,5 +1,5 @@
 .card-master-flip{
-	height: 80vh;
+/* 	height: 80vh; */
 }
 .card-master-flip.flip .card-flip{
 	transform: rotateY(180deg);

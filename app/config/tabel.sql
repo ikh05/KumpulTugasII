@@ -27,8 +27,9 @@ CREATE TABLE soal (
 CREATE TABLE kelas (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(15) NOT NULL,
-    tokenKelas VARCHAR(10) NOT NULL,
-    sekolah VARCHAR(50) NOT NULL
+    tokenKelas VARCHAR(30) NOT NULL,
+    sekolah VARCHAR(50) NOT NULL,
+    tahun VARCHAR(7) NOT NULL
 );
 
 
@@ -47,7 +48,7 @@ CREATE TABLE guru (
 CREATE TABLE siswa (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nama VARCHAR(50) NOT NULL,
-    tokenKelas VARCHAR(10) NOT NULL,
+    tokenKelas VARCHAR(30) NOT NULL,
     noWa VARCHAR(20) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(200) NOT NULL
@@ -58,7 +59,7 @@ CREATE TABLE tugas (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     idSoal TEXT NOT NULL,
     nama VARCHAR(50) NOT NULL,
-    tokenKelas VARCHAR(10) NOT NULL,
+    tokenKelas VARCHAR(30) NOT NULL,
     tanggal DATE NOT NULL,
     batas DATETIME NOT NULL
 );
