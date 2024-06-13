@@ -1,7 +1,10 @@
-* {
-	transition: all 1s;
-/* 	overflow: hidden; */
-}
 form .form-floating label {
 	left: .5rem;
+}
+
+.h-90vh{
+	height: 90vh;
+}
+.h-100vh{
+	height: 100vh;
 }

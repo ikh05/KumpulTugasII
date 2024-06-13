@@ -1,4 +1,4 @@
-import {btnIconToggle} from './modules/functions.js';
+import {btnIconToggle, setInput_localtorage} from './modules/functions.js';
 
 const inputNama = document.getElementById('input-nama');
 const inputEmail = document.getElementById('input-email');
@@ -31,14 +31,8 @@ btnPass.addEventListener('click', ()=>{
 })
 
 function cekIdentitas (key, f=null) {
-	let input = document.querySelector('[name='+key+']');
-	input.value = localStorage.getItem('kumpuTugasII_'+key) || '';
-	if(typeof(f) === 'function') f(input);
-	input.addEventListener('input', ()=>{
-		localStorage.setItem('kumpuTugasII_'+key, input.value);
-		if(typeof(f) === 'function') f(input);
-		cekButtonCari();
-	})
+	setInput_localtorage(key, f);
+	cekButtonCari();
 }
 function cekButtonCari () {
 	if(inputNama.value !== '' && 

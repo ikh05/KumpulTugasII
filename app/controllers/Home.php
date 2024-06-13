@@ -14,10 +14,10 @@ class Home extends Controller{
 		$data = [];
 		$data ['tugas']= array();
 		if(!isset($_POST['pass'])){
-			$data[C_MESSAGE] = array('pesan' => 'Silahkan masukkan identitas diri anda!' , 'warna'=>'danger', 'strong' => 'ERROR:');
+			$this->model('Model_message')->set('Silahkan masukkan identitas diri anda!', 'danger', 'ERROR:');
 		}else{ 
-			switch ($this->model('Model_siswa')->cekPassword($_POST)) {
-				case 0: $data[C_MESSAGE] = array('pesan' => 'Password yang anda masukkan salah!' , 'warna'=>'danger', 'strong' => 'ERROR:');
+			switch ($this->model('Model_siswa')->cekPassword($_POST)){
+				case 0: $this->model('Model_message')->set('Password yang anda masukkan salah!', 'danger', 'ERROR');
 					break;
 				case -1: $this->model('Model_siswa')->tambahSiswa($_POST);
 				case 1: 
@@ -30,7 +30,6 @@ class Home extends Controller{
 
 					$data['status-tugas'] = $this->model('Model_tugas')->countTugasStatus($data['tugas'], $data['tugasDikerjakan']);
 
-
 					$data['bkerja'] = $this->model('Model_kumpul')->filterBKerja_siswa($data['tugas']);
 					$data['dikumpul'] = $this->model('Model_kumpul')->filterByStatus_siswa($data['tugasDikerjakan'], 'dikumpul');
 					$data['dinilai'] = $this->model('Model_kumpul')->filterByStatus_siswa($data['tugasDikerjakan'], 'dinilai');
@@ -38,7 +37,7 @@ class Home extends Controller{
 					break;
 			}
 		}
-
+		$data[C_MESSAGE] = $this->model('Model_message')->get();
 		$data['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$data['js'] = [CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, "m_home_index", "m_home_tugas"];
 		$this->view("tamplates/header", $data);

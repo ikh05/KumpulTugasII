@@ -12,7 +12,18 @@ class Model_tugas {
 		$token = htmlspecialchars($data['token']);
 		$this->db->query("SELECT * FROM $this->tabel WHERE tokenKelas=:token");
 		$this->db->bind('token', $token);
-		return $this->db->resultSet();
+		$res = $this->db->resultSet();
+		foreach ($res as $key => $value) {
+			$res[$key]['idTugas'] = json_decode($value['idTugas']);
+		}
+		return $res;
+	}
+	public function getById($id){
+		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
+		$this->db->bind('id', $id);
+		$res = $this->db->single();
+		$res ['idSoal'] = json_decode($res['idTugas']);
+		return $res;
 	}
 
 	public function countTugasStatus($tugas, $dikerjakan){
@@ -38,9 +49,7 @@ class Model_tugas {
 
 	public function tempelTugas($kumpul){
 		foreach ($kumpul as $k => $v) {
-			$this->db->query("SELECT nama, tanggal, batas FROM $this->tabel WHERE id=:idTugas");
-			$this->db->bind('idTugas', $v['idTugas']);
-			$kumpul[$k] = array_merge($kumpul[$k], $this->db->single());
+			$kumpul[$k] = array_merge($kumpul[$k], $this->getById($v['idTugas']));
 		}
 		return $kumpul;
 	}

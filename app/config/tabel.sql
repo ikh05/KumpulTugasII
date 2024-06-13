@@ -35,9 +35,9 @@ CREATE TABLE kelas (
 -- guru
 CREATE TABLE guru (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
     nama VARCHAR(50) NOT NULL,
-    banyakSiswa VARCHAR(20) NOT NULL,
-    tokenKelas VARCHAR(10) NOT NULL,
+    tokenKelas TEXT NOT NULL,
     password VARCHAR(200) NOT NULL,
     noWa VARCHAR(20) NOT NULL,
     email VARCHAR(255) NOT NULL
@@ -56,7 +56,7 @@ CREATE TABLE siswa (
 -- tugas
 CREATE TABLE tugas (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    idSoal INT(6) NOT NULL,
+    idSoal TEXT NOT NULL,
     nama VARCHAR(50) NOT NULL,
     tokenKelas VARCHAR(10) NOT NULL,
     tanggal DATE NOT NULL,
@@ -68,7 +68,6 @@ CREATE TABLE kumpul(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     idSiswa INT(6) NOT NULL,
     idTugas INT(6) NOT NULL,
-    idSoal INT(6) NOT NULL,
     nilai INT(3) NOT NULL,
     gambar TEXT NOT NULL,
     tanggalKumpul DATE NOT NULL,

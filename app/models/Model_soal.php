@@ -9,9 +9,13 @@ class Model_soal{
 
 	public function tempelSoal($tugas){
 		foreach ($tugas as $i => $v) {
-			$this->db->query("SELECT soal FROM $this->tabel WHERE id=:idSoal");
-			$this->db->bind('idSoal', $v['idSoal']);
-			$tugas[$i] = array_merge($tugas[$i], $this->db->single());
+			$soal = [];
+			foreach ($v['idSoal'] as $idSoal) {
+				$this->db->query("SELECT soal FROM $this->tabel WHERE id=:idSoal");
+				$this->db->bind('idSoal', $idSoal);
+				$soal = array_merge($soal, $this->db->single());
+			}
+			$tugas[$i] = array_merge($tugas[$i], $soal);
 		}
 		return $tugas;
 	}
