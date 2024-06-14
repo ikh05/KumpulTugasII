@@ -8,5 +8,9 @@ class Controller {
 	protected function view($href, $data = []){
 		include_once "../app/views/".$href.".php";
 	}
+	protected function clearData($data){
+		foreach ($data as $key => $value) $data[$key] = htmlspecialchars($value);
+		return $data;
+	}
 
 }

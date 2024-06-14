@@ -10,7 +10,7 @@ const btnPass = document.getElementById('eye-password');
 cekIdentitas('nama');
 cekIdentitas('email');
 cekIdentitas('noWa');
-cekIdentitas('token');
+cekIdentitas('tokenKelas');
 cekIdentitas('pass', function (input){
 	console.log(input);
 	if(input.value.length > 20) input.classList.add('is-invalid');

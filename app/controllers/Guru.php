@@ -21,7 +21,7 @@ class Guru extends Controller{
 	}
 	public function buatKelas(){
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
-		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS];
+		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, 'm_guru_buatKelas'];
 		$this->func_dashoard('buatKelas');
 	}
 
@@ -43,10 +43,13 @@ class Guru extends Controller{
 		header("Location: ".BASE_URL.'Guru');
 	}
 	public function simpanKelas(){
-		// simpan di kelas,
-		// tambah token kelas pada guru
-		// buat daftar nilai dengan nama tabel adalah token kelas,
-		// cek tugas default,
+		if($this->model('Model_kelas')->getByToken($_POST) === FALSE){
+
+			header("Location: ".BASE_URL.'Guru/detailKelas/');
+		}else{
+			$this->model('Model_message')->set('Berhasil Login');
+			header("Location: ".BASE_URL.'Guru/buatKelas');
+		}
 		var_dump($_POST);
 		die;
 	}
@@ -62,7 +65,7 @@ class Guru extends Controller{
 		$this->data['offcanvas'] = $active;
 		$this->data['content_main'] = 'Guru/'.(is_null($content) ? $active : $content);
 		$this->data['guru'] = $this->model('Model_guru')->getSession();
-		$this->data['kelas'] = $this->model('Model_kelas')->get($this->data['guru']);
+		$this->data['kelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']);
 		$this->view('tamplates/header', $this->data);
 		$this->view('tamplates/dashboard', $this->data);
 		$this->view('tamplates/footer', $this->data);

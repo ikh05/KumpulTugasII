@@ -13,4 +13,8 @@ class Model_message{
 		}
 		return $this->res;
 	}
+	public function cek(){
+
+		return isset($_SESSION[C_MESSAGE]);
+	}
 }

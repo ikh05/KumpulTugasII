@@ -13,6 +13,3 @@ form .form-floating label {
 .border-translucent{
 	border-color: rgba(0,0,0,.175) !important;
 }
-.border-translucent:hover{
-/* 	border-color: red !important; */
-}

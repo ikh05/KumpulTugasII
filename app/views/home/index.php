@@ -46,7 +46,7 @@
 							<label for="input-password">Password</label>
 						</div>
 						<div class="col-7 col-md-5 mb-1 form-floating">
-							<input type="password" id="input-token" name="token" class="form-control" required autocomplete="off" placeholder="Identitas kelas dan sekolah">
+							<input type="password" id="input-token" name="tokenKelas" class="form-control" required autocomplete="off" placeholder="Identitas kelas dan sekolah">
 							<label for="input-token">Token</label>
 						</div>
 						<div class="col-5 col-md-2 btn-group mb-1">

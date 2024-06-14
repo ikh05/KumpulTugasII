@@ -3,7 +3,10 @@
 class Home extends Controller{
 	public function index (){
 		$data = [];
-		$data[C_MESSAGE] = array('pesan' => ' Silahkan lengkapi identitas anda!' , 'warna'=>'primary', 'strong' => 'Selamat Datang');
+		if(!$this->model('Model_message')->cek()){
+			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
+		}
+		$data[C_MESSAGE] = $this->model('Model_message')->get();
 		$data['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$data['js'] = [CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, "m_home_index"];
 		$this->view("tamplates/header", $data);
@@ -12,13 +15,18 @@ class Home extends Controller{
 	}
 	public function tugas(){
 		$data = [];
-		$data ['tugas']= array();
+		$kelas = $this->model('Model_kelas')->getByToken($_POST);
+		if($kelas === FALSE){
+			$this->model('Model_message')->set('Kelas tidak dikenali!', 'danger', 'ERROR');
+			header("Location: ".BASE_URL); exit();
+		}
 		if(!isset($_POST['pass'])){
-			$this->model('Model_message')->set('Silahkan masukkan identitas diri anda!', 'danger', 'ERROR:');
+			$this->model('Model_message')->set('Silahkan masukkan identitas diri anda dengan benar!', 'danger', 'ERROR:');
+			header("Location: ".BASE_URL); exit();
 		}else{ 
-			switch ($this->model('Model_siswa')->cekPassword($_POST)){
+			switch ($this->model('Model_siswa')->cekDataSiswa($_POST)){
 				case 0: $this->model('Model_message')->set('Password yang anda masukkan salah!', 'danger', 'ERROR');
-					break;
+					header("Location: ".BASE_URL);
 				case -1: $this->model('Model_siswa')->tambahSiswa($_POST);
 				case 1: 
 					$data['tugas'] = $this->model('Model_tugas')->getByToken($_POST);
