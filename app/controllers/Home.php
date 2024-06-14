@@ -15,21 +15,22 @@ class Home extends Controller{
 	}
 	public function tugas(){
 		$data = [];
-		$kelas = $this->model('Model_kelas')->getByToken($_POST);
+		$dataClear = $this->clearData($_POST);
+		$kelas = $this->model('Model_kelas')->getByToken($dataClear);
 		if($kelas === FALSE){
 			$this->model('Model_message')->set('Kelas tidak dikenali!', 'danger', 'ERROR');
 			header("Location: ".BASE_URL); exit();
 		}
-		if(!isset($_POST['pass'])){
+		if(!isset($dataClear['pass'])){
 			$this->model('Model_message')->set('Silahkan masukkan identitas diri anda dengan benar!', 'danger', 'ERROR:');
 			header("Location: ".BASE_URL); exit();
 		}else{ 
-			switch ($this->model('Model_siswa')->cekDataSiswa($_POST)){
+			switch ($this->model('Model_siswa')->cekDataSiswa($dataClear)){
 				case 0: $this->model('Model_message')->set('Password yang anda masukkan salah!', 'danger', 'ERROR');
 					header("Location: ".BASE_URL);
-				case -1: $this->model('Model_siswa')->tambahSiswa($_POST);
+				case -1: $this->model('Model_siswa')->tambahSiswa($dataClear);
 				case 1: 
-					$data['tugas'] = $this->model('Model_tugas')->getByToken($_POST);
+					$data['tugas'] = $this->model('Model_tugas')->getByToken($dataClear);
 					$data['tugasDikerjakan'] = $this->model('Model_kumpul')->getBySiswa();
 
 					$data['tugas']= $this->model('Model_soal')->tempelSoal($data['tugas']);

@@ -10,15 +10,16 @@ class Model_kelas{
 	}
 	public function getByGuru($data){
 		$tokenKelas = $data['tokenKelas'];
+		$res = [];
+		// var_dump($data['tokenKelas']); die;
 		foreach ($tokenKelas as $k => $v) {
 			$this->db->query("SELECT * FROM $this->tabel WHERE tokenKelas=:v");
 			$this->db->bind('v', $v);
-			$tokenKelas[$k] = $this->db->single();
+			$res[$v] = $this->db->single();
 		}
-		return $tokenKelas;
+		return $res;
 	}
 	public function getByToken($data){
-		$data = $this->bersihkan($data);
 		$tokenKelas = $data['tokenKelas'];
 		$this->db->query("SELECT * FROM $this->tabel WHERE tokenKelas=:tokenKelas");
 		$this->db->bind('tokenKelas', $tokenKelas);
@@ -35,8 +36,14 @@ class Model_kelas{
 		}
 		return $res;
 	}
-	public function bersihkan($data){
-		foreach ($data as $key => $value) $data[$key] = htmlspecialchars($value);
-		return $data;
+
+
+	public function simpanKelas($data){
+		$this->db->query("INSERT INTO $this->tabel (`nama`, `tokenKelas`, `sekolah`, `tahun`) VALUES (:nama, :tokenKelas, :sekolah, :tahun)");
+		$this->db->bind("nama", $data['nama']);
+		$this->db->bind("sekolah", $data['sekolah']);
+		$this->db->bind("tahun", $data['tahun']);
+		$this->db->bind("tokenKelas", $data['tokenKelas']);
+		$this->db->execute();
 	}
 }

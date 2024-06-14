@@ -7,7 +7,6 @@ class Model_guru{
 		$this->db = new Database();
 	}
 	public function masuk($data){
-		$data = $this->bersihkan($data);
 		$username = $data['m-username'];
 		$password = $data['m-password'];
 		$this->db->query("SELECT * FROM $this->tabel WHERE username=:username");
@@ -23,7 +22,6 @@ class Model_guru{
 		}
 	}
 	public function daftar($data){
-		$data = $this->bersihkan($data);
 		$username = $data['d-username'];
 		$nama = $data['d-nama'];
 		$email = $data['d-email'];
@@ -55,17 +53,27 @@ class Model_guru{
 		return 1;
 	}
 
-	public function bersihkan($data){
-		foreach ($data as $key => $value) $data[$key] = htmlspecialchars($value);
-		return $data;
-	}
 
 	public function getSession(){
 		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
 		$this->db->bind('id', $_SESSION[C_GURU]);
 		$res = $this->db->single();
-		$json = json_decode($res['tokenKelas']);
-		$res['tokenKelas'] = is_null($json) ? [] : $json;
+		$res['tokenKelas'] = json_decode($res['tokenKelas']);
+		// var_dump($res); die;
 		return $res;
+	}
+
+	public function tambahKelas($data){
+		$id = $_SESSION[C_GURU];
+		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
+		$this->db->bind('id', $_SESSION[C_GURU]);
+		$res = $this->db->single();
+		$json = json_decode($res['tokenKelas']);
+		array_push($json, $data['tokenKelas']);
+		// var_dump(json_encode($json));die;
+		$this->db->query("UPDATE $this->tabel SET tokenKelas=:tokenKelas WHERE id=:id");
+		$this->db->bind('id', $_SESSION[C_GURU]);
+		$this->db->bind('tokenKelas', json_encode($json));
+		$this->db->execute();
 	}
 }
