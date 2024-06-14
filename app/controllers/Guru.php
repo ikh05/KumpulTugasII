@@ -18,6 +18,9 @@ class Guru extends Controller{
 		$this->view('guru/login', $this->data);
 		$this->view('tamplates/footer', $this->data);
 	}
+
+
+
 	public function dashboard(){
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS];
@@ -31,7 +34,7 @@ class Guru extends Controller{
 	public function soalKu(){
 		$this->data ['soal'] = $this->model('Model_soal')->getByIdGuru();
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
-		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS];
+		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_soalKu'];
 		$this->func_dashoard('soalKu');
 	}
 
@@ -68,8 +71,8 @@ class Guru extends Controller{
 		exit();
 	}
 	public function simpanSoal(){
-		
 		$this->model('Model_soal')->simpanSoal($this->dataClear);
+		header("Location: ".BASE_URL."Guru/soalKu");
 	}
 	public function keluar(){
 		unset($_SESSION[C_GURU]);

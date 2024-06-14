@@ -26,3 +26,38 @@ export function generateToken(n=6){
 	}
 	return token;
 }
+
+export function hiddenShowTabel (tabel, halaman, banyak) {
+	// mencari halaman mana yang active
+	let halamanActive = parseInt(halaman.querySelector('a.active[value]').getAttribute('value'));
+	let indexMulai = ((halamanActive-1)*banyak);
+	let indexAkhir = parseInt(indexMulai)+parseInt(banyak)-1;
+	tabel.forEach((e,i)=>{
+		if(i < indexMulai || i > indexAkhir) e.classList.add('d-none');
+		else e.classList.remove('d-none');
+	})
+}
+export function countHalaman (tabel, halaman, banyak){
+	let banyakData = tabel.length;
+	let banyakHalaman = Math.ceil(banyakData/parseInt(banyak));
+	let allButton = halaman.querySelectorAll('li');
+	for (let i = 1; i+1 < allButton.length; i++) {
+		allButton[i].remove();
+	}
+	let parent = halaman.querySelector('ul');
+	let btnTerakhir = allButton[allButton.length-1];
+	for (let i = 1; i <= banyakHalaman; i++) {
+		let li = document.createElement('li');
+		li.classList.add('page-item');
+		li.innerHTML = "<a href='#navigation-pages' value='"+i+"' class='page-link active'>"+i+"</a>";
+		parent.insertBefore(li,btnTerakhir)
+	}
+}
+export function halamanAcive(halaman, halamanActive) {
+	// halamanClick harus berupa int
+	let allButton = halaman.querySelectorAll('a[value]');
+	allButton.forEach( function(element, index) {
+		if(element.getAttribute('value') === halamanActive.toString()) element.classList.add('active');
+		else element.classList.remove('active');
+	});
+}

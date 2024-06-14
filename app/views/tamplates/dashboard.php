@@ -1,5 +1,5 @@
 
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark fixed-top">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="<?= BASE_URL ?>Guru">Kumpul Tugas II</a>
             <!-- Sidebar Toggle-->
@@ -64,7 +64,7 @@
             </div>
 
             <div id="layoutSidenav_content">
-                <main>
+                <main class="pt-5 mt-3">
                 	<?php include_once ('../app/views/'.$data['content_main'].'.php'); ?>
                 </main>
                 <!-- <footer class="py-4 bg-light mt-auto">
