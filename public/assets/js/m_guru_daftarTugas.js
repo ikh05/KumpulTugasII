@@ -6,10 +6,10 @@ const tambah_banyakSoal = document.getElementById('banyak-soal');
 const tambah_file = document.querySelector('form [type=file]');
 const tambah_soalPilih = document.querySelector('form [name=soal-pilih]');
 const soal_nav = document.getElementById('soal-nav');
-const soal_banyakBaris =document.getElementById('soal-banyakBaris').value;
+const soal_banyakBaris =document.getElementById('soal-banyakBaris');
 const allSoal = document.querySelectorAll('.daftar-soal tr');
 const tugas_nav = document.getElementById('tugas-nav');
-const tugas_banyakBaris =document.getElementById('tugas-banyakBaris').value;
+const tugas_banyakBaris =document.getElementById('tugas-banyakBaris');
 const allTugas = document.querySelectorAll('.daftar-tugas tr');
 const cara_soalTugas = document.querySelectorAll('#cara-soalTugas a');
 const tambah_cara = document.querySelector('form [name=cara]');
@@ -18,16 +18,26 @@ console.log(tambah_submit);
 
 
 if(allSoal.length > 0){
-	countHalaman(allSoal, soal_nav, soal_banyakBaris);
-	hiddenShowTabel(allSoal, soal_nav, soal_banyakBaris);
+	soal_banyakBaris.addEventListener('input', ()=>{
+		countHalaman(allSoal, soal_nav, soal_banyakBaris.value);
+		hiddenShowTabel(allSoal, soal_nav, soal_banyakBaris.value);
+		halamanAcive(soal_nav, 1);
+	})
+	countHalaman(allSoal, soal_nav, soal_banyakBaris.value);
+	hiddenShowTabel(allSoal, soal_nav, soal_banyakBaris.value);
 	halamanAcive(soal_nav, 1);
-	navHalaman_click(allSoal, soal_nav, soal_banyakBaris);
+	navHalaman_click(allSoal, soal_nav, soal_banyakBaris.value);
 }
 if(allTugas.length > 0){
-	countHalaman(allTugas, tugas_nav, tugas_banyakBaris);
-	hiddenShowTabel(allTugas, tugas_nav, tugas_banyakBaris);
+	tugas_banyakBaris.addEventListener('input', ()=>{
+		countHalaman(allTugas, tugas_nav, tugas_banyakBaris.value);
+		hiddenShowTabel(allTugas, tugas_nav, tugas_banyakBaris.value);
+		halamanAcive(tugas_nav, 1);
+	})
+	countHalaman(allTugas, tugas_nav, tugas_banyakBaris.value);
+	hiddenShowTabel(allTugas, tugas_nav, tugas_banyakBaris.value);
 	halamanAcive(tugas_nav, 1);
-	navHalaman_click(allTugas, tugas_nav, tugas_banyakBaris);
+	navHalaman_click(allTugas, tugas_nav, tugas_banyakBaris.value);
 }
 
 checkBox_allTugas.addEventListener('input', (ev)=>{

@@ -6,26 +6,22 @@ class Model_gambar{
 		$this->db = new Database();
 	}
 
-	public function upload($data, $file,$key='S'){
+	public function upload($data, $file, $key='g'){
 		$res = [];
-		var_dump($file);
-		$iterasi = 0;
+		$iterasi = 1;
 		$ekstensi_valid = ['jpg', 'png', 'jpeg'];
 		foreach ($file as $k => $v) {
-			$namaLama = $data['nama-'.$k];
-			var_dump($namaLama);
-			echo "<br>";
+			$i = 'nama-file-'.$iterasi;
 			$name = $v['name'];
 			$tamp = $v['tmp_name'];
 			$eks = explode('.', $name);
 			$eks = end($eks);
 			if(in_array($eks, $ekstensi_valid) && $v['error'] == UPLOAD_ERR_OK){
-				$iterasi += 1;
 				$namaBaru = $key.'_'.time().'-'.$iterasi.'.'.$eks;
-				if(move_uploaded_file($tamp, 'assets/img/'.$namaBaru)){
-					$res = array_merge($res,  array($namaLama => $namaBaru));
-				}
+				move_uploaded_file($tamp, 'assets/img/'.$namaBaru);
+				$res = array_merge($res,  array($data[$i] => $namaBaru));
 			}
+			$iterasi += 1;
 		}
 		return $res;
 	}

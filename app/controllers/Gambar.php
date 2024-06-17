@@ -9,9 +9,14 @@ class Gambar extends Controller{
 			$this->model('Model_gambar')->getImg($namaGambar);
 		}
 	}
-	public function getGambarKumpulSiswa($namaGambar, $idSiswa){
-		if(isset($_SESSION[C_SISWA]) && $this->model('Model_siswa')->getSiswa() == $idSiswa){
-			$this->model('Model_gambar')->getImg($namaGambar);
+	public function getGambarJawaban_Siswa($namaGambar){
+		if(!isset($_SESSION[C_SISWA])){
+			header("Location: ".BASE_URL.'Error/noIjin/Gambar/noSiswa');
 		}
+		$siswa = $this->model('Model_siswa')->getSission();
+		$this->model('Model_gambar')->getImg($namaGambar);
+	}
+	public function getGambarJawaban_Guru($namaGambar){
+		// code...
 	}
 }

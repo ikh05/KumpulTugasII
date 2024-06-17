@@ -27,7 +27,7 @@
 		    <div id="input-identitas" class="accordion-collapse collapse show">
 		      <div class="accordion-body">
 		        
-		      	<form method="Post" class="upDown" action="<?= BASE_URL ?>Home/tugas">
+		      	<form method="Post" class="upDown" action="<?= BASE_URL ?>Home/masuk">
 					<div id="tinggiInput" class="row">
 						<div class="col-12 mb-1 form-floating">
 							<input type="text" id="input-nama" name="nama" placeholder="Nama siswa" class="form-control" required autocomplete="off">
@@ -42,7 +42,7 @@
 							<label for="input-noWa">No Wa</label>
 						</div>
 						<div class="col-12 col-md-5 mb-1 form-floating">
-							<input type="password" id="input-password" name="pass" class="form-control" required autocomplete="off" placeholder="Password (1-20 karakter)" aria-describedby="eye-password">
+							<input type="password" id="input-password" name="password" class="form-control" required autocomplete="off" placeholder="Password (1-20 karakter)" aria-describedby="eye-password">
 							<label for="input-password">Password</label>
 						</div>
 						<div class="col-7 col-md-5 mb-1 form-floating">

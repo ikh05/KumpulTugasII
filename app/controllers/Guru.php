@@ -3,7 +3,6 @@
 
 class Guru extends Controller{
 	// tampilan
-	protected $data = [];
 	protected $dataClear = [];
 	function __construct(){
 		if(isset($_POST)) $this->dataClear = $this->clearData($_POST);
@@ -21,30 +20,37 @@ class Guru extends Controller{
 
 
 	// dashboard
-	public function dashboard(){
+	// function
+	protected function func_dashoard($content, $active = null){
+		if(!isset($_SESSION[C_GURU])) header("Location: ".BASE_URL.'Guru');
 		$this->data['guru'] = $this->model('Model_guru')->getSession();
-		$this->data['kelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']);
+		$this->data['kelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']['tokenKelas']);
+		$this->data['offcanvas'] = is_null($active) ? $content : $active;
+		$this->data['content_main'] = 'Guru/'.$content;
+		$this->view('tamplates/dashboard', $this->data);
+	}
+	public function dashboard(){
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS];
+
 		$this->view('tamplates/header', $this->data);
 		$this->func_dashoard('dashboard');
 		$this->view('tamplates/footer', $this->data);
 	}
 	public function buatKelas(){
-		$this->data['guru'] = $this->model('Model_guru')->getSession();
-		$this->data['kelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']);
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, 'm_guru_buatKelas'];
+
 		$this->view('tamplates/header', $this->data);
 		$this->func_dashoard('buatKelas');
 		$this->view('tamplates/footer', $this->data);
 	}
 	public function soalKu(){
 		$this->data ['soal'] = $this->model('Model_soal')->getByIdGuru();
-		$this->data['guru'] = $this->model('Model_guru')->getSession();
-		$this->data['kelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']);
+
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_soalKu'];
+
 		$this->view('tamplates/header', $this->data);
 		$this->func_dashoard('soalKu');
 		$this->view('tamplates/cekGambar', $this->data);
@@ -52,8 +58,6 @@ class Guru extends Controller{
 	}
 	public function daftarTugas($keyKelas){
 		$this->data ['soal'] = $this->model('Model_soal')->getByIdGuru();
-		$this->data['guru'] = $this->model('Model_guru')->getSession();
-		$this->data['kelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']);
 		$this->data['tugas'] = $this->model('Model_tugas')->getByToken($keyKelas);
 		$this->data ['tokenKelas-active'] = $keyKelas;
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
@@ -86,8 +90,8 @@ class Guru extends Controller{
 	public function simpanKelas(){
 		if($this->model('Model_kelas')->getByToken($this->dataClear) === FALSE){
 			$this->model('Model_kelas')->simpanKelas($this->dataClear);
-			$this->model('Model_guru')->tambahKelas($this->dataClear);
-			$this->model('Model_jawaban')->createTabel($this->dataClear);
+			$this->model('Model_guru')->tambahKelas($this->dataClear['tokenKelas']);
+			$this->model('Model_jawaban')->createTabel($this->dataClear['tokenKelas']);
 			$this->model('Model_message')->set('Kelas Berhasil dibuat', 'success');
 			header("Location: ".BASE_URL.'Guru/detailKelas/'.$this->dataClear['tokenKelas']);
 		}else{
@@ -97,9 +101,17 @@ class Guru extends Controller{
 		exit();
 	}
 	public function simpanSoal(){
-		$this->dataClear['gambar'] = (empty($_FILES)) ? [] : $this->model('Model_gambar')->upload($this->dataClear, $_FILES, 'g');
-		if(!empty($this->dataClear['gambar'])) $this->dataClear['soal'] = $this->Model('Model_soal')->tempelNamaGambar($this->dataClear);
-		$this->model('Model_soal')->simpanSoal($this->dataClear);
+		/* 
+			$_FILES = { 'file-1'=>{},'file-2'=>{}}
+			['gambar'] = { 'nama-file-1' => 'g_213422323_1.png'};
+		*/
+			var_dump($this->dataClear);
+			echo "<br> <br>";
+			var_dump($_FILES);
+		$namaGambar = (empty($_FILES)) ? [] : $this->model('Model_gambar')->upload($this->dataClear, $_FILES, 'g');
+		if(!empty($namaGambar)) $this->dataClear['soal'] = $this->Model('Model_soal')->tempelNamaGambar($namaGambar, $this->dataClear['soal']);
+
+		$this->model('Model_soal')->simpanSoal($this->dataClear['namaSoal'], $this->dataClear['soal']);
 		header("Location: ".BASE_URL."Guru/soalKu");
 	}
 	public function simpanTugas($tokenKelas){
@@ -113,11 +125,12 @@ class Guru extends Controller{
 			echo " <br> ";
 			var_dump($_FILES);
 			if(!isset($this->dataClear['cara'])){
+				// file yang di upload harus dalam pdf dan cuman 1
 				$namaFile = $this->model('Model_document')->upload($_FILES, $tokenKelas);
-				$this->dataClear['soal'] = "__D_".$namaFile.'_';
-				$this->dataClear['file'] = array($namaFile);
-				$this->dataClear['soal'] = $this->model('Model_soal')->tempelNamaDocument($this->dataClear);
-				$this->dataClear['idSoal'] = array($this->model('Model_soal')->simpanSoal($this->dataClear)['id']);
+				$namaFile = array($namaFile);
+				$soal = "__D_".$namaFile[0].'__';
+				$soal = $this->model('Model_soal')->tempelNamaDocument($namaFile, $soal);
+				$this->dataClear['soal-pilih'] = array($this->model('Model_soal')->simpanSoal($namaFile[0], $soal)['id'][0]);
 				var_dump($this->dataClear);
 			}
 			$this->model('Model_tugas')->simpanTugas($this->dataClear, $tokenKelas);
@@ -129,12 +142,6 @@ class Guru extends Controller{
 	}
 
 
-	// function
-	protected function func_dashoard($content, $active = null){
-		if(!isset($_SESSION[C_GURU])) header("Location: ".BASE_URL.'Guru');
-		$this->data['offcanvas'] = is_null($active) ? $content : $active;
-		$this->data['content_main'] = 'Guru/'.$content;
-		$this->view('tamplates/dashboard', $this->data);
-	}
+
 
 }

@@ -78,6 +78,10 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
 	<div class="daftarsoal">
 		<div class="card mb-3">
 			<div class="card-header text-bg-dark">Daftar Soal (<?= count($data['soal']) ?>)</div>
@@ -118,25 +122,21 @@
 			  <div class="card-footer text-bg-dark">
 			  	<nav aria-label="Page navigation" id="navigation-pages">
 				  <ul class="pagination justify-content-end m-0">
-				    <li class="page-item">
-				      <a href="#navigation-pages" value="-1" class="page-link" aria-label="Previous" class="">
-				        <span aria-hidden="true">&laquo;</span>
-				      </a>
-				    </li>
-				    <li class="page-item"><a href="#navigation-pages" value="1" class="page-link active">1</a></li>
-				    <li class="page-item"><a href="#navigation-pages" value="2" class="page-link">2</a></li>
-				    <li class="page-item"><a href="#navigation-pages" value="3" class="page-link">3</a></li>
-				    <li class="page-item">
-				      <a href="#navigation-pages" value="+1" class="page-link" aria-label="Next">
-				        <span aria-hidden="true">&raquo;</span>
-				      </a>
-				    </li>
+				    <li class="page-item order-1"><a href="#navigation-pages" value="-1" class="page-link" aria-label="Previous" class=""><span aria-hidden="true">&laquo;</span></a></li>
+				    <li class="page-item order-2 disabled __ d-none"><a href="#navigation-pages" class="page-link" aria-label="Previous" class="">...</a></li>
+				    <li class="page-item order-1"><a href="#navigation-pages" value="1" class="page-link active">1</a></li>
+				    <li class="page-item order-4 disabled __ d-none"><a href="#navigation-pages" class="page-link" aria-label="Previous" class="">...</a></li>
+				    <li class="page-item order-5"><a href="#navigation-pages" value="+1" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				  </ul>
 				</nav>
 			  </div>
 		</div>
 	</div>
 </div>
+
+
+
+
 
 
 <!-- Model -->
@@ -149,8 +149,8 @@
       </div>
       <div class="modal-body">
         <div class="form-floating mb-2">
-  			<input name="nama" type="text" class="form-control" id="nama-soal" placeholder="Nama Soal" required>
-  			<label for="nama-soal">Nama Soal</label>
+  			<input name="namaSoal" type="text" class="form-control" id="namaSoal" placeholder="Nama Soal" required>
+  			<label for="namaSoal">Nama Soal</label>
 		</div>
 		<div class="form-floating mb-2" style="height: 40vh;">
   			<textarea name="soal" class="form-control h-100" placeholder="Tuliskan text soal" id="text-soal" required></textarea>

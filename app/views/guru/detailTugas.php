@@ -87,7 +87,6 @@
 					<div class="row">
 						<div class="col">
 							<div class="input-group">
-				  				<span class="input-group-text border-secondary" id="basic-addon1">Banyak Baris:</span>
 					  			<select class="form-select form-control border-secondary" aria-label="Default select example" id="soal-banyakBaris">
 								  <option selected value="5">5</option>
 								  <option value="10">10</option>
@@ -101,17 +100,11 @@
 			  			<div class="col">
 			  				<nav aria-label="Page navigation" id="soal-nav">
 							  <ul class="pagination justify-content-end m-0">
-							    <li class="page-item">
-							      <a href="#soal-nav" value="-1" class="page-link" aria-label="Previous" class="">
-							        <span aria-hidden="true">&laquo;</span>
-							      </a>
-							    </li>
-			    				<li class="page-item"><a href="#soal-nav" value="1" class="page-link active">1</a></li>
-							    <li class="page-item">
-							      <a href="#soal-nav" value="+1" class="page-link" aria-label="Next">
-							        <span aria-hidden="true">&raquo;</span>
-							      </a>
-							    </li>
+							    <li class="page-item order-1"><a href="#soal-nav" value="-1" class="page-link" aria-label="Previous" class=""><span aria-hidden="true">&laquo;</span></a></li>
+				    			<li class="disabled page-item order-2 d-none __"><a class="page-link">...</a></li>
+								<li class="page-item order-1"><a href="#soal-nav" value="1" class="page-link active">1</a></li>
+				    			<li class="disabled page-item order-4 d-none __"><a href="#soal-nav" class="page-link">...</a></li>
+							    <li class="page-item order-5"><a href="#soal-nav" value="+1" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 							  </ul>
 							</nav>
 			  			</div>
@@ -157,7 +150,6 @@
 							<div class="row">
 								<div class="col">
 									<div class="input-group">
-						  				<span class="input-group-text border-secondary" id="basic-addon1">Banyak Baris:</span>
 							  			<select class="form-select form-control border-secondary" aria-label="Default select example" id="tugas-banyakBaris">
 										  <option selected value="5">5</option>
 										  <option value="10">10</option>
@@ -171,17 +163,11 @@
 					  			<div class="col">
 					  				<nav aria-label="Page navigation" id="tugas-nav">
 									  <ul class="pagination justify-content-end m-0">
-									    <li class="page-item">
-									      <a href="#tugas-nav" value="-1" class="page-link" aria-label="Previous" class="">
-									        <span aria-hidden="true">&laquo;</span>
-									      </a>
-									    </li>
-				    					<li class="page-item"><a href="#tugas-nav" value="1" class="page-link active">1</a></li>
-									    <li class="page-item">
-									      <a href="#tugas-nav" value="+1" class="page-link" aria-label="Next">
-									        <span aria-hidden="true">&raquo;</span>
-									      </a>
-									    </li>
+									    <li class="page-item order-1"> <a href="#tugas-nav" value="-1" class="page-link" aria-label="Previous" class=""><span aria-hidden="true">&laquo;</span></a></li>
+				    					<li class="disabled page-item order-2 d-none __"><a class="page-link">...</a></li>
+				    					<li class="page-item order-1"><a href="#tugas-nav" value="1" class="page-link active">1</a></li>
+				    					<li class="disabled page-item order-4 d-none __"><a href="#tugas-nav" class="page-link">...</a></li>
+									    <li class="page-item order-5"><a href="#tugas-nav" value="+1" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 									  </ul>
 									</nav>
 					  			</div>
@@ -237,8 +223,7 @@
 
 							</div>
 						</div>
-						<div>
-						<!-- <div class="card-hidden" style="overflow: hidden; width: 0; height: 0; opacity: 0;"> -->
+						<div class="card-hidden" style="overflow: hidden; width: 0; height: 0; opacity: 0;">
 							<input type="checkbox" name="cara" checked>
 							<input type="text" name="soal-pilih">
 						</div>

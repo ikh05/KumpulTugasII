@@ -79,10 +79,10 @@ tambahGambar.addEventListener('click', ()=>{
 	div.setAttribute('class', 'input-group mb-3');
 	div.innerHTML = `
 		<div class='form-floating'>
-			<input type='text' name='nama-gambar-${i}' class='form-control' disabled required value='Nama Gambar'>
+			<input type='text' name='nama-file-${i}' class='form-control' disabled required value='Nama Gambar'>
 			<label>Upload Gambar</label>
 		</div>
-		<input type='file' accept='image/*' name='gambar-${i}' id='gambar-${i}' required class='d-none' input-gambar>
+		<input type='file' accept='image/*' name='file-${i}' id='gambar-${i}' required class='d-none' input-gambar>
 		<label for='gambar-${i}' class='input-group-text'>Upload</label>
 		<button type='button' class='btn btn-outline-danger' delete-gambar>X</button>`;
 	gambar.appendChild(div);

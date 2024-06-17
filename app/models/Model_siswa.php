@@ -9,51 +9,42 @@ class Model_siswa{
 		$this->db = new Database();
 	}
 
-	public function cekDataSiswa($data){
-		$data = $this->bersihkan($data);
-		$nama = $data['nama'];
-		$tokenKelas = $data['tokenKelas'];
-		$pass = $data['pass'];
+	public function getByNama_token($nama, $token){
 		$this->db->query("SELECT * FROM $this->tabel WHERE nama=:nama AND tokenKelas=:tokenKelas");
 		$this->db->bind('nama', $nama);
 		$this->db->bind('tokenKelas', $tokenKelas);
-		$res = $this->db->single();
-		return $res === FALSE ? -1 : (password_verify($pass, $res['password']) ? $this->setDataSiswa($data) : $this->removeDataSiswa());
+		return $this->db->single();
 	}
-
-	public function tambahSiswa($data){
-		$data = $this->bersihkan($data);
-		$nama = $data['nama'];
-		$noWa = $data['noWa'];
-		$email = $data['email'];
-		$pass = $data['pass'];
-		$tokenKelas = $data['tokenKelas'];
+	public function simpan($data){
 		$this->db->query("INSERT INTO $this->tabel (`nama`, `tokenKelas`, `noWa`, `email`, `password`) VALUES (:nama, :tokenKelas, :noWa, :email, :pass)");
-		$this->db->bind('nama', $nama);
-		$this->db->bind('noWa', $noWa);
-		$this->db->bind('email', $email);
-		$this->db->bind('tokenKelas', $tokenKelas);
-		$this->db->bind('pass', password_hash($pass, PASSWORD_DEFAULT));
+		$this->db->bind('nama', $data['nama']);
+		$this->db->bind('noWa', $data['noWa']);
+		$this->db->bind('email', $data['email']);
+		$this->db->bind('tokenKelas', $data['tokenKelas']);
+		$this->db->bind('pass', password_hash($data['password'], PASSWORD_DEFAULT));
 		$this->db->execute();
-		$this->setDataSiswa($data);
+
+		$_SESSION[C_SISWA] = $this->getByNama_token($data['nama'], $data['token'])['id'];
+	}
+	public function getById($id){
+		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
+		$this->db->bind('id', $id);
+		return $this->db->single();
+	}
+	public function getSession(){
+		return $this->getById($_SESSION[C_SISWA]);
 	}
 
-	protected function setDataSiswa($data){
-		unset($data['pass']);
+	public function cekSiswa($data){
 		$this->db->query("SELECT * FROM $this->tabel WHERE nama=:nama AND tokenKelas=:tokenKelas");
 		$this->db->bind('nama', $data['nama']);
 		$this->db->bind('tokenKelas', $data['tokenKelas']);
-		$_SESSION[C_SISWA] = $this->db->single();
-		return 1;
-	}
-	protected function removeDataSiswa(){
-		$_SESSION[C_SISWA]['nama'] = '? Tidak dikenali ?';
-		$_SESSION[C_SISWA]['id'] = -1;
-		return 0;
-	}
-
-	public function bersihkan($data){
-		foreach ($data as $key => $value) $data[$key] = htmlspecialchars($value);
-		return $data;
+		$siswa = $this->db->single();
+		if($siswa === FALSE) return 'noSiswa';
+		if(password_verify($data['password'], $siswa['password'])){
+			$_SESSION[C_SISWA] = $siswa['id'];
+		}else{
+			return 'passwordSalah';
+		}
 	}
 }

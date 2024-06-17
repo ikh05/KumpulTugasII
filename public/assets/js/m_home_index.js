@@ -11,7 +11,7 @@ cekIdentitas('nama');
 cekIdentitas('email');
 cekIdentitas('noWa');
 cekIdentitas('tokenKelas');
-cekIdentitas('pass', function (input){
+cekIdentitas('password', function (input){
 	console.log(input);
 	if(input.value.length > 20) input.classList.add('is-invalid');
 	else input.classList.remove('is-invalid');

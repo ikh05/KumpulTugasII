@@ -43,27 +43,43 @@ export function countHalaman (tabel, nav, banyak, f=null){
 	let banyaknav = 1;
 	if(banyak !== 'all') banyaknav = Math.ceil(banyakData/parseInt(banyak));
 	let allButton = nav.querySelectorAll('li');
-	for (let i = 1; i+1 < allButton.length; i++) {
+	for (let i = 2; i+2 < allButton.length; i++) {
 		allButton[i].remove();
 	}
 	let parent = nav.querySelector('ul');
-	let btnTerakhir = allButton[allButton.length-1];
+	let btnTerakhir = allButton[allButton.length-2];
 	for (let i = 1; i <= banyaknav; i++) {
 		let li = document.createElement('li');
 		li.classList.add('page-item');
 		let href = btnTerakhir.children[0].getAttribute('href');
 		li.innerHTML = "<a href='"+href+"' value='"+i+"' class='page-link active'>"+i+"</a>";
+		if(i === 1){
+			li.classList.add('order-1');
+		}else if(i === banyaknav){
+			li.classList.add('order-5');
+		}else{
+			li.classList.add('order-3');
+		}
+		console.log(i + " : ");
+		console.log(li.classList);
+		console.log('-----')
 		parent.insertBefore(li,btnTerakhir)
 	}
+
 	if(typeof(f) === 'function') f(arguments);
 }
 export function halamanAcive(nav, navActive, f=null) {
 	// navClick harus berupa int
 	let allButton = nav.querySelectorAll('a[value]');
 	allButton.forEach( function(element, index) {
-		if(element.getAttribute('value') === navActive.toString()) element.classList.add('active');
-		else element.classList.remove('active');
+		if(element.getAttribute('value') === navActive.toString()){
+			element.classList.add('active');
+		}
+		else {
+			element.classList.remove('active');
+		};
 	});
+	f__(nav);
 	if(typeof(f) === 'function') f(arguments);
 }
 
@@ -73,6 +89,8 @@ export function navHalaman_click (tabel, nav, banyak, f=null) {
 		while (el !== nav) {
 			if(el.hasAttribute('value')){
 				let allBtn = nav.querySelectorAll('a');
+				let min = 1;
+				let max = allBtn.length - 4;
 				let valueClick = el.getAttribute('value');
 				if(valueClick === '-1' || valueClick === '+1'){
 					let valueActive = parseInt(nav.querySelector('.active[value]').getAttribute('value'));
@@ -80,6 +98,7 @@ export function navHalaman_click (tabel, nav, banyak, f=null) {
 					if(valueClick === '+1' && valueActive !== (allBtn.length-2)) valueActive += 1;
 					valueClick = valueActive.toString();
 				}
+				valueClick = valueClick > max ? max : (valueClick < min ? min : valueClick);  
 				halamanAcive(nav, parseInt(valueClick));
 				hiddenShowTabel(tabel, nav, banyak);
 			}
@@ -87,4 +106,28 @@ export function navHalaman_click (tabel, nav, banyak, f=null) {
 		}
 	 })
 	 if(typeof(f) === 'function') f(arguments);
+}
+function f__ (nav) {
+	let all__ = nav.querySelectorAll('.__')
+	let all_order3 = nav.querySelectorAll('.order-3');
+	all_order3.forEach(e=>e.classList.add('d-none'));
+	let navActive = nav.querySelector('a.active');
+	// menampilkan [sebelum][1][...][4][5=active][6][sesudah]
+	navActive.parentElement.classList.remove('d-none');
+	let navActive_value = parseInt(navActive.getAttribute('value'));
+	if(navActive_value <= 2) all__[0].classList.add('d-none');
+	else {
+		all__[0].classList.remove('d-none')
+		all_order3[navActive_value-3].classList.remove('d-none');
+	}
+	if(navActive_value >= all_order3.length+1) all__[1].classList.add('d-none');
+	else {
+		all__[1].classList.remove('d-none')
+		all_order3[navActive_value-1].classList.remove('d-none');
+	}
+
+	// [index=0],[value=3],[index=2] ...
+	if(navActive_value !== 1){
+
+	}
 }

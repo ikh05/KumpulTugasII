@@ -8,8 +8,7 @@ class Model_kelas{
 	function __construct(){
 		$this->db = new Database();
 	}
-	public function getByGuru($data){
-		$tokenKelas = $data['tokenKelas'];
+	public function getByGuru($tokenKelas){
 		$res = [];
 		// var_dump($data['tokenKelas']); die;
 		foreach ($tokenKelas as $k => $v) {
@@ -19,8 +18,7 @@ class Model_kelas{
 		}
 		return $res;
 	}
-	public function getByToken($data){
-		$tokenKelas = $data['tokenKelas'];
+	public function getByToken($tokenKelas){
 		$this->db->query("SELECT * FROM $this->tabel WHERE tokenKelas=:tokenKelas");
 		$this->db->bind('tokenKelas', $tokenKelas);
 		return $this->db->single();

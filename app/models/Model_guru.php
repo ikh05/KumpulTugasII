@@ -63,13 +63,13 @@ class Model_guru{
 		return $res;
 	}
 
-	public function tambahKelas($data){
+	public function tambahKelas($tokenKelas){
 		$id = $_SESSION[C_GURU];
 		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
 		$this->db->bind('id', $_SESSION[C_GURU]);
 		$res = $this->db->single();
 		$json = json_decode($res['tokenKelas']);
-		array_push($json, $data['tokenKelas']);
+		array_push($json, $tokenKelas);
 		// var_dump(json_encode($json));die;
 		$this->db->query("UPDATE $this->tabel SET tokenKelas=:tokenKelas WHERE id=:id");
 		$this->db->bind('id', $_SESSION[C_GURU]);
