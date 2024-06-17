@@ -40,13 +40,14 @@
                         <div class="fw-bold mt-4">KELAS</div>
                         <a href="<?= BASE_URL ?>Guru/buatKelas" class="nav-link ms-3 py-0 <?= ($data['offcanvas'] === 'buatKelas') ? 'active' : '' ?>"><i class="fa-solid fa-user"></i> Buat Kelas</a>
                         <?php foreach ($data['guru']['tokenKelas'] as $v) :?>
-                            <a class="nav-link ms-3 py-0" data-bs-toggle="collapse" href="#<?= $v ?>" aria-controls="<?= $v ?>"role="button" aria-expanded="false"><i class="fa-solid fa-users" ></i> <?= $data['kelas'][$v]['nama'] ?></a>
+                            <a class="nav-link ms-3 py-0 <?= ($data['offcanvas'] === $v ? 'active' : '') ?>" data-bs-toggle="collapse" href="#<?= $v ?>" aria-controls="<?= $v ?>"role="button" aria-expanded="false" ><i class="fa-solid fa-users" ></i> <?= $data['kelas'][$v]['nama'] ?></a>
                             <div class="collapse ms-4" id="<?= $v ?>" aria-labelledby="headingTwo" data-bs-parent="#id-offcanvas">
                                 <div class="list-group ">
-                                  <a href="<?= BASE_URL ?>Guru/detailKelas/<?= $v ?>" class="list-group-item list-group-item-action disabled <?= ($data['offcanvas'] === 'detailKelas_'.$v) ? 'active' : '' ?>"><i class="fa-solid fa-users"></i> Detail Kelas</a>
-                                  <a href="<?= BASE_URL ?>Guru/daftarSiswa/<?= $v ?>" class="list-group-item list-group-item-action disabled <?= ($data['offcanvas'] === 'daftarSiswa_'.$v) ? 'active' : '' ?>"><i class="fa-solid fa-users"></i> Daftar Siswa</a>
-                                  <a href="<?= BASE_URL ?>Guru/daftarTugas/<?= $v ?>" class="list-group-item list-group-item-action <?= ($data['offcanvas'] === 'daftarTugas_'.$v) ? 'active' : '' ?>"><i class="fa-solid fa-pen"></i> Tugas</a>
-                                  <a href="<?= BASE_URL ?>Guru/daftarNilai/<?= $v ?>" class="list-group-item list-group-item-action disabled <?= ($data['offcanvas'] === 'daftarNilai_'.$v) ? 'active' : '' ?>"><i class="fa-solid fa-hundred-points"></i> Nilai</a>
+                                  <a href="<?= BASE_URL ?>Guru/detailKelas/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-users"></i> Detail Kelas</a>
+                                  <a href="<?= BASE_URL ?>Guru/daftarSiswa/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-users"></i> Daftar Siswa</a>
+                                  <a href="<?= BASE_URL ?>Guru/daftarTugas/<?= $v ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-pen"></i> Tugas</a>
+                                  <a href="<?= BASE_URL ?>Guru/periksaTugas/<?= $v ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-pen"></i> Periksa</a>
+                                  <a href="<?= BASE_URL ?>Guru/daftarNilai/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-hundred-points"></i> Nilai</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -64,8 +65,10 @@
             </div>
 
             <div id="layoutSidenav_content">
-                <main class="pt-5 mt-3">
-                	<?php include_once ('../app/views/'.$data['content_main'].'.php'); ?>
+                <main class="mt-5 pt-3">
+                    <div>
+                	   <?php include_once ('../app/views/'.$data['content_main'].'.php'); ?> 
+                    </div>
                 </main>
                 <!-- <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

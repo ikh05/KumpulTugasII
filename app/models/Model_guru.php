@@ -76,4 +76,8 @@ class Model_guru{
 		$this->db->bind('tokenKelas', json_encode($json));
 		$this->db->execute();
 	}
+	public function cekKelas($tokenKelas){
+		$guru = $this->getSession();
+		return in_array($tokenKelas, $guru['tokenKelas']);
+	}
 }

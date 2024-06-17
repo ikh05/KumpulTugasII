@@ -1,0 +1,7 @@
+Options -Indexes
+RewriteEngine On
+
+# Mencegah akses langsung ke direktori 'img'
+RewriteCond %{REQUEST_URI} ^/KumpulTugasII/public/assets/img/.*\.(jpg|jpeg|png|gif)$ [NC]
+# RewriteCond %{REQUEST_URI} ^/public/assets/img/.*\.(jpg|jpeg|png|gif)$ [NC]
+RewriteRule .* - [F]

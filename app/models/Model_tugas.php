@@ -9,12 +9,12 @@ class Model_tugas {
 	}
 
 	public function getByToken($data){
-		$token = htmlspecialchars($data['token']);
+		$token = is_array($data) ? $data['tokenKelas'] : $data;
 		$this->db->query("SELECT * FROM $this->tabel WHERE tokenKelas=:token");
 		$this->db->bind('token', $token);
 		$res = $this->db->resultSet();
 		foreach ($res as $key => $value) {
-			$res[$key]['idTugas'] = json_decode($value['idTugas']);
+			$res[$key]['idSoal'] = json_decode($value['idSoal']);
 		}
 		return $res;
 	}
@@ -52,5 +52,20 @@ class Model_tugas {
 			$kumpul[$k] = array_merge($kumpul[$k], $this->getById($v['idTugas']));
 		}
 		return $kumpul;
+	}
+
+	public function simpanTugas($data, $tokenKelas){
+		$idSoal = explode(', ', $data['soal-pilih']);
+		$idSoal = json_encode($idSoal);
+		$nama = $data['nama'];
+		$tanggal = ($data['batas-tanggal'] === '') ? '2030-12-31' : $data['batas-tanggal'];
+		$jam = ($data['batas-waktu'] === '') ? '23:59:59' : $data['batas-waktu'].':59';
+		$this->db->query("INSERT INTO $this->tabel (`nama`, `idSoal`, `tokenKelas`, `batas`, `tanggal`) VALUES (:nama, :idSoal, :tokenKelas, :batas, :tanggal)");
+		$this->db->bind('nama', $nama);
+		$this->db->bind('idSoal', $idSoal);
+		$this->db->bind('tokenKelas', $tokenKelas);
+		$this->db->bind('batas', $tanggal.' '.$jam);
+		$this->db->bind('tanggal', date("Y-m-d H:i:s"));
+		$this->db->execute();
 	}
 }

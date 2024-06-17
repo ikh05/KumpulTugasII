@@ -21,7 +21,7 @@
 			  	</table>
 			  </div>
 			  <div class="card-footer text-bg-dark text-end">
-			  	<a href="<?= BASE_URL ?>Guru/setting" class="btn btn-outline-info">Edit</a>
+			  	<a href="<?= BASE_URL ?>Guru/setting" class="btn btn-outline-info disabled">Edit</a>
 			  </div>
 			</div>
 		</div>
@@ -63,7 +63,7 @@
 							  <option value="25">25</option>
 							  <option value="50">50</option>
 							  <option value="100">100</option>
-							  <option value="100000">All</option>
+							  <option value="all">All</option>
 							</select>
 			  			</div>
 			  		</div>
@@ -73,7 +73,7 @@
 			  	</div>
 			  </div>
 			  <div class="card-footer text-bg-dark text-end">
-			  	<a href="<?= BASE_URL ?>Guru/petunjukPembuatanSoal" class="btn btn-outline-info">Perunjuk Pembuatan Soal</a>
+			  	<!-- <a href="<?= BASE_URL ?>Guru/petunjukPembuatanSoal" class="btn btn-outline-info">Perunjuk Pembuatan Soal</a> -->
 			  </div>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 			  				<tr>
 			  					<th scope="col">#</th>
 			  					<th scope="col">Soal</th>
-			  					<th scope="col"></th>
+			  					<!-- <th scope="col"></th> -->
 			  				</tr>
 			  			</thead>
 			  			<tbody class="table-group-divider">
@@ -98,7 +98,7 @@
 			  					<tr class="data-soal">
 			  						<th scope="row"><?= $k+1 ?></th>
 			  						<td><?= $v['soal'] ?></td>
-			  						<td>
+			  						<!-- <td>
 			  							<button class="btn btn-secondary dropdown-toggle w-auto form-control text-start disabled" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
 			  							<ul class="dropdown-menu">
 										    <li>
@@ -108,7 +108,7 @@
 			  									<a class="dropdown-item" href="<?= BASE_URL ?>Guru/deleteSoal/<?= $v['id'] ?>">Delete</a>
 											</li>
 										</ul>
-			  						</td>
+			  						</td> -->
 			  					</tr>
 			  				<?php endforeach; ?>
 			  			</tbody>
@@ -140,7 +140,7 @@
 
 
 <!-- Model -->
-<form method="POST" action="" class="modal" tabindex="-1" id="form-modal">
+<form method="POST" action="" class="modal" tabindex="-1" enctype="multipart/form-data" id="form-modal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-bg-dark">
@@ -162,6 +162,7 @@
       </div>
       <div class="modal-footer text-bg-dark">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+        <button type="button" class="btn btn-outline-warning" data-bs-toggle='modal' data-bs-target='#modal-cek' id="cekSoal" >Cek Hasil</button>
         <button type="submit" name="submit" class="btn btn-outline-primary">Simpan</button>
       </div>
     </div>
@@ -169,10 +170,3 @@
 </form>
 
 
-
-<!-- modal 2 -->
-<div class="modal" id="modal-cek-gambar" tabindex="-1" data-bs-toggle='modal' data-bs-target='#form-modal'>
-	<div class="modal-dialog">
-		<img src="" alt="gambar" class="position-absolute top-0 start-0" style="max-height: 100vh;">
-	</div>
-</div>
