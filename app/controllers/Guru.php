@@ -130,7 +130,7 @@ class Guru extends Controller{
 				$namaFile = array($namaFile);
 				$soal = "__D_".$namaFile[0].'__';
 				$soal = $this->model('Model_soal')->tempelNamaDocument($namaFile, $soal);
-				$this->dataClear['soal-pilih'] = array($this->model('Model_soal')->simpanSoal($namaFile[0], $soal)['id'][0]);
+				$this->dataClear['soal-pilih'] = $this->model('Model_soal')->simpanSoal($namaFile[0], $soal)['id'];
 				var_dump($this->dataClear);
 			}
 			$this->model('Model_tugas')->simpanTugas($this->dataClear, $tokenKelas);
