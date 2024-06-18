@@ -17,6 +17,23 @@ class Guru extends Controller{
 		$this->view('guru/login', $this->data);
 		$this->view('tamplates/footer', $this->data);
 	}
+	public function delete($delete, $id){
+		$this->data ['id'] = $id;
+		$this->data ['delete'] = $delete;
+		if($delete === 'soal') $this->data['asal'] = BASE_URL.'Guru/soalKu';
+		// else if($delete === 'tugas') $this->data['asal'] = BASE_URL.'Guru/';
+		// else if($delete === 'soal') $this->data['asal'] = BASE_URL.'Guru/soalKu';
+		// else if($delete === 'soal') $this->data['asal'] = BASE_URL.'Guru/soalKu';
+
+
+		$this->model('Model_message')->warning("Apakah anda yakin ingin menghapus $delete ini?");
+		$this->data [C_MESSAGE] = $this->model('Model_message')->get();
+		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS, 'flipCard'];
+		$this->data ['js'] = [CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, 'm_flipCard'];
+		$this->view('tamplates/header', $this->data);
+		$this->view('guru/delete', $this->data);
+		$this->view('tamplates/footer', $this->data);
+	}
 
 
 	// dashboard
@@ -114,15 +131,7 @@ class Guru extends Controller{
 		header("Location: ".BASE_URL."Guru/soalKu");
 	}
 	public function simpanTugas($tokenKelas){
-		// cek apakah guru memiliki tokenKelas tersebut
-		// cek cara input tugas,
-		// kerjakan sesuai cara tersebut
-		// jika sistem upload file maka dianggap membuat sebuah soal baru
-		// simpan tugas
 		if($this->model('Model_guru')->cekKelas($tokenKelas)){
-			var_dump($this->dataClear);
-			echo " <br> ";
-			var_dump($_FILES);
 			if(!isset($this->dataClear['cara'])){
 				// file yang di upload harus dalam pdf dan cuman 1
 				$namaFile = $this->model('Model_document')->upload($_FILES, $tokenKelas);
@@ -130,10 +139,23 @@ class Guru extends Controller{
 				$soal = "__D_".$namaFile[0].'__';
 				$soal = $this->model('Model_soal')->tempelNamaDocument($namaFile, $soal);
 				$this->dataClear['soal-pilih'] = $this->model('Model_soal')->simpanSoal($namaFile[0], $soal)['id'];
-				var_dump($this->dataClear);
 			}
 			$this->model('Model_tugas')->simpanTugas($this->dataClear, $tokenKelas);
 		}
+	}
+	public function fiksDelete($delete, $id){
+		// belum ada untuk mencek apakah yang akan didelete merupakan milik dari si punya dan harus dari Guru/delete/$delete/$id
+		switch ($delete) {
+			case 'siswa': $this->model('Model_siswa')->deleteById($id);
+				break;
+			case 'soal': $this->model('Model_soal')->deleteById($id);
+				$asal = 'soalKu'; break;
+			case 'kelas':$this->model('Model_kelas')->deleteById($id);
+				break;
+			case 'tugas': $this->model('Model_tugas')->deleteById($id);
+				break;
+		}
+		header('Location: '.BASE_URL.'Guru/'.$asal);
 	}
 	public function keluar(){
 		unset($_SESSION[C_GURU]);

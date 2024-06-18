@@ -23,6 +23,11 @@ class Model_soal{
 		$this->db->bind('idGuru', $_SESSION[C_GURU]);
 		return $this->db->resultSet();
 	}
+	public function getById($id){
+		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
+		$this->db->bind('id', $id);
+		return $this->db->single();
+	}
 
 	public function simpanSoal($namaSoal, $soal){
 		$tanggal = date("Y-m-d");
@@ -52,5 +57,11 @@ class Model_soal{
 			$soal = str_replace('__D_'.$value.'__', $tamp, $soal);
 		}
 		return $soal;
+	}
+	public function deleteById($id){
+		$this->db->query("DELETE FROM $this->tabel WHERE id=:id AND idGuru=:idGuru");
+		$this->db->bind('id',$id);
+		$this->db->bind('idGuru', $_SESSION[C_GURU]);
+		$this->db->execute();
 	}
 }

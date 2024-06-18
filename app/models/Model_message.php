@@ -13,13 +13,17 @@ class Model_message{
 		}
 		return $this->res;
 	}
-	public function error($mes, $location=''){
+	public function error($mes, $location=null){
 		$this->set($mes, 'danger', 'Error');
-		header("Location: ".BASE_URL.$location); exit();
+		if(!is_null($location)) {header("Location: ".BASE_URL.$location); exit();}
 	}
-	public function success($mes, $location=''){
+	public function warning($mes,$location=null){
+		$this->set($mes, 'warning', 'Warning');
+		if(!is_null($location)) {header("Location: ".BASE_URL.$location); exit();}
+	}
+	public function success($mes, $location=null){
 		$this->set($mes, 'success', 'Sukses');
-		header("Location: ".BASE_URL.$location); exit();
+		if(!is_null($location)) {header("Location: ".BASE_URL.$location); exit();}
 	}
 	public function cek(){
 		return isset($_SESSION[C_MESSAGE]);

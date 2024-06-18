@@ -31,6 +31,8 @@ if($_SERVER['SERVER_NAME'] === 'localhost'){
 define('C_MESSAGE', 'KTII_message');
 define('C_SISWA', 'KTII_data-siswa');
 define('C_GURU', "KTII_data-guru");
+define('C_AJAX', 'ktii_ajax');
+
 
 // setting zona waktu
 date_default_timezone_set('Asia/Makassar');

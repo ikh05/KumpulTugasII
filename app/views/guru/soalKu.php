@@ -94,7 +94,7 @@
 			  				<tr>
 			  					<th scope="col">#</th>
 			  					<th scope="col">Soal</th>
-			  					<!-- <th scope="col"></th> -->
+			  					<th scope="col"></th>
 			  				</tr>
 			  			</thead>
 			  			<tbody class="table-group-divider">
@@ -102,17 +102,17 @@
 			  					<tr class="data-soal">
 			  						<th scope="row"><?= $k+1 ?></th>
 			  						<td><?= $v['soal'] ?></td>
-			  						<!-- <td>
-			  							<button class="btn btn-secondary dropdown-toggle w-auto form-control text-start disabled" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
+			  						<td>
+			  							<button class="btn btn-secondary dropdown-toggle w-auto form-control text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
 			  							<ul class="dropdown-menu">
 										    <li>
-										    	<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#form-modal" form-action="<?= BASE_URL ?>Guru/updateSoal/<?= $v['id'] ?>">Edit</a>
+										    	<a class="dropdown-item disabled" data-bs-toggle="modal" data-bs-target="#form-modal" href-ajax="<?= BASE_URL ?>Ajax/editSoal/<?= $v['id'] ?>">Edit</a>
 											</li>
 											<li>
-			  									<a class="dropdown-item" href="<?= BASE_URL ?>Guru/deleteSoal/<?= $v['id'] ?>">Delete</a>
+			  									<a class="dropdown-item" href="<?= BASE_URL ?>Guru/delete/soal/<?= $v['id'] ?>">Delete</a>
 											</li>
 										</ul>
-			  						</td> -->
+			  						</td>
 			  					</tr>
 			  				<?php endforeach; ?>
 			  			</tbody>
