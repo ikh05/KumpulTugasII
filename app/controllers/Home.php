@@ -36,6 +36,7 @@ class Home extends Controller{
 		$this->view("tamplates/header", $this->data);
 		$this->view("home/index", $this->data);
 		if(isset($_SESSION[C_SISWA])) $this->view('home/tugas', $this->data);
+		$this->view('tamplates/cekGambar', $this->data);
 		$this->view("tamplates/footer", $this->data);
 	}
 

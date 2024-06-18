@@ -1,4 +1,4 @@
-import {hiddenShowTabel, countHalaman, halamanAcive, navHalaman_click} from './modules/functions.js';
+import {cekGambar, hiddenShowTabel, countHalaman, halamanAcive, navHalaman_click} from './modules/functions.js';
 
 
 const checkBox_allTugas = document.getElementById('soal-all');
@@ -14,7 +14,6 @@ const allTugas = document.querySelectorAll('.daftar-tugas tr');
 const cara_soalTugas = document.querySelectorAll('#cara-soalTugas a');
 const tambah_cara = document.querySelector('form [name=cara]');
 const tambah_submit = document.querySelector('form [type=submit]');
-console.log(tambah_submit);
 
 
 if(allSoal.length > 0){
@@ -100,3 +99,6 @@ function cekIndeterminate (el, checkbox){
 function updateDaftarSoal (el) {
 	return [...el].filter(e => e.checked).map(e => e.getAttribute('id-soal')).join(', ');
 }
+
+
+cekGambar();

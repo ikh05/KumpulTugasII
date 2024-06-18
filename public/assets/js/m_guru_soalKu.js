@@ -1,4 +1,4 @@
-import {hiddenShowTabel, countHalaman, halamanAcive, navHalaman_click} from './modules/functions.js';
+import {cekGambar, hiddenShowTabel, countHalaman, halamanAcive, navHalaman_click} from './modules/functions.js';
 
 const formModal = document.getElementById('form-modal');
 const allBtnAction = document.querySelectorAll('[form-action]');
@@ -19,18 +19,6 @@ document.addEventListener('click', (ev)=>{
 	while (el !== document.querySelector('main')) {
 		if(el.hasAttribute('delete-gambar')){
 			el.parentElement.remove();
-		}
-		else if(el.hasAttribute('cek-img')){
-			let img = document.querySelector('#modal-cek img');
-			let textSoal = img.previousElementSibling;
-			img.classList.remove('d-none');
-			textSoal.classList.add('d-none');
-			let fileInput = el.previousElementSibling;
-		    let reader = new FileReader();
-	        reader.onload = function(e) {
-	          img.src = e.target.result;
-	        }
-		    reader.readAsDataURL(fileInput.files[0]);
 		}
 		el = el.parentElement;
 	}
@@ -99,3 +87,4 @@ navHalaman_click(dataTabel, navigasiHalaman, banyakBaris.value)
 countHalaman(dataTabel, navigasiHalaman, banyakBaris.value);
 halamanAcive(navigasiHalaman, 1);
 hiddenShowTabel(dataTabel, navigasiHalaman, banyakBaris.value);
+cekGambar();

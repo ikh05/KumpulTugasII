@@ -20,7 +20,6 @@ class Guru extends Controller{
 
 
 	// dashboard
-	// function
 	protected function func_dashoard($content, $active = null){
 		if(!isset($_SESSION[C_GURU])) header("Location: ".BASE_URL.'Guru');
 		$this->data['guru'] = $this->model('Model_guru')->getSession();

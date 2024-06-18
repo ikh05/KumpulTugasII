@@ -40,7 +40,7 @@ class Model_soal{
 	}
 	public function tempelNamaGambar($namaGambar, $soal){
 		foreach ($namaGambar as $key => $value) {
-			$tamp = "<img src='".BASE_URL."Gambar/getGambarTugas/$value' class='img-thumbnail' style='max-width:100px;'>";
+			$tamp = "<img data-bs-toggle='modal' data-bs-target='#modal-cek' src='".BASE_URL."Gambar/getGambarTugas/$value' class='img-thumbnail' style='max-width:100px;'>";
 			$soal = str_replace("__G_".$key."__", $tamp, $soal);
 		}
 		return $soal;

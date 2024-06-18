@@ -1,4 +1,4 @@
-import {btnIconToggle, setInput_localtorage} from './modules/functions.js';
+import {cekGambar, btnIconToggle, setInput_localtorage} from './modules/functions.js';
 
 const inputNama = document.getElementById('input-nama');
 const inputEmail = document.getElementById('input-email');
@@ -16,7 +16,6 @@ cekIdentitas('password', function (input){
 	if(input.value.length > 20) input.classList.add('is-invalid');
 	else input.classList.remove('is-invalid');
 });
-cekButtonCari();
 
 
 btnPass.addEventListener('click', ()=>{
@@ -47,3 +46,6 @@ function cekButtonCari () {
 		btnCari.setAttribute('disabled', '');
 	}
 }
+
+cekGambar();
+cekButtonCari();

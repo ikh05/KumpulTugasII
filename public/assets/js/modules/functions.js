@@ -1,3 +1,28 @@
+export function cekGambar() {
+	document.addEventListener('click', (ev)=>{
+		let el = ev.target;
+		while (el !== document.querySelector('main')) {
+			if(el.hasAttribute('cek-img')){
+				let img = document.querySelector('#modal-cek img');
+				let textSoal = img.previousElementSibling;
+				img.classList.remove('d-none');
+				textSoal.classList.add('d-none');
+				let fileInput = el.previousElementSibling;
+			    let reader = new FileReader();
+		        reader.onload = function(e) {
+		          img.src = e.target.result;
+		        }
+			    reader.readAsDataURL(fileInput.files[0]);
+			}else if(el.classList.contains('img-thumbnail')){
+				let src = el.getAttribute('src');
+				let img = document.querySelector('#modal-cek img');
+				img.setAttribute('src', src);
+			}
+			el = el.parentElement;
+		}
+	});
+}
+
 export function btnIconToggle(btn) {
 	btn.children[0].classList.toggle('d-none');
 	btn.children[1].classList.toggle('d-none');
