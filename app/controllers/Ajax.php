@@ -46,4 +46,4 @@ class Ajax extends Controller{
 			$this ->res ['result'] = $soal;
 		}
 	}
-}
+}   
