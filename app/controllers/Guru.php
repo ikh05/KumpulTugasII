@@ -18,12 +18,13 @@ class Guru extends Controller{
 		$this->view('tamplates/footer', $this->data);
 	}
 	public function delete($delete, $id){
+		$_SESSION[C_DELETE] = $delete;
 		$this->data ['id'] = $id;
 		$this->data ['delete'] = $delete;
 		if($delete === 'soal') $this->data['asal'] = BASE_URL.'Guru/soalKu';
-		// else if($delete === 'tugas') $this->data['asal'] = BASE_URL.'Guru/';
-		// else if($delete === 'soal') $this->data['asal'] = BASE_URL.'Guru/soalKu';
-		// else if($delete === 'soal') $this->data['asal'] = BASE_URL.'Guru/soalKu';
+		else if($delete === 'tugas') $this->data['asal'] = BASE_URL.'Guru/daftarTugas/'.$_SESSION[C_KELAS];
+		// else if($delete === 'kelas') $this->data['asal'] = BASE_URL.'Guru/kelas';
+		// else if($delete === 'siswa') $this->data['asal'] = BASE_URL.'Guru/daftarSiswa/'.$_SESSION[C_KELAS];
 
 
 		$this->model('Model_message')->warning("Apakah anda yakin ingin menghapus $delete ini?");
@@ -63,6 +64,7 @@ class Guru extends Controller{
 	}
 	public function soalKu(){
 		$this->data ['soal'] = $this->model('Model_soal')->getByIdGuru();
+		foreach ($this->data['soal'] as $k => $v) $this->data['soal'][$k]['soal'] = $this->model('Model_soal')->tempelGambar($v['soal']);
 
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_soalKu'];
@@ -73,13 +75,15 @@ class Guru extends Controller{
 		$this->view('tamplates/footer', $this->data);
 	}
 	public function daftarTugas($keyKelas){
+		$_SESSION[C_KELAS] = $keyKelas;
 		$this->data ['soal'] = $this->model('Model_soal')->getByIdGuru();
+		foreach ($this->data['soal'] as $k => $v) $this->data['soal'][$k]['soal'] = $this->model('Model_soal')->tempelGambar($v['soal']);
 		$this->data['tugas'] = $this->model('Model_tugas')->getByToken($keyKelas);
 		$this->data ['tokenKelas-active'] = $keyKelas;
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_daftarTugas'];
 		$this->view('tamplates/header', $this->data);
-		$this->func_dashoard('detailTugas', $keyKelas);
+		$this->func_dashoard('daftarTugas', $keyKelas);
 		$this->view('tamplates/cekGambar', $this->data);
 		$this->view('tamplates/footer', $this->data);
 	}
@@ -117,13 +121,6 @@ class Guru extends Controller{
 		exit();
 	}
 	public function simpanSoal(){
-		/* 
-			$_FILES = { 'file-1'=>{},'file-2'=>{}}
-			['gambar'] = { 'nama-file-1' => 'g_213422323_1.png'};
-		*/
-			var_dump($this->dataClear);
-			echo "<br> <br>";
-			var_dump($_FILES);
 		$namaGambar = (empty($_FILES)) ? [] : $this->model('Model_gambar')->upload($this->dataClear, $_FILES, 'g');
 		if(!empty($namaGambar)) $this->dataClear['soal'] = $this->Model('Model_soal')->tempelNamaGambar($namaGambar, $this->dataClear['soal']);
 
@@ -141,19 +138,22 @@ class Guru extends Controller{
 				$this->dataClear['soal-pilih'] = $this->model('Model_soal')->simpanSoal($namaFile[0], $soal)['id'];
 			}
 			$this->model('Model_tugas')->simpanTugas($this->dataClear, $tokenKelas);
-		}
+			$this->model('Model_message')->success('Tugas berhail ditambahkan!');
+		}else $this->model('Model_message')->error('Tugas gagal ditambahkan!');
+		header('Location: '.BASE_URL.'Guru/daftarTugas/'.$tokenKelas);
 	}
 	public function fiksDelete($delete, $id){
 		// belum ada untuk mencek apakah yang akan didelete merupakan milik dari si punya dan harus dari Guru/delete/$delete/$id
-		switch ($delete) {
-			case 'siswa': $this->model('Model_siswa')->deleteById($id);
-				break;
-			case 'soal': $this->model('Model_soal')->deleteById($id);
-				$asal = 'soalKu'; break;
-			case 'kelas':$this->model('Model_kelas')->deleteById($id);
-				break;
-			case 'tugas': $this->model('Model_tugas')->deleteById($id);
-				break;
+		$asal = '';
+		if(isset($_SESSION[C_DELETE])){
+			unset($_SESSION[C_DELETE]);
+			$this->model('Model_'.$delete)->deleteById($id);
+			switch ($delete) {
+				case 'siswa': break;
+				case 'soal': $asal = 'soalKu'; break;
+				case 'kelas': break;
+				case 'tugas': $asal = 'daftarTugas/'.$_SESSION[C_KELAS]; break;
+			}
 		}
 		header('Location: '.BASE_URL.'Guru/'.$asal);
 	}

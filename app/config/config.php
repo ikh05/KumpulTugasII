@@ -32,6 +32,9 @@ define('C_MESSAGE', 'KTII_message');
 define('C_SISWA', 'KTII_data-siswa');
 define('C_GURU', "KTII_data-guru");
 define('C_AJAX', 'ktii_ajax');
+define('C_DELETE', 'KTII_delete');
+define('C_KELAS', 'KTII_kelass');
+
 
 
 // setting zona waktu

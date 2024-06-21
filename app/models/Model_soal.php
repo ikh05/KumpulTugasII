@@ -10,10 +10,15 @@ class Model_soal{
 	public function tempelSoal(&$tugas){
 		foreach ($tugas as $k => $t) {
 			$soal = '';
+			$iter = 0;
 			foreach ($t['idSoal'] as $key => $value) {
 				$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
 				$this->db->bind('id', $value);
-				$soal .= $this->db->single()['soal']."<br>";
+				$res = $this->db->single();
+				if($res !== FALSE) {
+					$iter += 1;
+					$soal .= ($iter.". ".$res['soal']."<br>");
+				}
 			}
 			$tugas[$k]['soal'] = $soal;
 		}
@@ -45,16 +50,14 @@ class Model_soal{
 	}
 	public function tempelNamaGambar($namaGambar, $soal){
 		foreach ($namaGambar as $key => $value) {
-			$tamp = "<img data-bs-toggle='modal' data-bs-target='#modal-cek' src='".BASE_URL."Gambar/getGambarTugas/$value' class='img-thumbnail' style='max-width:100px;'>";
-			$soal = str_replace("__G_".$key."__", $tamp, $soal);
+			$soal = str_replace("__G_".$key."__", "__G_".$value."__", $soal);
 		}
 		return $soal;
 	}
 	public function tempelNamaDocument($namaFile, $soal){
 		$namaFile = is_array($namaFile) ? $namaFile: [$namaFile];
 		foreach ($namaFile as $key => $value) {
-			$tamp = "<a href='".BASE_URL."assets/document/".$value."' class='btn btn-primary'>Download Soal</a>";
-			$soal = str_replace('__D_'.$value.'__', $tamp, $soal);
+			$soal = str_replace('__D_'.$value.'__', '__D_'.$value.'__', $soal);
 		}
 		return $soal;
 	}
@@ -63,5 +66,29 @@ class Model_soal{
 		$this->db->bind('id',$id);
 		$this->db->bind('idGuru', $_SESSION[C_GURU]);
 		$this->db->execute();
+	}
+	public function tempelGambar($soal){
+		$tamps = file_get_contents(BASE_URL.'../app/views/tamplates/element_html.html');
+		$tamps = explode('<!-- end -->', $tamps);
+		foreach ($tamps as $key => $tamp) {
+			if(strpos($tamp, '<!-- gambar soal -->') === 0){
+				$soalNew = explode('__G_', $soal);
+				foreach ($soalNew as $k => $v) {
+					if(strpos($v, 'g_') === 0){
+						$g = explode('__', $v);
+						$n = $g[0];
+						$g[0] = str_replace('${BASE_URL}', BASE_URL, $tamp);
+						$g[0] = str_replace('${namaGambar}', $n, $g[0]);
+						$v = implode('', $g);
+					}
+					$soalNew[$k] = $v;
+				}
+				$soal = implode('', $soalNew);
+				break;
+			}
+		}
+		// var_dump($soal);
+		// die;
+		return $soal;
 	}
 }

@@ -68,4 +68,10 @@ class Model_tugas {
 		$this->db->bind('tanggal', date("Y-m-d H:i:s"));
 		$this->db->execute();
 	}
+
+	public function deleteById($id){
+		$this->db->query("DELETE FROM $this->tabel WHERE id=:id");
+		$this->db->bind('id', $id);
+		$this->db->execute();
+	}
 }

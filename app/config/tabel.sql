@@ -63,3 +63,10 @@ CREATE TABLE tugas (
     tanggal DATE NOT NULL,
     batas DATETIME NOT NULL
 );
+
+-- gambar
+CREATE TABLE gambar (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nama_gambar VARCHAR(50) NOT NULL,
+    keyInSoal VARCHAR(50) NOT NULL
+);

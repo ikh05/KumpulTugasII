@@ -2,6 +2,7 @@
 
 class Model_gambar{
 	protected $db;
+	protected $tabel = 'gambar';
 	function __construct(){
 		$this->db = new Database();
 	}
@@ -33,4 +34,5 @@ class Model_gambar{
 		header("Content-Type: $image_mime");
 		readfile($image_path);
 	}
+	
 }
