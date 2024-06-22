@@ -8,6 +8,7 @@ class Model_soal{
 	}
 
 	public function tempelSoal(&$tugas){
+		$tugas = (isset($tugas['id'])) ? [$tugas] : $tugas;
 		foreach ($tugas as $k => $t) {
 			$soal = '';
 			$iter = 0;

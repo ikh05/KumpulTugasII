@@ -6,6 +6,7 @@ class Home extends Controller{
 		if(isset($_POST)) $this->dataClear = $this->clearData($_POST);
 	}
 	public function index (){
+		$this->model("Model_gambar");
 		if(!$this->model('Model_message')->cek()){
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
 		}
@@ -15,6 +16,9 @@ class Home extends Controller{
 			$this->data['tugas'] = $this->model('Model_tugas')->getByToken($this->data['siswa']['tokenKelas']);
 			$this->model('Model_soal')->tempelSoal($this->data['tugas']);
 			foreach ($this->data['tugas'] as $key => $value) $this->data['tugas'][$key]['soal'] = $this->model('Model_soal')->tempelGambar($value['soal']);
+
+
+
 			// dikumpul
 			$this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
 			$this->model('Model_jawaban')->filterTugas($this->data['dikumpul'], $this->data['tugas']);
@@ -32,7 +36,7 @@ class Home extends Controller{
 		}
 		$this->data[C_MESSAGE] = $this->model('Model_message')->get();
 		$this->data['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
-		$this->data['js'] = [CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, "m_home_index", 't_config_mathjax'];
+		$this->data['js'] = [CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, "m_home_index", 't_config_mathjax', 'm_home_tugas'];
 		$this->view("tamplates/header", $this->data);
 		$this->view("home/index", $this->data);
 		if(isset($_SESSION[C_SISWA])) $this->view('home/tugas', $this->data);
@@ -40,20 +44,33 @@ class Home extends Controller{
 		$this->view("tamplates/footer", $this->data);
 	}
 
+	// mekanisme
 	public function masuk(){
+		unset($_SESSION[C_SISWA]);
 		if($this->model('Model_kelas')->getByToken($this->dataClear['tokenKelas']) === FALSE)
-			$this->model('Model_message')->error('Kelas tidak dikenali!');
+			$this->model('Model_message')->error('Kelas tidak dikenali!', '');
 		switch ($this->model('Model_siswa')->cekSiswa($this->dataClear)) {
+			case 'passwordSalah':
+				$this->model('Model_message')->error("Password salah!");
+				break;
 			case 'noSiswa':
 				$this->model('Model_siswa')->simpan($this->dataClear);
 				$this->model('Model_message')->success("Berhasil menambahkan {$this->dataClear['nama']} ke kelas {$this->dataClear['tokenKelas']}!");
-				break;
-			case 'passwordSalah':
-				$this->model('Model_message')->error("Password salah!");
 				break;
 			default:
 				$this->model('Model_message')->success("Selamat Datang Kembali {$this->dataClear['nama']} di kelas {$this->dataClear['tokenKelas']}!");
 				break;
 		}
+		header("Location: ".BASE_URL);
+	}
+	public function simpanTugas($tokenKelas){
+		if($this->dataClear['status-tugas']==='bkerja'){
+			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
+			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas);
+		}else if($this->dataClear['status-tugas'] === 'terlambat'){
+			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
+			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas, $this->dataClear['ket']);
+		}
+		header("Location: ".BASE_URL);
 	}
 }

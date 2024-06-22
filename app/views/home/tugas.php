@@ -69,7 +69,10 @@
 
 
 
+
+
 <div id="tugas" class="container">
+
   <?php if(!empty($data['tugas'])): ?>
   <section id="bkerja">
     <div class="row justify-content-evenly">
@@ -90,6 +93,7 @@
             </div>
             <div class='card-footer p-3 text-body-secondary d-flex gap-2' style="justify-content: center;">
               <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" width="360" height="80" style="display: block; margin: 0px a uto; border: 0px;"></iframe>
+              <button class="btn btn-outline-secondary" status-tugas='bkerja' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['id'] ?>">Jawaban</button>
             </div>
           </div>
         </div>
@@ -122,7 +126,6 @@
                 </div>
               </div>
               <div class='card-footer border-primary p-3 text-body-secondary d-flex gap-2 justify-content-end'>
-                <p class="">Nilai: - </p>
               </div>
             </div>
           </div>
@@ -136,7 +139,7 @@
     <hr class="mt-0 border-success">
     <section id="dinilai">
       <div class="row justify-content-evenly">
-        <?php foreach ($data['dikumpul'] as $key => $value) : ?>
+        <?php foreach ($data['dinilai'] as $key => $value) : ?>
           <div class='col-12 col-md-6'>
             <div class="card border-success" id="nilai-<?= $value['id'] ?>">
               <div class="card-header border-success">
@@ -202,7 +205,7 @@
       <div class="row justify-content-evenly">
         <?php foreach ($data['terlambat'] as $key => $value) :?>
           <div class='col-12 col-md-6'>
-            <div class="card border-danger" id="tolak-<?= $value['id'] ?>">
+            <div class="card border-danger" id="terlambat-<?= $value['id'] ?>">
               <div class="card-header">
                 <div class="w-100 d-flex h-100">
                   <h3 class='flex-fill'><?= $value['nama'] ?></h3>
@@ -218,7 +221,7 @@
                 </div>
               </div>
               <div class='card-footer border-danger p-3 text-body-denger d-flex gap-2'>
-                <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" width="360" height="80" style="display: block; margin: 0px a uto; border: 0px; overflow: hidden;"></iframe>
+                <button class="btn btn-outline-danger" status-tugas='terlambat' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['id'] ?>">Jawaban</button>
               </div>
             </div>
           </div>
@@ -228,3 +231,40 @@
     <hr class="mb-1 border-danger">
   <?php endif; ?>
 </div>
+
+
+
+
+
+
+
+
+<!-- Modal Jawaban -->
+<form action="<?= BASE_URL ?>Home/simpanTugas/<?= $data['siswa']['tokenKelas'] ?>" method="POST" enctype="multipart/form-data" class="modal" tabindex="-1" id="jawabTugas">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-bg-secondary">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-hidden">
+          <input type="hidden" name="idTugas">
+        </div>
+        <div class="modal-form" id="gambar"></div>
+        <div class="input-group">
+          <input type="text" name="ket" placeholder="Tuliskan alasan terlambat!" required class="form-control">
+          <input type="hidden" name="status-tugas">
+        </div>
+        <div class="form-check form-switch mb-3">
+          <input type="checkbox" class="form-check-input" id="pastikan">
+          <label class="form-check-label" for="pastikan">Gambar yang dikirim sudah lengkap</label>
+        </div>
+        <button id="tambah-gambar" class="btn btn-success" type="button">Tambah Gambar</button>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary disabled">Kirim Jawaban</button>
+      </div>
+    </div>
+  </div>
+</form>

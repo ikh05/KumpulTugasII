@@ -140,7 +140,7 @@
 
 
 <!-- Model -->
-<form method="POST" action="" class="modal" tabindex="-1" enctype="multipart/form-data" id="form-modal">
+<form method="POST" action="" class="modal" tabindex="-1" enctype="multipart/form-data" id="form-modal" active-id="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header text-bg-dark">

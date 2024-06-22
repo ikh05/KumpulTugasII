@@ -22,7 +22,7 @@ class Model_tugas {
 		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
 		$this->db->bind('id', $id);
 		$res = $this->db->single();
-		$res ['idSoal'] = json_decode($res['idTugas']);
+		$res ['idSoal'] = json_decode($res['idSoal']);
 		return $res;
 	}
 

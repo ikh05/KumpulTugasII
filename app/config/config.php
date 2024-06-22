@@ -1,9 +1,9 @@
 <?php 
 
 // Status Internet
-if(!isset($_SESSION['internet'])){
+// if(!isset($_SESSION['internet'])){
 	$_SESSION['internet'] = (bool)@fsockopen("www.google.com", '80');
-}
+// }
 
 // CDN
 include_once ($_SESSION['internet'] ? "../app/config/cdn.php" : "../../vendor/config.php");
@@ -33,7 +33,7 @@ define('C_SISWA', 'KTII_data-siswa');
 define('C_GURU', "KTII_data-guru");
 define('C_AJAX', 'ktii_ajax');
 define('C_DELETE', 'KTII_delete');
-define('C_KELAS', 'KTII_kelass');
+define('C_KELAS', 'KTII_kelas');
 
 
 

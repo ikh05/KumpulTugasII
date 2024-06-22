@@ -64,9 +64,14 @@ CREATE TABLE tugas (
     batas DATETIME NOT NULL
 );
 
--- gambar
-CREATE TABLE gambar (
+-- log
+CREATE TABLE log (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nama_gambar VARCHAR(50) NOT NULL,
-    keyInSoal VARCHAR(50) NOT NULL
+    idGuru TEXT NOT NULL,
+    idSiswa TEXT NOT NULL,
+    idSoal TEXT NOT NULL,
+    tokenKelas VARCHAR(30) NOT NULL,
+    tanggal DATE NOT NULL,
+    ket TEXT NOT NULL,
+    status BOOLEAN NOT NULL DEFAULT FALSE
 );

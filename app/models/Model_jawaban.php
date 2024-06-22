@@ -28,7 +28,7 @@ class Model_jawaban{
 					$buff_tugas = $tugas[$kt];
 					unset($buff_tugas['id']);
 					$jawab[$kj] = array_merge($jawab[$kj], $buff_tugas);
-					unset($tugas[$kj]);
+					unset($tugas[$kt]);
 				}
 			}
 		}
@@ -41,7 +41,7 @@ class Model_jawaban{
     		idTugas INT(6) NOT NULL,
     		nilai INT(3) NOT NULL,
     		gambar TEXT NOT NULL,
-    		tanggalKumpul DATE NOT NULL,
+    		tanggalKumpul DATETIME NOT NULL,
     		status VARCHAR(10) NOT NULL DEFAULT 'dikumpul',
     		ket VARCHAR(100) NOT NULL
 		)");
@@ -57,5 +57,36 @@ class Model_jawaban{
 		}
 		$this->db->bind('id', $siswa['id']);
 		return $this->db->resultSet();
+	}
+	public function getBySiswa_Tugas($siswa, $idTugas){
+		$this->tabel .= strtolower($siswa['tokenKelas']);
+		$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:idSiswa AND idTugas=:idTugas");
+		$this->db->bind('idSiswa', $siswa['id']);
+		$this->db->bind('idTugas', $idTugas);
+		return $this->db->single();
+	}
+	public function kumpul($namaGambar, $idTugas, $tokenKelas, $ket=null){
+		$this->tabel .= strtolower($tokenKelas);
+		$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:idSiswa AND idTugas=:idTugas");
+		$this->db->bind('idSiswa', $_SESSION[C_SISWA]);
+		$this->db->bind('idTugas', $idTugas);
+		$kumpul = $this->db->single();
+		if($kumpul !== FALSE){ /*kirim ulang*/
+			$fileSebelumnya = json_decode($kumpul['gambar']);
+			foreach ($fileSebelumnya as $key => $value) {
+				if(file_exists(BASE_URL.'assets/img/'.$value)) unlink(BASE_URL.'assets/img/'.$value);
+			}
+			$this->db->query("UPDATE $this->tabel SET gambar=:gambar, tanggalKumpul=:tanggalKumpul WHERE idTugas=:idTugas AND idSiswa=:idSiswa");
+		}else if(is_null($ket)){
+			$this->db->query("INSERT INTO $this->tabel (`idSiswa`, `idTugas`, `gambar`, `tanggalKumpul`) VALUES (:idSiswa, :idTugas, :gambar, :tanggalKumpul)");
+		}else{
+			$this->db->query("INSERT INTO $this->tabel (`idSiswa`, `idTugas`, `gambar`, `tanggalKumpul`, `ket`) VALUES (:idSiswa, :idTugas, :gambar, :tanggalKumpul, :ket)");
+			$this->db->bind('ket', $ket);
+		}
+		$this->db->bind('idSiswa', $_SESSION[C_SISWA]);
+		$this->db->bind('idTugas', $idTugas);
+		$this->db->bind('tanggalKumpul', date("Y-m-d H:i:s"));
+		$this->db->bind('gambar', json_encode($namaGambar));
+		$this->db->execute();
 	}
 }

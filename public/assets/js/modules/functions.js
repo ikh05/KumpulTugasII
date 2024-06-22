@@ -16,6 +16,9 @@ export function cekGambar() {
 			}else if(el.classList.contains('img-thumbnail')){
 				let src = el.getAttribute('src');
 				let img = document.querySelector('#modal-cek img');
+				let textSoal = img.previousElementSibling;
+				img.classList.remove('d-none');
+				textSoal.classList.add('d-none');
 				img.setAttribute('src', src);
 			}
 			el = el.parentElement;
@@ -158,14 +161,17 @@ function f__ (nav) {
 }
 
 
-export function ajax (el, f=null){
+export function ajax (el){
 	let ajax = new XMLHttpRequest();
 	let url = el.getAttribute('href-ajax');
+	let a = arguments;
 	ajax.onreadystatechange = function() {
 		if (ajax.readyState == 4 && ajax.status == 200) {
 			let response = ajax.responseText;
-			console.log(JSON.parse(response));
-			if(typeof(f) === 'function') f(response);
+			console.log(response);
+			response = JSON.parse(response);
+			console.log(response);
+			Array.from(a).map(f => typeof(f) === 'function' ? f(response, el) : '')
 		}
 	};
 	ajax.open('GET', url, true);
