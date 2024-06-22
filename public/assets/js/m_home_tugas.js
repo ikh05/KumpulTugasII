@@ -7,7 +7,10 @@ document.addEventListener('click', ev =>{
 			// console.log(el.getAttribute('status-tugas'));
 			ajax(el, (res, e)=>{
 				if(modalJawab.getAttribute('active-id') != res['tugas']['id']){
-					modalJawab.querySelector('.modal-title').classList.remove('text-bg-secondary');
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-secondary');
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-warning');
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-danger');
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-primary');
 					modalJawab.querySelector('.modal-title').textContent = res['tugas']['nama'];
 					modalJawab.setAttribute('active-id', res['tugas']['id'])
 					modalJawab.querySelector('.modal-form').innerHTML = '';
@@ -19,13 +22,40 @@ document.addEventListener('click', ev =>{
 							<!--- <button type='button' class='btn btn-outline-primary' cek-img>Review</button> --->
 							<button type='button' class='btn btn-outline-danger' delete-gambar>X</button>
 						</div>`;
+					let ket = modalJawab.querySelector('[name=ket]') /*required vaue='' type='text'*/
+					ket.setAttribute('type', 'text');
+					ket.value = '';
+					ket.setAttribute('required', '');
+					let gambar_jawaban = modalJawab.querySelector('.gambar-jawaban');
+					modalJawab.querySelector('.ket-ditolak').classList.add('d-none');
+					gambar_jawaban.innerHTML = '';
 					if(e.getAttribute('status-tugas') == 'bkerja'){
-						modalJawab.querySelector('.modal-title').classList.add('text-bg-secondary');
-						modalJawab.querySelector('[name=ket]').setAttribute('type', 'hidden');
-						modalJawab.querySelector('[name=ket]').removeAttribute('required');
+						modalJawab.querySelector('.modal-header').classList.add('text-bg-secondary');
+						ket.setAttribute('type', 'hidden');
+						ket.removeAttribute('required')
 					}else if(e.getAttribute('status-tugas') == 'terlambat'){
-						modalJawab.querySelector('[name=ket]').setAttribute('type', 'text');
-						modalJawab.querySelector('[name=ket]').setAttribute('required', '');
+						modalJawab.querySelector('.modal-header').classList.add('text-bg-danger');
+					}else if(e.getAttribute('status-tugas') == 'ditolak'){
+						modalJawab.querySelector('.modal-header').classList.add('text-bg-warning');
+						ket.setAttribute('readonly', '');
+						ket.value = res['jawaban']['ket'];
+						modalJawab.querySelector('.ket-ditolak').classList.remove('d-none');
+						res['jawaban']['gambar'].forEach(namaGambar =>{
+							let div = document.createElement('div');
+							let tamp = `<img data-bs-toggle='modal' data-bs-target='#modal-cek' src='${res['BASE_URL']}Gambar/getGambarTugas/${namaGambar}' class='img-thumbnail mb-3' style='max-width:100px;'>`
+							div.innerHTML = tamp;
+							gambar_jawaban.appendChild(div);
+						})
+					}else if(e.getAttribute('status-tugas') == 'dikumpul'){
+						modalJawab.querySelector('.modal-header').classList.add('text-bg-primary');
+						res['jawaban']['gambar'].forEach(namaGambar =>{
+							let div = document.createElement('div');
+							let tamp = `<img data-bs-toggle='modal' data-bs-target='#modal-cek' src='${res['BASE_URL']}Gambar/getGambarTugas/${namaGambar}' class='img-thumbnail mb-3' style='max-width:100px;'>`
+							div.innerHTML = tamp;
+							gambar_jawaban.appendChild(div);
+							ket.setAttribute('type', 'hidden');
+							ket.removeAttribute('required')
+						})
 					}
 				}
 			})

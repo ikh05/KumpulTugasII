@@ -15,6 +15,7 @@ class Ajax extends Controller{
 	function __destruct(){
 		// Mengubah array menjadi format JSON
 	    header('Content-Type: application/json');
+	    $this->res['BASE_URL'] = BASE_URL;
 	    echo json_encode($this->res);
 	}
 	public function index(){
@@ -51,7 +52,6 @@ class Ajax extends Controller{
 		if($this->cekAjax(C_SISWA)){
 			$tugas = $this->model('Model_tugas')->getById($idTugas);
 			$siswa = $this->model('Model_siswa')->getSession();
-			$jawaban = $this->model('Model_jawaban')->getBySiswa_Tugas($siswa, $idTugas);
 			if($tugas['tokenKelas'] !== $siswa['tokenKelas']){
 				$this->res ['message'] = 'anda tidak terdaftar dikelas ini';
 				return 0;
@@ -60,7 +60,11 @@ class Ajax extends Controller{
 
 			$tugas[0]['soal'] = $this->model('Model_soal')->tempelGambar($tugas[0]['soal']);
 			$this->res['tugas'] = $tugas[0];
+			$jawaban = $this->model('Model_jawaban')->getBySiswa_Tugas($siswa,$idTugas);
+			if($jawaban !== FALSE) $jawaban['gambar'] = json_decode($jawaban['gambar']);
 			$this->res ['jawaban'] = $jawaban;
+		}else if($this->cekAjax(C_GURU)){
+
 		}
 	}
 

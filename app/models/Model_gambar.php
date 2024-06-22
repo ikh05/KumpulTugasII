@@ -3,7 +3,7 @@
 class Model_gambar{
 	protected $db;
 	protected $tabel = 'gambar';
-	protected $ekstensi_valid = ['jpg', 'png', 'jpeg'];
+	protected $ekstensi_valid = ['jpg', 'png', 'jpeg', 'tiff', 'heif'];
 	function __construct(){
 		$this->db = new Database();
 	}

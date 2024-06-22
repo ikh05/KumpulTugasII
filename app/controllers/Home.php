@@ -6,7 +6,6 @@ class Home extends Controller{
 		if(isset($_POST)) $this->dataClear = $this->clearData($_POST);
 	}
 	public function index (){
-		$this->model("Model_gambar");
 		if(!$this->model('Model_message')->cek()){
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
 		}
@@ -64,7 +63,7 @@ class Home extends Controller{
 		header("Location: ".BASE_URL);
 	}
 	public function simpanTugas($tokenKelas){
-		if($this->dataClear['status-tugas']==='bkerja'){
+		if($this->dataClear['status-tugas']==='bkerja' || $this->dataClear['status-tugas']==='dikumpul'){
 			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
 			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas);
 		}else if($this->dataClear['status-tugas'] === 'terlambat'){

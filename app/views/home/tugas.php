@@ -108,7 +108,7 @@
     <section id="dikumpul">
       <div class="row justify-content-evenly">
         <?php foreach ($data['dikumpul'] as $key => $value) : ?>
-          <div class='col-12 col-md-6'>
+          <div class='col-12 col-md-6 mb-3'>
             <div class="card border-primary" id="kumpul-<?= $value['id'] ?>">
               <div class="card-header border-primary">
                 <div class="w-100 d-flex h-100">
@@ -126,6 +126,7 @@
                 </div>
               </div>
               <div class='card-footer border-primary p-3 text-body-secondary d-flex gap-2 justify-content-end'>
+                <button class="btn btn-outline-primary" status-tugas='dikumpul' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['idTugas'] ?>">Cek</button>
               </div>
             </div>
           </div>
@@ -140,7 +141,7 @@
     <section id="dinilai">
       <div class="row justify-content-evenly">
         <?php foreach ($data['dinilai'] as $key => $value) : ?>
-          <div class='col-12 col-md-6'>
+          <div class='col-12 col-md-6 mb-3'>
             <div class="card border-success" id="nilai-<?= $value['id'] ?>">
               <div class="card-header border-success">
                 <div class="w-100 d-flex h-100">
@@ -169,9 +170,9 @@
     <section id="ditolak">
       <div class="row justify-content-evenly">
         <?php foreach ($data['ditolak'] as $key => $value) :?>
-          <div class='col-12 col-md-6'>
+          <div class='col-12 col-md-6 mb-3'>
             <div class="card border-warning" id="tolak-<?= $value['id'] ?>">
-              <div class="card-header">
+              <div class="card-header border-warning">
                 <div class="w-100 d-flex h-100">
                   <h3 class='flex-fill'><?= $value['nama'] ?></h3>
                   <p class="p-2 m-auto fw-bold text-bg-warning" style="border-radius: .3rem;">
@@ -186,11 +187,12 @@
                   <input type="hidden" name="namaTugas" value="{$nama}">
                 </div>
                 <div class="ket">
-                  <p class="m-0">alasan: <?= $value['ket'] ?>, tolong perbaiki sebelum waktu habis!</p>
+                  <p class="m-0">alasan: <?= $value['ket'] ?>, tolong perbaiki!</p>
                 </div>
               </div>
               <div class='card-footer border-warning p-3 text-body-secondary d-flex gap-2'>
                 <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" width="360" height="80" style="display: block; margin: 0px a uto; border: 0px; overflow: hidden;"></iframe>
+                <button class="btn btn-outline-warning" status-tugas='ditolak' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['idTugas'] ?>">Jawaban</button>
               </div>
             </div>
           </div>
@@ -204,9 +206,9 @@
     <section id="terlambat">
       <div class="row justify-content-evenly">
         <?php foreach ($data['terlambat'] as $key => $value) :?>
-          <div class='col-12 col-md-6'>
+          <div class='col-12 col-md-6 mb-3'>
             <div class="card border-danger" id="terlambat-<?= $value['id'] ?>">
-              <div class="card-header">
+              <div class="card-header border-danger">
                 <div class="w-100 d-flex h-100">
                   <h3 class='flex-fill'><?= $value['nama'] ?></h3>
                   <p class="p-2 m-auto fw-bold text-bg-danger" style="border-radius: .3rem;">
@@ -248,11 +250,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="gambar-jawaban mb-4">
+          
+        </div>
         <div class="form-hidden">
           <input type="hidden" name="idTugas">
         </div>
         <div class="modal-form" id="gambar"></div>
-        <div class="input-group">
+        <div class="input-group mb-3">
           <input type="text" name="ket" placeholder="Tuliskan alasan terlambat!" required class="form-control">
           <input type="hidden" name="status-tugas">
         </div>
@@ -260,6 +265,7 @@
           <input type="checkbox" class="form-check-input" id="pastikan">
           <label class="form-check-label" for="pastikan">Gambar yang dikirim sudah lengkap</label>
         </div>
+        <p class="ket-ditolak d-none">Tolong kirim ulang semua gambar!</p>
         <button id="tambah-gambar" class="btn btn-success" type="button">Tambah Gambar</button>
       </div>
       <div class="modal-footer">
