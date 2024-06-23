@@ -63,12 +63,12 @@ class Home extends Controller{
 		header("Location: ".BASE_URL);
 	}
 	public function simpanTugas($tokenKelas){
-		if($this->dataClear['status-tugas']==='bkerja' || $this->dataClear['status-tugas']==='dikumpul'){
-			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
-			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas);
-		}else if($this->dataClear['status-tugas'] === 'terlambat'){
+		if($this->dataClear['status-tugas'] === 'terlambat'){
 			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
 			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas, $this->dataClear['ket']);
+		}else {
+			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
+			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas);
 		}
 		header("Location: ".BASE_URL);
 	}

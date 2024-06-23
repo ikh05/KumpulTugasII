@@ -76,7 +76,8 @@ class Model_jawaban{
 			foreach ($fileSebelumnya as $key => $value) {
 				if(file_exists(BASE_URL.'assets/img/'.$value)) unlink(BASE_URL.'assets/img/'.$value);
 			}
-			$this->db->query("UPDATE $this->tabel SET gambar=:gambar, tanggalKumpul=:tanggalKumpul WHERE idTugas=:idTugas AND idSiswa=:idSiswa");
+			$this->db->query("UPDATE $this->tabel SET gambar=:gambar, tanggalKumpul=:tanggalKumpul, status=:status WHERE idTugas=:idTugas AND idSiswa=:idSiswa");
+			$this->db->bind('status', 'dikumpul');
 		}else if(is_null($ket)){
 			$this->db->query("INSERT INTO $this->tabel (`idSiswa`, `idTugas`, `gambar`, `tanggalKumpul`) VALUES (:idSiswa, :idTugas, :gambar, :tanggalKumpul)");
 		}else{
