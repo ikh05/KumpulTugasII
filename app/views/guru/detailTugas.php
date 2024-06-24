@@ -4,10 +4,10 @@
 		<!-- identitas Kelas -->
 		<div class="col-12 col-md-6 mb-3">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header text-bg-dark">
 					<h5 class="card-tittle">Identitas Kelas</h5>
 				</div>
-				<dov class="card-body">
+				<div class="card-body">
 					<table class="table">
 						<tr>
 							<td>Nama Guru</td>
@@ -22,14 +22,17 @@
 							<td>: <a href="<?= BASE_URL ?>Guru/daftarTugas/<?= $_SESSION[C_KELAS] ?>" class="btn btn-primary"><?= $_SESSION[C_KELAS] ?></a></td>
 						</tr>
 					</table>
-				</dov>
+				</div>
+				<div class="card-footer text-bg-dark d-flex justify-content-end">
+		  		<a href="<?= BASE_URL ?>Guru/daftarTugas/<?= $_SESSION[C_KELAS] ?>" class="btn btn-outline-info me-1">Daftar Tugas</a>
+				</div>
 			</div>
 		</div>
 
 		<!-- identitas Tugas -->
 		<div class="col-12 col-md-6 mb-3">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header text-bg-dark">
 					<h5 class="card-tittle">Identitas Tugas</h5>
 				</div>
 				<div class="card-body">
@@ -47,6 +50,10 @@
 						<p>Soal :</p>
 						<?= $data['tugas']['soal'] ?>
 					</div>
+				</div>
+				<div class="card-footer text-bg-dark d-flex justify-content-end">
+		  		<a href="<?= BASE_URL ?>Guru/edit/tugas/<?=$data['tugas']['id'] ?>" class="btn btn-outline-info me-1">Edit Tugas</a>
+		  		<a href="<?= BASE_URL ?>Guru/delete/tugas/<?=$data['tugas']['id'] ?>" class="btn btn-outline-warning me-1">Hapus Tugas</a>
 				</div>
 			</div>
 		</div>

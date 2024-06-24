@@ -121,4 +121,10 @@ class Model_jawaban{
 		$this->db->bind('gambar', json_encode($namaGambar));
 		$this->db->execute();
 	}
+	public function delete($k, $v){
+		$this->tabel .= strtolower($_SESSION[C_KELAS]);
+		$this->db->query("DELETE FROM $this->tabel WHERE $k=:v");
+		$this->db->bind('v', $v);
+		$this->db->execute();
+	}
 }

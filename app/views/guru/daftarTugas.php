@@ -142,8 +142,8 @@
 												<td class="position-relative">
 		  											<p><?= $value['nama'] ?></p>
 		  											<div class="position-absolute end-0 top-50 translate-middle-y">
-		  												<a href="<?= BASE_URL ?>/Guru/detailTugas/<?= $value['id'] ?>" class="btn btn-info me-1">Detail</a>
-		  												<a href="<?= BASE_URL ?>/Guru/delete/tugas/<?=$value['id'] ?>" class="btn btn-danger me-1">Hapus</a>
+		  												<a href="<?= BASE_URL ?>Guru/detailTugas/<?= $value['id'] ?>" class="btn btn-info me-1">Detail</a>
+		  												<!-- <a href="<?= BASE_URL ?>Guru/delete/tugas/<?=$value['id'] ?>" class="btn btn-danger me-1">Hapus</a> -->
 		  											</div>
 												</td>
 											</tr>

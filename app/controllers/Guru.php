@@ -166,15 +166,21 @@ class Guru extends Controller{
 	}
 	public function fiksDelete($delete, $id){
 		// belum ada untuk mencek apakah yang akan didelete merupakan milik dari si punya dan harus dari Guru/delete/$delete/$id
+
+		// jika tugas di dalete, cek di dalam jawab, apakah ada yang mengumpultugas itu, jika ada delete juga,
+
 		$asal = '';
 		if(isset($_SESSION[C_DELETE])){
 			unset($_SESSION[C_DELETE]);
 			$this->model('Model_'.$delete)->deleteById($id);
 			switch ($delete) {
 				case 'siswa': break;
-				case 'soal': $asal = 'soalKu'; break;
+				case 'soal': 
+					$asal = 'soalKu'; break;
 				case 'kelas': break;
-				case 'tugas': $asal = 'daftarTugas/'.$_SESSION[C_KELAS]; break;
+				case 'tugas': 
+					$this->model('Model_jawaban')->delete('idTugas', $id);
+					$asal = 'daftarTugas/'.$_SESSION[C_KELAS]; break;
 			}
 		}
 		header('Location: '.BASE_URL.'Guru/'.$asal);

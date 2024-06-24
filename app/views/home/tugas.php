@@ -147,7 +147,7 @@
               <div class="card-header border-success">
                 <div class="w-100 d-flex h-100">
                   <h3 class='flex-fill'><?= $value['nama'] ?></h3>
-                  <p class="p-2 m-auto fw-bold text-light bg-secondary" style="border-radius: .3rem;">
+                  <p class="p-2 m-auto fw-bold text-light bg-success" style="border-radius: .3rem;">
                     Dinilai
                   </p>
                 </div>
