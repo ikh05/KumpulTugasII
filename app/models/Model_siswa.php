@@ -47,4 +47,20 @@ class Model_siswa{
 			return 'passwordSalah';
 		}
 	}
+	public function tempelSiswa(&$data){
+		$set = FALSE;
+		if(isset($data['idSiswa'])){
+			$set = TRUE;
+			$data = [$data];
+		}
+		foreach ($data as $key => $value) {
+			$this->db->query("SELECT * FROM $this->tabel WHERE id=:idSiswa");
+			$this->db->bind('idSiswa', $value['idSiswa']);
+			$siswa = $this->db->single();
+			unset($siswa['password']);
+			$data[$key]['siswa'] = $siswa;
+		}
+
+		if($set) $data = $data[0];
+	}
 }

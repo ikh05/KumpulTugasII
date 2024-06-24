@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="card-footer text-body-secondary">
-      2 days ago
+      <!-- <?= $data['last'] ?> -->
     </div>
   </div>
   <hr>
@@ -100,9 +100,9 @@
       <?php endforeach; ?>
     </div>
   </section>
+  <hr class="mb-1 border-secondary">
   <?php endif; ?>
 
-  <hr class="mb-1 border-secondary">
   <?php if(!empty($data['dikumpul'])) : ?>
     <hr class="mt-0 border-primary">
     <section id="dikumpul">
@@ -136,6 +136,7 @@
     <hr class="mb-1 border-primary">
   <?php endif; ?>
   
+  <!-- tugas dinilai -->
   <?php if(!empty($data['dinilai'])) : ?>
     <hr class="mt-0 border-success">
     <section id="dinilai">
@@ -165,6 +166,7 @@
     <hr class="mb-1 border-success">
   <?php endif; ?>
 
+<!-- tugas ditolak -->
   <?php if(!empty($data['ditolak'])): ?>
     <hr class="mt-0 border-warning">
     <section id="ditolak">
@@ -201,6 +203,8 @@
     </section>
     <hr class="mb-1 border-danger">
   <?php endif; ?>
+
+  <!-- tugas terlambat -->
   <?php if(!empty($data['terlambat'])): ?>
     <hr class="mt-0 border-danger">
     <section id="terlambat">

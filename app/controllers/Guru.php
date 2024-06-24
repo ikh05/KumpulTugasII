@@ -83,7 +83,25 @@ class Guru extends Controller{
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_daftarTugas'];
 		$this->view('tamplates/header', $this->data);
-		$this->func_dashoard('daftarTugas', $keyKelas);
+		$this->func_dashoard('daftarTugas', $_SESSION[C_KELAS]);
+		$this->view('tamplates/cekGambar', $this->data);
+		$this->view('tamplates/footer', $this->data);
+	}
+	public function detailTugas($idTugas){
+		define('DITOLAK', 'warning');
+		define('DIKUMPUL', 'primary');
+		define('DINILAI', 'success');
+		define('TERLAMBAT', 'danger');
+		$this->data ['tugas'] = $this->model('Model_tugas')->getById($idTugas);
+		$this->model('Model_soal')->tempelSoal($this->data['tugas'], true);
+		$this->data ['tugas'] = $this->data['tugas'][0];
+		$this->data ['jawaban'] = $this->model('Model_jawaban')->getAllByIdTugas($idTugas);
+		$this->model('Model_siswa')->tempelSiswa($this->data['jawaban']);
+		$_SESSION[C_KELAS] = $this->data['tugas']['tokenKelas'];
+		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
+		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_detailTugas'];
+		$this->view('tamplates/header', $this->data);
+		$this->func_dashoard('detailTugas', $_SESSION[C_KELAS]);
 		$this->view('tamplates/cekGambar', $this->data);
 		$this->view('tamplates/footer', $this->data);
 	}
@@ -141,6 +159,10 @@ class Guru extends Controller{
 			$this->model('Model_message')->success('Tugas berhail ditambahkan!');
 		}else $this->model('Model_message')->error('Tugas gagal ditambahkan!');
 		header('Location: '.BASE_URL.'Guru/daftarTugas/'.$tokenKelas);
+	}
+	public function simpanNilai($idTugas){
+		$this->model('Model_jawaban')->updateNilai($this->dataClear);
+		header("Location: ".BASE_URL."Guru/detailTugas/".$idTugas);
 	}
 	public function fiksDelete($delete, $id){
 		// belum ada untuk mencek apakah yang akan didelete merupakan milik dari si punya dan harus dari Guru/delete/$delete/$id

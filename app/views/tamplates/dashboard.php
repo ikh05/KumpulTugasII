@@ -46,7 +46,6 @@
                                   <a href="<?= BASE_URL ?>Guru/detailKelas/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-users"></i> Detail Kelas</a>
                                   <a href="<?= BASE_URL ?>Guru/daftarSiswa/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-users"></i> Daftar Siswa</a>
                                   <a href="<?= BASE_URL ?>Guru/daftarTugas/<?= $v ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-pen"></i> Tugas</a>
-                                  <a href="<?= BASE_URL ?>Guru/periksaTugas/<?= $v ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-pen"></i> Periksa</a>
                                   <a href="<?= BASE_URL ?>Guru/daftarNilai/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-hundred-points"></i> Nilai</a>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@ class Model_soal{
 		$this->db = new Database();
 	}
 
-	public function tempelSoal(&$tugas){
+	public function tempelSoal(&$tugas, $tempelGambar = false){
 		$tugas = (isset($tugas['id'])) ? [$tugas] : $tugas;
 		foreach ($tugas as $k => $t) {
 			$soal = '';
@@ -19,8 +19,10 @@ class Model_soal{
 				if($res !== FALSE) {
 					$iter += 1;
 					$soal .= ($iter.". ".$res['soal']."<br>");
+
 				}
 			}
+			if($tempelGambar) $soal = $this->tempelGambar($soal);
 			$tugas[$k]['soal'] = $soal;
 		}
 	}

@@ -67,6 +67,12 @@ class Ajax extends Controller{
 
 		}
 	}
+	public function getJawaban($id){
+		if($this->cekAjax(C_GURU)){
+			$this->res['jawaban'] = $this->model('Model_jawaban')->getById($id);
+			$this->res['siswa'] = $this->model('Model_siswa')->getById($this->res['jawaban']['idSiswa']);
+		}
+	}
 
 	
 }   

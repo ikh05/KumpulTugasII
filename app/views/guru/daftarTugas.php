@@ -45,6 +45,8 @@
 
 
 
+
+	<!-- SOAL -->
 	<div class="row">
 		<div class="col-12 col-md-6">
 			<div class="card mb-3">
@@ -112,6 +114,9 @@
 				</div>
 			</div>
 		</div>
+
+
+		<!-- daftar Tugas -->
 		<div class="col-12 col-md-6">
 			<div class="row">
 				<di class="col-12">
@@ -137,7 +142,7 @@
 												<td class="position-relative">
 		  											<p><?= $value['nama'] ?></p>
 		  											<div class="position-absolute end-0 top-50 translate-middle-y">
-		  												<a href="#<?= $value['id'] ?>" class="btn btn-info me-1 disabled">Detail</a>
+		  												<a href="<?= BASE_URL ?>/Guru/detailTugas/<?= $value['id'] ?>" class="btn btn-info me-1">Detail</a>
 		  												<a href="<?= BASE_URL ?>/Guru/delete/tugas/<?=$value['id'] ?>" class="btn btn-danger me-1">Hapus</a>
 		  											</div>
 												</td>
@@ -174,7 +179,11 @@
 					  			</div>
 							</div>
 						</div>
-					</div>				</di>
+					</div>
+				</di>
+				
+
+				<!-- tambah tugas -->
 				<di class="col-12">
 					<form class="card mb-3" method="POST" action="<?= BASE_URL ?>Guru/simpanTugas/<?= $data['tokenKelas-active'] ?>" enctype="multipart/form-data">
 						<div class="card-header text-bg-dark">Tambah Tugas</div>
