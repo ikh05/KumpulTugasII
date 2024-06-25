@@ -45,7 +45,7 @@
 							</div>
 							<div class="col-12 mb-3 form-floating ">
 								<input class="form-control" type="text" name="d-nama" placeholder="Nama Lengkap" required autocomplete="off">
-								<label>Nama Lengkap*</label>
+								<label>Nama Lengkap <span class="text-danger">*</span></label>
 							</div>
 							<div class="col-6 mb-3 form-floating ">
 								<input class="form-control" type="email" name="d-email" placeholder="Email tidak wajib diisi" autocomplete="off">
@@ -59,7 +59,7 @@
 								<div class="input-group">
 									<div class="form-floating is-invalid">
 										<input class="form-control" class="form-control" id="passDaftar" type="password" name="d-password" aria-label="" required autocomplete="off" placeholder="Password">
-										<label>Password*</label>
+										<label>Password <span class="text-danger">*</span></label>
 									</div>
 									<button class="btn btn-outline-secondary btn-translucent" type="button" id="d-eye">
 										<i class="fa-solid fa-eye"></i>
@@ -69,14 +69,14 @@
 							</div>
 							<div class="col-lg-6 col-12 mb-3 form-floating ">
 								<input class="form-control" class="form-control" id="konfpassDaftar" type="password" name="d-konf-password" aria-label="" required autocomplete="off" placeholder="Konfirmasi Password">
-								<label>Konfirmasi Password*</label>
+								<label>Konfirmasi Password <span class="text-danger">*</span></label>
 							</div>
 						</div>
 					</div>
 					<div class="card-footer bg-dark text-light">
 						<div class="row text-center">
 							<div class="col border-end border-warning">
-								<p class="m-0">* wajib diisi!</p>
+								<p class="m-0 text-danger">* wajib diisi!</p>
 								<button class="btn btn-outline-warning" type="submit" name="submit">Kirim</button>
 							</div>
 							<div class="col border-start border-primary">
