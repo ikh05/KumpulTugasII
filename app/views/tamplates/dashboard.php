@@ -65,7 +65,7 @@
             <div id="layoutSidenav_content">
                 <main class="mt-5 pt-3">
                     <div>
-                	   <?php include_once ('..'.$data['content_main'].'.php'); ?> 
+                	   <?php include ('../app/views/'.$data['content_main'].'.php'); ?> 
                     </div>
                 </main>
                 <!-- <footer class="py-4 bg-light mt-auto">
