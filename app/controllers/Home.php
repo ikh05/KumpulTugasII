@@ -20,7 +20,7 @@ class Home extends Controller{
 			foreach ($this->data['tugas'] as $key => $value) $this->data['tugas'][$key]['soal'] = $this->model('Model_soal')->tempelGambar($value['soal']);
 
 		// 	// dikumpul
-			// $this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
+			$this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
 		// 	$this->model('Model_jawaban')->filterTugas($this->data['dikumpul'], $this->data['tugas']);
 
 		// 	// dinilai

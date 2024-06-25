@@ -64,7 +64,8 @@ class Model_jawaban{
 			$this->db->bind('status', $status);
 		}
 		$this->db->bind('id', $siswa['id']);
-		return $this->db->resultSet();
+		// return $this->db->resultSet();
+		return [];
 	}
 	public function getById($id){
 		$this->tabel .= strtolower($_SESSION[C_KELAS]);
