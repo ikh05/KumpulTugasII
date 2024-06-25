@@ -59,15 +59,17 @@ class Model_jawaban{
 	public function getAllBySiswa($siswa, $status=null){
 		$this->tabel .= strtolower($siswa['tokenKelas']);
 		$this->tabel = $this->cekTabel($siswa['tokenKelas']);
-		if(is_null($status)){
-			$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:id");
-		}else{
-			$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:id AND status=:status");
-			$this->db->bind('status', $status);
-		}
-		$this->db->bind('id', $siswa['id']);
-		return $this->db->resultSet();
-		return [];
+
+		var_dump($this->tabel);
+		// if(is_null($status)){
+		// 	$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:id");
+		// }else{
+		// 	$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:id AND status=:status");
+		// 	$this->db->bind('status', $status);
+		// }
+		// $this->db->bind('id', $siswa['id']);
+		// return $this->db->resultSet();
+		// return [];
 	}
 	public function getById($id){
 		$this->tabel .= strtolower($_SESSION[C_KELAS]);
