@@ -15,14 +15,13 @@
 	<section id="identitas">
 		<div class="accordion" id="accordionPanelsStayOpenExample">
 		  <div class="accordion-item">
-		     <h2 class="accordion-header">
+		    <h2 class="accordion-header">
 		      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#input-identitas" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
 		        <h3>Identitas Siswa</h3>
 		      </button>
 		    </h2>
 		    <div id="input-identitas" class="accordion-collapse collapse show">
 		      <div class="accordion-body">
-		        
 		      	<form method="Post" class="upDown" action="<?= BASE_URL ?>Home/masuk">
 					<div id="tinggiInput" class="row">
 						<div class="col-12 mb-1 form-floating">
