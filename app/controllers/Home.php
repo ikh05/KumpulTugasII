@@ -74,4 +74,5 @@ class Home extends Controller{
 		}
 		header("Location: ".BASE_URL);
 	}
+	
 }

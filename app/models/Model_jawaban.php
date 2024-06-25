@@ -48,7 +48,8 @@ class Model_jawaban{
 		$this->db->execute();
 	}
 	public function getAllByIdTugas($idTugas){
-		$this->tabel .= $_SESSION[C_KELAS];
+		$this->tabel .= strtolower($_SESSION[C_KELAS]);
+		$this->cekTabel($_SESSION[C_KELAS]);
 		$this->db->query("SELECT * FROM $this->tabel WHERE idTugas=:idTugas");
 		$this->db->bind('idTugas', $idTugas);
 		$tugas = $this->db->resultSet();
@@ -57,6 +58,7 @@ class Model_jawaban{
 	}
 	public function getAllBySiswa($siswa, $status=null){
 		$this->tabel .= strtolower($siswa['tokenKelas']);
+		$this->cekTabel($siswa['tokenKelas']);
 		if(is_null($status)){
 			$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:id");
 		}else{
@@ -69,12 +71,14 @@ class Model_jawaban{
 	}
 	public function getById($id){
 		$this->tabel .= strtolower($_SESSION[C_KELAS]);
+		$this->cekTabel($_SESSION[C_KELAS]);
 		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
 		$this->db->bind('id', $id);
 		return $this->db->single();
 	}
 	public function getBySiswa_Tugas($siswa, $idTugas){
 		$this->tabel .= strtolower($siswa['tokenKelas']);
+		$this->cekTabel($siswa['tokenKelas']);
 		$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:idSiswa AND idTugas=:idTugas");
 		$this->db->bind('idSiswa', $siswa['id']);
 		$this->db->bind('idTugas', $idTugas);
@@ -82,12 +86,14 @@ class Model_jawaban{
 	}
 	public function getAll($tokenKelas, $order=''){
 		$this->tabel .= strtolower($_SESSION[C_KELAS]);
+		$this->cekTabel($_SESSION[C_KELAS]);
 		if($order !== '') $order=" ORDER BY ".$order;
 		$this->db->query("SELECT * FROM $this->tabel$order");
 		return $this->db->resultSet();
 	}
 	public function updateNilai($data){
 		$this->tabel .= strtolower($_SESSION[C_KELAS]);
+		$this->cekTabel($_SESSION[C_KELAS]);
 		if($data['nilai'] === ''){
 			$this->db->query("UPDATE $this->tabel SET status=:status, ket=:ket WHERE id=:id");
 			$this->db->bind('ket', $data['ket']);
@@ -105,6 +111,7 @@ class Model_jawaban{
 	}
 	public function kumpul($namaGambar, $idTugas, $tokenKelas, $ket=null){
 		$this->tabel .= strtolower($tokenKelas);
+		$this->cekTabel($tokenKelas)
 		$this->db->query("SELECT * FROM $this->tabel WHERE idSiswa=:idSiswa AND idTugas=:idTugas");
 		$this->db->bind('idSiswa', $_SESSION[C_SISWA]);
 		$this->db->bind('idTugas', $idTugas);
@@ -130,8 +137,19 @@ class Model_jawaban{
 	}
 	public function delete($k, $v){
 		$this->tabel .= strtolower($_SESSION[C_KELAS]);
+		$this->cekTabel($_SESSION[C_KELAS]);
 		$this->db->query("DELETE FROM $this->tabel WHERE $k=:v");
 		$this->db->bind('v', $v);
 		$this->db->execute();
+	}
+	protected function cekTabel ($tokenKelas){
+		try {
+			$this->query("SELECT 1 FROM $this->tabel");
+			$this->single();
+		} catch (Exception $e) {
+			if($e->getCode() === '42S02'){
+				$this->tabel = 'jawaban'.$tokenKelas;
+			}
+		}
 	}
 }
