@@ -18,10 +18,6 @@
 		     <h2 class="accordion-header">
 		      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#input-identitas" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
 		        <h3>Identitas Siswa</h3>
-				<span>
-					<i class="fa-solid fa-caret-up d-none"></i>
-					<i class="fa-solid fa-caret-down"></i>
-				</span>
 		      </button>
 		    </h2>
 		    <div id="input-identitas" class="accordion-collapse collapse show">
