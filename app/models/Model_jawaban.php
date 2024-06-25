@@ -146,8 +146,8 @@ class Model_jawaban{
 	}
 	protected function cekTabel ($tokenKelas){
 		try {
-			$this->query("");
-			$this->single();
+			$this->db->query("SELECT 1 FROM $this->tabel");
+			$this->db->single();
 		} catch (Exception $e) {
 			$return 'jawaban'.$tokenKelas;
 		}
