@@ -8,7 +8,7 @@ class Home extends Controller{
 	public function index (){
 
 
-		
+
 		if(!$this->model('Model_message')->cek()){
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
 		}
@@ -20,7 +20,8 @@ class Home extends Controller{
 			foreach ($this->data['tugas'] as $key => $value) $this->data['tugas'][$key]['soal'] = $this->model('Model_soal')->tempelGambar($value['soal']);
 
 		// 	// dikumpul
-			$this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
+			var_dump($this->data['siswa']);
+			// $this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
 		// 	$this->model('Model_jawaban')->filterTugas($this->data['dikumpul'], $this->data['tugas']);
 
 		// 	// dinilai
