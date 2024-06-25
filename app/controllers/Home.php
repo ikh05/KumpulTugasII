@@ -6,6 +6,10 @@ class Home extends Controller{
 		if(isset($_POST)) $this->dataClear = $this->clearData($_POST);
 	}
 	public function index (){
+
+
+		die;
+		
 		if(!$this->model('Model_message')->cek()){
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
 		}
