@@ -39,7 +39,7 @@ class Home extends Controller{
 		$this->data['js'] = [CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, "m_home_index", 't_config_mathjax', 'm_home_tugas'];
 		$this->view("tamplates/header", $this->data);
 		$this->view("home/index", $this->data);
-		if(isset($_SESSION[C_SISWA])) $this->view('home/tugas', $this->data);
+		// if(isset($_SESSION[C_SISWA])) $this->view('home/tugas', $this->data);
 		$this->view('tamplates/cekGambar', $this->data);
 		$this->view("tamplates/footer", $this->data);
 	}
