@@ -19,9 +19,8 @@ class Home extends Controller{
 			$this->model('Model_soal')->tempelSoal($this->data['tugas']);
 			foreach ($this->data['tugas'] as $key => $value) $this->data['tugas'][$key]['soal'] = $this->model('Model_soal')->tempelGambar($value['soal']);
 
-		// 	// dikumpul
-			var_dump($this->data['siswa']);
-			// $this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
+			// dikumpul
+			$this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
 		// 	$this->model('Model_jawaban')->filterTugas($this->data['dikumpul'], $this->data['tugas']);
 
 		// 	// dinilai
