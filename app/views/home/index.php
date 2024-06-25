@@ -24,7 +24,7 @@
 		      <div class="accordion-body">
 		      	<form method="Post" class="upDown" action="<?= BASE_URL ?>Home/masuk">
 					<div id="tinggiInput" class="row">
-						<div class="col-12 mb-1 form-floating">
+						<div class="col-12 mb-1 form-floating"> 
 							<input type="text" id="input-nama" name="nama" placeholder="Nama siswa" class="form-control" required autocomplete="off">
 							<label for="input-nama">Nama</label>
 						</div>
@@ -33,7 +33,7 @@
 							<label for="input-email">Email</label>
 						</div>
 						<div class="col-12 col-md-6 mb-1 form-floating">
-							<input type="tel" id="input-noWa" name="noWa" class="form-control" required autocomplete="off" placeholder="no Wa">
+							<input type="tel"  id="input-noWa" name="noWa" class="form-control" required autocomplete="off" placeholder="no Wa">
 							<label for="input-noWa">No Wa</label>
 						</div>
 						<div class="col-12 col-md-5 mb-1 form-floating">
