@@ -146,10 +146,10 @@ class Model_jawaban{
 	}
 	protected function cekTabel ($tokenKelas){
 		try {
-			$this->db->query("SELECT 1 FROM $this->tabel");
+			$this->db->query("SELECT * FROM $this->tabel");
 			$this->db->single();
 		} catch (Exception $e) {
-			$return 'jawaban'.$tokenKelas;
+			return 'jawaban'.$tokenKelas;
 		}
 		return $this->tabel;
 	}
