@@ -12,11 +12,11 @@ class Home extends Controller{
 		if(!$this->model('Model_message')->cek()){
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
 		}
-		// if(isset($_SESSION[C_SISWA])){
-		// 	$this->data['siswa'] = $this->model('Model_siswa')->getSession();
-		// 	$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($this->data['siswa']['tokenKelas']);
-		// 	$this->data['tugas'] = $this->model('Model_tugas')->getByToken($this->data['siswa']['tokenKelas']);
-		// 	$this->model('Model_soal')->tempelSoal($this->data['tugas']);
+		if(isset($_SESSION[C_SISWA])){
+			$this->data['siswa'] = $this->model('Model_siswa')->getSession();
+			$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($this->data['siswa']['tokenKelas']);
+			$this->data['tugas'] = $this->model('Model_tugas')->getByToken($this->data['siswa']['tokenKelas']);
+			$this->model('Model_soal')->tempelSoal($this->data['tugas']);
 		// 	foreach ($this->data['tugas'] as $key => $value) $this->data['tugas'][$key]['soal'] = $this->model('Model_soal')->tempelGambar($value['soal']);
 
 		// 	// dikumpul
@@ -33,13 +33,13 @@ class Home extends Controller{
 
 		// 	// terlambat (cek waktu sekarang dan waktu batas)
 		// 	$this->data['terlambat'] = $this->model('Model_jawaban')->filterTugas_terlambat($this->data['tugas']);
-		// }
+		}
 		$this->data[C_MESSAGE] = $this->model('Model_message')->get();
 		$this->data['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data['js'] = [CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, "m_home_index", 't_config_mathjax', 'm_home_tugas'];
 		$this->view("tamplates/header", $this->data);
 		$this->view("home/index", $this->data);
-		// if(isset($_SESSION[C_SISWA])) $this->view('home/tugas', $this->data);
+		if(isset($_SESSION[C_SISWA])) $this->view('home/tugas', $this->data);
 		$this->view('tamplates/cekGambar', $this->data);
 		$this->view("tamplates/footer", $this->data);
 	}
