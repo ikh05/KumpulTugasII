@@ -21,18 +21,18 @@ class Home extends Controller{
 
 			// dikumpul
 			$this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');
-		// 	$this->model('Model_jawaban')->filterTugas($this->data['dikumpul'], $this->data['tugas']);
+			$this->model('Model_jawaban')->filterTugas($this->data['dikumpul'], $this->data['tugas']);
 
-		// 	// dinilai
-		// 	$this->data['dinilai'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dinilai');
-		// 	$this->model('Model_jawaban')->filterTugas($this->data['dinilai'], $this->data['tugas']);
+			// dinilai
+			$this->data['dinilai'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dinilai');
+			$this->model('Model_jawaban')->filterTugas($this->data['dinilai'], $this->data['tugas']);
 
-		// 	// ditolak
-		// 	$this->data['ditolak'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'ditolak');
-		// 	$this->model('Model_jawaban')->filterTugas($this->data['ditolak'], $this->data['tugas']);
+			// ditolak
+			$this->data['ditolak'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'ditolak');
+			$this->model('Model_jawaban')->filterTugas($this->data['ditolak'], $this->data['tugas']);
 
-		// 	// terlambat (cek waktu sekarang dan waktu batas)
-		// 	$this->data['terlambat'] = $this->model('Model_jawaban')->filterTugas_terlambat($this->data['tugas']);
+			// terlambat (cek waktu sekarang dan waktu batas)
+			$this->data['terlambat'] = $this->model('Model_jawaban')->filterTugas_terlambat($this->data['tugas']);
 		}
 		$this->data[C_MESSAGE] = $this->model('Model_message')->get();
 		$this->data['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
