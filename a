@@ -1,0 +1,167 @@
+[33mcommit b4a5905db102f4e87dcf7625341143770dad39ba[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 25 17:52:41 2024 +0800
+
+    fiks
+
+[33mcommit 64a621cc1fda57c3e87ce225df5053b56fe654d7[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 25 17:41:46 2024 +0800
+
+    fiks
+
+[33mcommit 8f8533a0845f10340539e9e926042c6cee92559e[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 25 17:18:55 2024 +0800
+
+    perbaikan halaman siswa
+
+[33mcommit 1648a205ad9f76e76bfd193c0204d6b8c898878f[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 25 17:09:38 2024 +0800
+
+    guru - daftar,input telfn
+
+[33mcommit 2b11dda70eaa1cc36f21806382c72847f1ec3dd6[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 25 16:09:00 2024 +0800
+
+    complite, mulai push ke hosting
+
+[33mcommit 1e41f49b37e431d1d66c902a2bf52849a908a7db[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Mon Jun 24 18:44:39 2024 +0800
+
+    fiks, tahap selanjutnya adalah detail tugas untuk tampilan daftar nilai
+
+[33mcommit 41113623f1db5ef0e257a1a39138d208e8943d97[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Mon Jun 24 16:52:07 2024 +0800
+
+    Guru bisa memberi nilai kepada siswa (pengaturan warna belum fiks)
+
+[33mcommit b6b2e8089374f51864f0905c8477b279c74ab0db[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Sun Jun 23 08:18:06 2024 +0800
+
+    fiks mengumpul (ditolak)
+
+[33mcommit b4fbcd182c1d874f8d2d8cad663f1209f8f4f31c[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Sun Jun 23 07:48:22 2024 +0800
+
+    siswa sudah bisa mengumpul tugas saat ditolak, bkerja, dikumpul, dan terlambat
+
+[33mcommit 4b6eb5132259d39b47a9cfdfc013a2e475f06029[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Sat Jun 22 21:25:29 2024 +0800
+
+    siswa sudah bisa mengumpul tugas(ditolak belum) + sudah ada tabel untuk log(menggunakan mekanisme ajax)
+
+[33mcommit e827dcb08b8b9ec3a8480f6af18c0a5b476fe617[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Fri Jun 21 15:14:59 2024 +0800
+
+    delete tugas
+
+[33mcommit 87eab27369a293bcca599e36a9f5353d4819d0ce[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 18 20:45:29 2024 +0800
+
+    tes
+
+[33mcommit 8a91f27459e83866dca82d247f83e3cd8427d4d6[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 18 20:38:26 2024 +0800
+
+    Ajax + guru delete soal (belum ada mekanisme hapus file)
+
+[33mcommit 2b9ce90f28a43b8fb1bf8a574e1942fc6b83d120[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 18 08:41:27 2024 +0800
+
+    hapus semua gambar dan document
+
+[33mcommit 42920dccb702d5b8464ccf48534236749b47e506[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 18 08:39:37 2024 +0800
+
+    semua bug sudah selesai, tahap selanjutnya mambuat mekanisme siswa menjawab soal (seperti guru membuat soal) dan guru menilai
+
+[33mcommit 569155ba8910e108df1613b6d09eb897a70f5775[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Tue Jun 18 07:02:19 2024 +0800
+
+    sudah fiks
+
+[33mcommit 57fc947a498f404681e919bc19335bf1417fb8c3[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Mon Jun 17 20:59:33 2024 +0800
+
+    sudah ada ui siswa tugas, ada error di input file tugas
+
+[33mcommit beae203867a80500397d01afa4e6f836b0488734[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Mon Jun 17 13:02:25 2024 +0800
+
+    sudah bisa menambah tugas
+
+[33mcommit e99b029365ad73a8040016d16243757d1d53818b[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Sat Jun 15 01:51:26 2024 +0800
+
+    soalku, (kurang di bagian save gambar dan aturan penulisan soal)
+
+[33mcommit cdfb32d12a21c18bd8c5199332072820a0f3058c[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Fri Jun 14 17:56:29 2024 +0800
+
+    berhasil menambah kelas
+
+[33mcommit 64c20c2a221f68eddd6ec017268c279eacdcd5eb[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Fri Jun 14 08:03:11 2024 +0800
+
+    tambah kelas
+
+[33mcommit b208c13ce607a32f3715287ac2c701681bd8c1ee[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Fri Jun 14 06:48:57 2024 +0800
+
+    dashboard guru
+
+[33mcommit d3d562307050d32e78a1f39bfd84b108a27569a7[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Thu Jun 13 12:32:00 2024 +0800
+
+    guru dapat daftar
+
+[33mcommit d8ea0094adf53517f65d51bff17d310b7a0d1c3b[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Thu Jun 13 07:08:52 2024 +0800
+
+    tampilan tugas siswa
+
+[33mcommit aea2c36fb08a257957aac6bc44445c04ac746c52[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Thu Jun 13 07:08:33 2024 +0800
+
+    mekanisme kunci login
+
+[33mcommit d647938e2a0a562dc46550490131bd15d938a2f2[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Wed Jun 12 08:16:36 2024 +0800
+
+    siswa mampu menangkap daftar tugas, (tampilan latihan belum diolah)
+
+[33mcommit 3cab2ce5bd5725a279314688be4907e152884d7d[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Mon Jun 10 20:20:33 2024 +0800
+
+    input identitas
+
+[33mcommit 1bc497dfa5563a3f654189360c401b1d81f0a660[m
+Author: ikh05 <mi3061923002@gmail.com>
+Date:   Mon Jun 10 15:20:18 2024 +0800
+
+    first commit
