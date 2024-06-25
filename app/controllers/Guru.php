@@ -43,7 +43,7 @@ class Guru extends Controller{
 		$this->data['guru'] = $this->model('Model_guru')->getSession();
 		$this->data['allkelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']['tokenKelas']);
 		$this->data['offcanvas'] = is_null($active) ? $content : $active;
-		$this->data['content_main'] = 'Guru/'.$content;
+		$this->data['content_main'] = 'guru/'.$content;
 		$this->view('tamplates/dashboard', $this->data);
 	}
 	public function dashboard(){
