@@ -18,6 +18,11 @@ class Model_kelas{
 		}
 		return $res;
 	}
+	public function getById($id){
+		$this->db->query("SELECT * FROM $this->tabel WHERE id=:id");
+		$this->db->bind('id', $id);
+		return $this->db->single();
+	}
 	public function getByToken($tokenKelas){
 		$this->db->query("SELECT * FROM $this->tabel WHERE tokenKelas=:tokenKelas");
 		$this->db->bind('tokenKelas', $tokenKelas);

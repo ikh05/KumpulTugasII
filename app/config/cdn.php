@@ -12,3 +12,4 @@ define('CDN_BOOTSTRAP_JS' , "src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/d
 define('CDN_FONTAWESOME_JS' , "src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.js'");
 define('CDN_MATHJAX_JS', "src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js' type='text/javascript' id='MathJax-script' async" );
 define('CDN_POPPER_JS', "src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous'");
+define('CDN_SHEET_JS', "src='https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js'");

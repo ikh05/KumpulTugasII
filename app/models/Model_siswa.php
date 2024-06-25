@@ -8,7 +8,12 @@ class Model_siswa{
 	function __construct(){
 		$this->db = new Database();
 	}
-
+	public function getAllByTokenKelas($tokenKelas, $urut=''){
+		if($urut !== '') $urut = " ORDER BY ".$urut; 
+		$this->db->query("SELECT * FROM $this->tabel WHERE tokenKelas=:tokenKelas$urut");
+		$this->db->bind('tokenKelas', $tokenKelas);
+		return $this->db->resultSet();
+	}
 	public function getByNama_token($nama, $token){
 		$this->db->query("SELECT * FROM $this->tabel WHERE nama=:nama AND tokenKelas=:tokenKelas");
 		$this->db->bind('nama', $nama);

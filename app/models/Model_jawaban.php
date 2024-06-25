@@ -79,6 +79,12 @@ class Model_jawaban{
 		$this->db->bind('idTugas', $idTugas);
 		return $this->db->single();
 	}
+	public function getAll($tokenKelas, $order=''){
+		$this->tabel .= strtolower($_SESSION[C_KELAS]);
+		if($order !== '') $order=" ORDER BY ".$order;
+		$this->db->query("SELECT * FROM $this->tabel$order");
+		return $this->db->resultSet();
+	}
 	public function updateNilai($data){
 		$this->tabel .= strtolower($_SESSION[C_KELAS]);
 		if($data['nilai'] === ''){

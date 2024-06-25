@@ -19,7 +19,7 @@
                         <li><a class="dropdown-item" href="#!"><i class="fa-solid fa-gear"></i> Pengaturan</a></li>
                         <li><a class="dropdown-item" href="#!"><i class="fa-solid fa-bell"></i> Notifikasi</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL ?>Guru/keluar"><i class="fa-solid fa-door-closed"></i> Logout</a></li>
+                        <li><a class="dropdown-item" href="<?= BASE_URL ?>Guru/keluar"><i class="fa-solid fa-door-closed"></i> Keluar</a></li>
                     </ul>
                 </li>
             </ul>
@@ -40,13 +40,12 @@
                         <div class="fw-bold mt-4">KELAS</div>
                         <a href="<?= BASE_URL ?>Guru/buatKelas" class="nav-link ms-3 py-0 <?= ($data['offcanvas'] === 'buatKelas') ? 'active' : '' ?>"><i class="fa-solid fa-user"></i> Buat Kelas</a>
                         <?php foreach ($data['guru']['tokenKelas'] as $v) :?>
-                            <a class="nav-link ms-3 py-0 <?= ($data['offcanvas'] === $v ? 'active' : '') ?>" data-bs-toggle="collapse" href="#<?= $v ?>" aria-controls="<?= $v ?>"role="button" aria-expanded="false" ><i class="fa-solid fa-users" ></i> <?= $data['kelas'][$v]['nama'] ?></a>
+                            <a class="nav-link ms-3 py-0 <?= ($data['offcanvas'] === $v ? 'active' : '') ?>" data-bs-toggle="collapse" href="#<?= $v ?>" aria-controls="<?= $v ?>"role="button" aria-expanded="false" ><i class="fa-solid fa-users" ></i> <?= $data['allkelas'][$v]['nama'] ?></a>
                             <div class="collapse ms-4" id="<?= $v ?>" aria-labelledby="headingTwo" data-bs-parent="#id-offcanvas">
                                 <div class="list-group ">
-                                  <a href="<?= BASE_URL ?>Guru/detailKelas/<?= $v ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Detail Kelas</a>
                                   <a href="<?= BASE_URL ?>Guru/daftarSiswa/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-users"></i> Daftar Siswa</a>
                                   <a href="<?= BASE_URL ?>Guru/daftarTugas/<?= $v ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-pen"></i> Tugas</a>
-                                  <a href="<?= BASE_URL ?>Guru/daftarNilai/<?= $v ?>" class="list-group-item list-group-item-action disabled"><i class="fa-solid fa-hundred-points"></i> Nilai</a>
+                                  <a href="<?= BASE_URL ?>Guru/daftarNilai/<?= $v ?>" class="list-group-item list-group-item-action"><i class="fa-solid fa-users"></i> Daftar Nilai</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>

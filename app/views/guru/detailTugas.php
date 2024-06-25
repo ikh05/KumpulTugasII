@@ -15,7 +15,7 @@
 						</tr>
 						<tr>
 							<td>Kelas</td>
-							<td>: <?= $data['kelas'][$_SESSION[C_KELAS]]['nama'] ?></td>
+							<td>: <?= $data['kelas']['nama'] ?></td>
 						</tr>
 						<tr>
 							<td>Kelas</td>
@@ -24,6 +24,7 @@
 					</table>
 				</div>
 				<div class="card-footer text-bg-dark d-flex justify-content-end">
+		  		<a href="<?= BASE_URL ?>Guru/daftarNilai/<?= $_SESSION[C_KELAS] ?>" class="btn btn-outline-info me-1">Daftar Nilai</a>
 		  		<a href="<?= BASE_URL ?>Guru/daftarTugas/<?= $_SESSION[C_KELAS] ?>" class="btn btn-outline-info me-1">Daftar Tugas</a>
 				</div>
 			</div>

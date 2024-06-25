@@ -41,7 +41,7 @@ class Guru extends Controller{
 	protected function func_dashoard($content, $active = null){
 		if(!isset($_SESSION[C_GURU])) header("Location: ".BASE_URL.'Guru');
 		$this->data['guru'] = $this->model('Model_guru')->getSession();
-		$this->data['kelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']['tokenKelas']);
+		$this->data['allkelas'] = $this->model('Model_kelas')->getByGuru($this->data['guru']['tokenKelas']);
 		$this->data['offcanvas'] = is_null($active) ? $content : $active;
 		$this->data['content_main'] = 'Guru/'.$content;
 		$this->view('tamplates/dashboard', $this->data);
@@ -74,12 +74,13 @@ class Guru extends Controller{
 		$this->view('tamplates/cekGambar', $this->data);
 		$this->view('tamplates/footer', $this->data);
 	}
-	public function daftarTugas($keyKelas){
-		$_SESSION[C_KELAS] = $keyKelas;
+	public function daftarTugas($tokenKelas){
+		$_SESSION[C_KELAS] = $tokenKelas;
 		$this->data ['soal'] = $this->model('Model_soal')->getByIdGuru();
 		foreach ($this->data['soal'] as $k => $v) $this->data['soal'][$k]['soal'] = $this->model('Model_soal')->tempelGambar($v['soal']);
-		$this->data['tugas'] = $this->model('Model_tugas')->getByToken($keyKelas);
-		$this->data ['tokenKelas-active'] = $keyKelas;
+		$this->data['tugas'] = $this->model('Model_tugas')->getByToken($tokenKelas);
+		$this->data['kelas'] = $this->model('Model_kelas')->getByToken($tokenKelas);
+		$this->data ['tokenKelas-active'] = $tokenKelas;
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_daftarTugas'];
 		$this->view('tamplates/header', $this->data);
@@ -93,16 +94,38 @@ class Guru extends Controller{
 		define('DINILAI', 'success');
 		define('TERLAMBAT', 'danger');
 		$this->data ['tugas'] = $this->model('Model_tugas')->getById($idTugas);
+		$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($this->data['tugas']['tokenKelas']);
 		$this->model('Model_soal')->tempelSoal($this->data['tugas'], true);
 		$this->data ['tugas'] = $this->data['tugas'][0];
 		$this->data ['jawaban'] = $this->model('Model_jawaban')->getAllByIdTugas($idTugas);
 		$this->model('Model_siswa')->tempelSiswa($this->data['jawaban']);
 		$_SESSION[C_KELAS] = $this->data['tugas']['tokenKelas'];
+
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, 't_config_mathjax', 'm_guru_detailTugas'];
 		$this->view('tamplates/header', $this->data);
 		$this->func_dashoard('detailTugas', $_SESSION[C_KELAS]);
 		$this->view('tamplates/cekGambar', $this->data);
+		$this->view('tamplates/footer', $this->data);
+	}
+	public function daftarNilai($tokenKelas){
+		// kelas
+		$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($tokenKelas);
+		// tugas, soal, dan gambar
+		$this->data['tugas'] = $this->model('Model_tugas')->getByToken($tokenKelas);
+		$this->model('Model_soal')->tempelSoal($this->data['tugas'], true);
+		// guru
+		$this->data ['guru'] = $this->model('Model_guru')->getSession();
+		// siswa
+		$this->data ['siswa'] = $this->model('Model_siswa')->getAllByTokenKelas($tokenKelas, 'nama ASC');
+		// nilai
+		$this->data['nilai'] = $this->model('Model_jawaban')->getAll($tokenKelas);
+
+		$_SESSION[C_KELAS] = $tokenKelas;
+		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
+		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, CDN_SHEET_JS, 'sheet'];
+		$this->view('tamplates/header', $this->data);
+		$this->func_dashoard('daftarNilai', $_SESSION[C_KELAS]);
 		$this->view('tamplates/footer', $this->data);
 	}
 

@@ -28,11 +28,11 @@
 				  		</tr>
 				  		<tr>
 				  			<th scope="row">Kelas</th>
-				  			<td>: <?= $data['kelas'][$data['tokenKelas-active']]['nama'] ?></td>
+				  			<td>: <?= $data['kelas']['nama'] ?></td>
 				  		</tr>
 				  		<tr>
 				  			<th scope="row">Sekolah</th>
-				  			<td>: <?= $data['kelas'][$data['tokenKelas-active']]['sekolah'] ?></td>
+				  			<td>: <?= $data['kelas']['sekolah'] ?></td>
 				  		</tr>
 				  	</table>
 				  </div>
