@@ -41,7 +41,7 @@
 						<div class="row">
 							<div class="col-12 mb-3 form-floating">
 								<input class="form-control" type="text" name="d-username" placeholder="Usename" required autocomplete="off">
-								<label>Username*</label>
+								<label>Username <span class="text-danger">*</span></label>
 							</div>
 							<div class="col-12 mb-3 form-floating ">
 								<input class="form-control" type="text" name="d-nama" placeholder="Nama Lengkap" required autocomplete="off">
@@ -52,7 +52,7 @@
 								<label>Email</label>
 							</div>
 							<div class="col-lg-6 col-12 mb-3 form-floating ">
-								<input class="form-control" type="tel" name="d-wa" placeholder="Nomer Wa" autocomplete="off">
+								<input class="form-control" name="d-wa" type="tel" placeholder="Nomer Wa" autocomplete="off">
 								<label>Wa</label>
 							</div>
 							<div class="col-lg-6 col-12 mb-3">
