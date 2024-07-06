@@ -11,7 +11,7 @@ class Model_document{
 			$eks = explode('.', $name);
 			$eks = end($eks);
 			if(strtolower($eks) == 'pdf'){
-				$n = $key.'_'.$token.'_'.time().'_'.$i+1.'.'.$eks;
+				$n = $key.'_'.$token.'_'.time().'_'.$i.'.'.$eks;
 				var_dump($eks);
 				echo "<br>";
 				var_dump(move_uploaded_file($tamp, 'assets/document/'.$n));
