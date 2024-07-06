@@ -96,8 +96,8 @@ class Model_soal{
 	}
 	public function tempelDocument($soal){
 		$tamps = file_get_contents(BASE_URL.'../app/views/tamplates/element_html.html');
+		var_dump(BASE_URL); die;
 		$tamps = explode('<!-- end -->', $tamps);
-		var_dump($tamps); die;
 		foreach ($tamps as $key => $tamp) {
 			if(strpos($tamp, '<!-- document soal -->') !== -1){
 				$soalNew = explode('__D_', $soal);
