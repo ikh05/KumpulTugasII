@@ -8,6 +8,8 @@ class Model_document{
 		foreach ($files as $key => $file) {
 			$name = $file['name'];
 			$tamp = $file['tmp_name'];
+			var_dump($file);
+			echo "<br>";
 			$eks = explode('.', $name);
 			$eks = end($eks);
 			if(strtolower($eks) === 'pdf'){
