@@ -172,9 +172,8 @@ class Guru extends Controller{
 		if($this->model('Model_guru')->cekKelas($tokenKelas)){
 			if(!isset($this->dataClear['cara'])){
 				// file yang di upload harus dalam pdf dan cuman 1
-				$namaFile = $this->model('Model_document')->upload($_FILES, $tokenKelas);
-				var_dump($namaFile);die;
-				$soal = "__D_".$namaFile[0].'__';
+				$namaFile = $this->model('Model_document')->upload($_FILES, $tokenKelas)[0];
+				$soal = "__D_".$namaFile.'__';
 				$soal = $this->model('Model_soal')->tempelNamaDocument($namaFile, $soal);
 				$this->dataClear['soal-pilih'] = $this->model('Model_soal')->simpanSoal($namaFile[0], $soal)['id'];
 			}

@@ -12,10 +12,7 @@ class Model_document{
 			$eks = end($eks);
 			if(strtolower($eks) == 'pdf'){
 				$n = $key.'_'.$token.'_'.time().'_'.$i.'.'.$eks;
-				var_dump($eks);
-				echo "<br>";
-				var_dump(move_uploaded_file($tamp, 'assets/document/'.$n));
-				if(false){
+				if(move_uploaded_file($tamp, 'assets/document/'.$n)){
 					array_push($namaBaru, $n);
 				}
 			}
