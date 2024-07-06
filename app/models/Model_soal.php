@@ -74,7 +74,7 @@ class Model_soal{
 		$tamps = file_get_contents(BASE_URL.'../app/views/tamplates/element_html.html');
 		$tamps = explode('<!-- end -->', $tamps);
 		foreach ($tamps as $key => $tamp) {
-			if(strpos($tamp, '<!-- gambar soal -->') === 0){
+			if(strpos($tamp, '<!-- gambar soal -->') !== -1){
 				$soalNew = explode('__G_', $soal);
 				foreach ($soalNew as $k => $v) {
 					if(strpos($v, 'g_') === 0){
@@ -97,8 +97,9 @@ class Model_soal{
 	public function tempelDocument($soal){
 		$tamps = file_get_contents(BASE_URL.'../app/views/tamplates/element_html.html');
 		$tamps = explode('<!-- end -->', $tamps);
+		var_dump($tamps); die;
 		foreach ($tamps as $key => $tamp) {
-			if(strpos($tamp, '<!-- document soal -->') === 0){
+			if(strpos($tamp, '<!-- document soal -->') !== -1){
 				$soalNew = explode('__D_', $soal);
 				foreach ($soalNew as $k => $v) {
 					if(strpos($v, 'g_') === 0){
