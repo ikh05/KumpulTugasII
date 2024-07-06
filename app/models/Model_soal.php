@@ -94,4 +94,28 @@ class Model_soal{
 		// die;
 		return $soal;
 	}
+	public function tempelDocument($soal){
+		$tamps = file_get_contents(BASE_URL.'../app/views/tamplates/element_html.html');
+		$tamps = explode('<!-- end -->', $tamps);
+		foreach ($tamps as $key => $tamp) {
+			if(strpos($tamp, '<!-- document soal -->') === 0){
+				$soalNew = explode('__D_', $soal);
+				foreach ($soalNew as $k => $v) {
+					if(strpos($v, 'g_') === 0){
+						$g = explode('__', $v);
+						$n = $g[0];
+						$g[0] = str_replace('${BASE_URL}', BASE_URL, $tamp);
+						$g[0] = str_replace('${namaDocument}', $n, $g[0]);
+						$v = implode('', $g);
+					}
+					$soalNew[$k] = $v;
+				}
+				$soal = implode('', $soalNew);
+				break;
+			}
+		}
+		// var_dump($soal);
+		// die;
+		return $soal;
+	}
 }

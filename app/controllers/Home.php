@@ -17,7 +17,12 @@ class Home extends Controller{
 			$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($this->data['siswa']['tokenKelas']);
 			$this->data['tugas'] = $this->model('Model_tugas')->getByToken($this->data['siswa']['tokenKelas']);
 			$this->model('Model_soal')->tempelSoal($this->data['tugas']);
-			foreach ($this->data['tugas'] as $key => $value) $this->data['tugas'][$key]['soal'] = $this->model('Model_soal')->tempelGambar($value['soal']);
+			foreach ($this->data['tugas'] as $key => $tugas) {
+				$soal = $tugas['soal'];
+				$soal = $this->model('Model_soal')->tempelGambar($soal);
+				$soal = $this->model('Model_soal')->tempelDocument($soal);
+				$this->data['tugas'][$key]['soal'] = $soal;
+			}
 
 			// dikumpul
 			$this->data['dikumpul'] = $this->model('Model_jawaban')->getAllBySiswa($this->data['siswa'], 'dikumpul');

@@ -190,19 +190,19 @@
 						<div class="card-body">
 							<div class="form-floating mb-3">
 								<input type="text" name="nama" class="form-control" placeholder="" required>
-								<label>Nama Tugas*</label>
+								<label>Nama Tugas <span class="text-danger">*</span></label>
 							</div>
-							<div class="form-floating mb-3">
+							<!-- <div class="form-floating mb-3">
 								<input type="text" name="perintah" class="form-control" placeholder="">
 								<label>Perintah Tugas</label>
-							</div>
+							</div> -->
 							<div class="form-floating mb-3">
-                            	<input type="date" name="batas-tanggal" class="form-control" placeholder="batas kumpul">
-                            	<label>Batas Tanggal</label>
+                            	<input type="date" name="batas-tanggal" class="form-control" placeholder="batas kumpul" value="2024-11-30" required>
+                            	<label>Batas Tanggal <span class="text-danger">*</span></label>
                             </div>
                     		<div class="form-floating mb-3">
-                    			<input type="time" name="batas-waktu" class="form-control">
-                    			<label>Batas Jam</label>
+                    			<input type="time" name="batas-waktu" class="form-control" value="23:59" required>
+                    			<label>Batas Jam <span class="text-danger">*</span></label>
                     		</div>
 							<div class="row" id="cara-soalTugas">
 							    <ul class="nav nav-tabs justify-content-evenly">
