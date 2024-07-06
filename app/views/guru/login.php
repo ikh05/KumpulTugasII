@@ -25,11 +25,11 @@
 						<div class="row text-center">
 							<div class="col border-end border-warning">
 								<p class="m-0" style="color: transparent;">.</p>
-								<button class="btn btn-outline-warning" type="submit" name="submit">Kirim</button>
+								<button class="btn btn-outline-warning" type="submit" name="submit">Masuk</button>
 							</div>
-							<div class="col border-start border-primary">
+							<div class="col border-start border-info">
 								<p class="m-0">Belum memiliki akun?</p>
-								<button class="btn btn-outline-primary" toggle-class="flip" type="button" target-toggle-class="#card_1" >Daftar</button>
+								<button class="btn btn-outline-info" toggle-class="flip" type="button" target-toggle-class="#card_1" >Daftar</button>
 							</div>
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 								<input class="form-control" type="text" name="d-nama" placeholder="Nama Lengkap" required autocomplete="off">
 								<label>Nama Lengkap <span class="text-danger">*</span></label>
 							</div>
-							<div class="col-6 mb-3 form-floating ">
+							<div class="col-lg-6 col-12 mb-3 form-floating ">
 								<input class="form-control" type="email" name="d-email" placeholder="Email tidak wajib diisi" autocomplete="off">
 								<label>Email</label>
 							</div>
@@ -79,9 +79,9 @@
 								<p class="m-0 text-danger">* wajib diisi!</p>
 								<button class="btn btn-outline-warning" type="submit" name="submit">Kirim</button>
 							</div>
-							<div class="col border-start border-primary">
+							<div class="col border-start border-info">
 								<p class="m-0">Sudah memiliki akun?</p>
-								<button class="btn btn-outline-primary" toggle-class="flip" type="button"target-toggle-class="#card_1" >Masuk</button>
+								<button class="btn btn-outline-info" toggle-class="flip" type="button"target-toggle-class="#card_1" >Masuk</button>
 							</div>
 						</div>
 					</div>
