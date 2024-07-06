@@ -10,11 +10,12 @@ class Model_document{
 			$tamp = $file['tmp_name'];
 			$eks = explode('.', $name);
 			$eks = end($eks);
-			var_dump($eks);
-			echo "<br>";
-			if(strtolower($eks) === 'pdf'){
+			if(strtolower($eks) == 'pdf'){
 				$n = $key.'_'.$token.'_'.time().'.'.$eks;
-				if(move_uploaded_file($tamp, 'assets/document/'.$n)){
+				var_dump($eks);
+				echo "<br>";
+				var_dump(move_uploaded_file($tamp, 'assets/document/'.$n));
+				if(false){
 					array_push($namaBaru, $n);
 				}
 			}
