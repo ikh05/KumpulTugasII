@@ -55,6 +55,7 @@ class Home extends Controller{
 				break;
 			case 'noSiswa':
 				$this->model('Model_siswa')->simpan($this->dataClear);
+				$_SESSION[C_SISWA] = $this->model('Model_siswa')->getByNama_token($this->dataClear['nama'], $this->dataClear['tokenKelas'])['id'];
 				$this->model('Model_message')->success("Berhasil menambahkan {$this->dataClear['nama']} ke kelas {$this->dataClear['tokenKelas']}!");
 				break;
 			default:

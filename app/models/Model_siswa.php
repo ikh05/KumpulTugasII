@@ -48,6 +48,7 @@ class Model_siswa{
 		if($siswa === FALSE) return 'noSiswa';
 		if(password_verify($data['password'], $siswa['password'])){
 			$_SESSION[C_SISWA] = $siswa['id'];
+			return 'ada';
 		}else{
 			return 'passwordSalah';
 		}
