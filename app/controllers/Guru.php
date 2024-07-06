@@ -174,6 +174,7 @@ class Guru extends Controller{
 				// file yang di upload harus dalam pdf dan cuman 1
 				$namaFile = $this->model('Model_document')->upload($_FILES, $tokenKelas);
 				$namaFile = array($namaFile);
+				var_dump($namaFile);die;
 				$soal = "__D_".$namaFile[0].'__';
 				$soal = $this->model('Model_soal')->tempelNamaDocument($namaFile, $soal);
 				$this->dataClear['soal-pilih'] = $this->model('Model_soal')->simpanSoal($namaFile[0], $soal)['id'];
