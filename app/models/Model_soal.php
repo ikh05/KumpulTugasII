@@ -71,52 +71,29 @@ class Model_soal{
 		$this->db->execute();
 	}
 	public function tempelGambar($soal){
-		$tamps = file_get_contents(BASE_URL.'../app/views/tamplates/element_html.html');
-		$tamps = explode('<!-- end -->', $tamps);
-		foreach ($tamps as $key => $tamp) {
-			if(strpos($tamp, '<!-- gambar soal -->') !== -1){
-				$soalNew = explode('__G_', $soal);
-				foreach ($soalNew as $k => $v) {
-					if(strpos($v, 'g_') === 0){
-						$g = explode('__', $v);
-						$n = $g[0];
-						$g[0] = str_replace('${BASE_URL}', BASE_URL, $tamp);
-						$g[0] = str_replace('${namaGambar}', $n, $g[0]);
-						$v = implode('', $g);
-					}
-					$soalNew[$k] = $v;
-				}
-				$soal = implode('', $soalNew);
-				break;
+		$soalNew = explode('__G_', $soal);
+		foreach ($soalNew as $k => $v) {
+			if(strpos($v, 'g_') === 0){
+				$g = explode('__', $v);
+				$n = $g[0];
+				$g[0] = "<img data-bs-toggle='modal' data-bs-target='#modal-cek' src='".BASE_URL."Gambar/getGambarTugas/$n' class='img-thumbnail' style='max-width:100px;'>";
+				$v = implode('', $g);
 			}
+			$soalNew[$k] = $v;
 		}
-		// var_dump($soal);
-		// die;
-		return $soal;
+		return implode('', $soalNew);
 	}
 	public function tempelDocument($soal){
-		$tamps = file_get_contents(BASE_URL.'../app/views/tamplates/element_html.html');
-		var_dump(BASE_URL); die;
-		$tamps = explode('<!-- end -->', $tamps);
-		foreach ($tamps as $key => $tamp) {
-			if(strpos($tamp, '<!-- document soal -->') !== -1){
-				$soalNew = explode('__D_', $soal);
-				foreach ($soalNew as $k => $v) {
-					if(strpos($v, 'g_') === 0){
-						$g = explode('__', $v);
-						$n = $g[0];
-						$g[0] = str_replace('${BASE_URL}', BASE_URL, $tamp);
-						$g[0] = str_replace('${namaDocument}', $n, $g[0]);
-						$v = implode('', $g);
-					}
-					$soalNew[$k] = $v;
-				}
-				$soal = implode('', $soalNew);
-				break;
+		$soalNew = explode('__D_', $soal);
+		foreach ($soalNew as $k => $v){
+			if(strpos($v, 'g_') === 0){
+				$g = explode('__', $v);
+				$n = $g[0];
+				$g[0] = "<a href='".BASE_URL."assets/document/$n' class='link-underline link-underline-opacity-0 btn btn-info'>Downloda Soal</a>";
+				$v = implode('', $g);
 			}
+			$soalNew[$k] = $v;
 		}
-		// var_dump($soal);
-		// die;
-		return $soal;
+		return implode('', $soalNew);
 	}
 }
