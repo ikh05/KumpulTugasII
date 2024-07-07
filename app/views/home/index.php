@@ -37,7 +37,7 @@
 							<label for="input-noWa">No Wa</label>
 						</div>
 						<div class="col-12 col-md-5 mb-1 form-floating">
-							<input type="password" id="input-password" name="password" class="form-control" required autocomplete="off" placeholder="Password (1-20 karakter)" aria-describedby="eye-password">
+							<input type="password" id="input-password" name="password" class="form-control" required autocomplete="off" placeholder="Password (1-20 karakter)" aria-describedby="eye-password" maxlength="20">
 							<label for="input-password">Password</label>
 						</div>
 						<div class="col-7 col-md-5 mb-1 form-floating">

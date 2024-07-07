@@ -109,7 +109,7 @@
 										    	<a class="dropdown-item disabled" data-bs-toggle="modal" data-bs-target="#form-modal" href-ajax="<?= BASE_URL ?>Ajax/editSoal/<?= $v['id'] ?>">Edit</a>
 											</li>
 											<li>
-			  									<a class="dropdown-item disabled" href="<?= BASE_URL ?>Guru/delete/soal/<?= $v['id'] ?>">Delete</a>
+			  									<a class="dropdown-item" href="<?= BASE_URL ?>Guru/delete/soal/<?= $v['id'] ?>">Delete</a>
 											</li>
 										</ul>
 			  						</td>
