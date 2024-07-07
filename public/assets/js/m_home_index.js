@@ -30,22 +30,24 @@ btnPass.addEventListener('click', ()=>{
 })
 
 function cekIdentitas (key, f=null) {
-	setInput_localtorage(key, f);
-	cekButtonCari();
+	setInput_localtorage(key, function(){
+		let _1 = document.getElementById('input-nama');
+		let _2 = document.getElementById('input-email');
+		let _3 = document.getElementById('input-noWa');
+		let _4 = document.getElementById('input-token');
+		let _5 = document.getElementById('input-password');
+		let b = document.getElementById('btn-cari');
+		if(_1.value !== '' && 
+		   _2.value !== '' && 
+		   _4.value !== '' && 
+		   _3.value !== '' && 
+		   _5.value !== '' &&
+		   _5.value.length <= 20)
+		{
+			b.removeAttribute('disabled');
+		}else {
+			b.setAttribute('disabled', '');
+		}
+	});
 }
-function cekButtonCari () {
-	if(inputNama.value !== '' && 
-	   inputEmail.value !== '' && 
-	   inputToken.value !== '' && 
-	   inputNoWa.value !== '' && 
-	   inputPass.value !== '' &&
-	   inputPass.value.length <= 20)
-	{
-		btnCari.removeAttribute('disabled');
-	}else {
-		btnCari.setAttribute('disabled', '');
-	}
-}
-
 cekGambar();
-cekButtonCari();
