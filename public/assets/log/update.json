@@ -1,0 +1,58 @@
+[
+	{
+		"version":"2.0.0",
+		"date":"20-6-2024",
+		"changes":[
+			"Aplikasi Kumpul Tugas II Liris",
+			"Siswa dapat masuk menggunakan nama, password, dan token kelas",
+			"Guru dapat membuat akun, soal, kelas, dan tugas"
+		]
+	},
+	{
+		"version":"2.0.1",
+		"date":"21-6-2024",
+		"changes":[
+			"Guru dapat menghapus tugas dan soal"
+		]
+	},
+	{
+		"version":"2.1.0",
+		"date":"24-6-2024",
+		"changes":[
+			"Guru memberi nilai kepada siswa"
+		]
+	},
+	{
+		"version":"2.1.1",
+		"date":"25-6-2024",
+		"changes":[
+			"Perbaiki input no Wa (Halaman daftar Guru)"
+		]
+	},
+	{
+		"version":"2.2.0",
+		"date":"7-7-2024",
+		"changes":[
+			"Guru dapat upoad tugas file",
+			"Siswa dapat mendownload soal berupa file"
+		]
+	},
+	{
+		"version":"2.2.1",
+		"date":"7-7-2024",
+		"changes":[
+			"Fiks hapus soal",
+			"Fiks panjang password siswa",
+			"Fiks mathjax (untuk soal persamaan matematika)"
+		]
+	},
+	{
+		"version":"2.3.0",
+		"date":"17-7-2024",
+		"changes":[
+			"Menambahkan core encrypt untuk data sensitif",
+			"Menambahkan log update",
+			"Menambahkan UI log update pada dasbord guru"
+		]
+	}
+]

@@ -49,7 +49,7 @@ class Guru extends Controller{
 	public function dashboard(){
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
 		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS];
-
+		$this->data ['log_update'] = $this->model('Model_log')->getUpdate();
 		$this->view('tamplates/header', $this->data);
 		$this->func_dashoard('dashboard');
 		$this->view('tamplates/footer', $this->data);
