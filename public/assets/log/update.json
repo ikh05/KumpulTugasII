@@ -57,5 +57,12 @@
 			"fiks tahun pelajaran",
 			"UI dasboard guru"
 		]
+	},
+	{
+		"version":"2.3.1",
+		"date":"17-7-2024",
+		"changes":[
+			"fiks bug UI dasbord guru di android"
+		]
 	}
 ]
