@@ -52,7 +52,10 @@
 		"changes":[
 			"Menambahkan core encrypt untuk data sensitif",
 			"Menambahkan log update",
-			"Menambahkan UI log update pada dasbord guru"
+			"Menambahkan UI log update pada dasbord guru",
+			"Menjalankan encripsi data siswa (noWa dan Email)",
+			"fiks tahun pelajaran",
+			"UI dasboard guru"
 		]
 	}
 ]
