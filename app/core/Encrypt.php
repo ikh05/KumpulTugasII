@@ -37,10 +37,12 @@ class Encrypt{
 	}
 	protected function loopArray(&$data, $methode){
 		foreach ($data as $key => $value) {
+			// if(is_array($value)) $this->loopArray($value, $methode);
 			if(in_array($key, $this->keyArray)){
 				$this->$methode($value);
-				$data[$key] = $value;
 			}
+			$data[$key] = $value;
 		}
+		// return $data;
 	}
 }
