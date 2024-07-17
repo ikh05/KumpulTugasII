@@ -12,10 +12,12 @@
 			 			<p class="mb-0 fs-5"><strong><?= $value['nama'] ?></strong></p>
 			 			<p class="mb-0"><?= $value['sekolah'] ?></p>
 			 		</div>
-			 		<div class="card-body d-flex justify-content-evenly">
-			 			<p>Token Kelas (<?= $key  ?>)</p>
-			 			<p>Banyak Siswa (...?)</p>
-			 			<p>Banyak Tugas (...?)</p>
+			 		<div class="card-body">
+			 			<div class="d-flex justify-content-evenly">
+				 			<p>Banyak Siswa (...?)</p>
+				 			<p>Banyak Tugas (...?)</p>
+			 			</div>
+			 			<p class="text-center">Token Kelas (<?= $key  ?>)</p>
 			 		</div>
 			 		<div class="card-footer text-end text-bg-dark">
 			 			<p><?= $value['tahun'] ?></p>
