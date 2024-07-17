@@ -36,21 +36,21 @@ CREATE TABLE kelas (
 -- guru
 CREATE TABLE guru (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    nama VARCHAR(50) NOT NULL,
+    username VARCHAR(200) NOT NULL,
+    nama VARCHAR(200) NOT NULL,
     tokenKelas TEXT NOT NULL DEFAULT '[]',
     password VARCHAR(200) NOT NULL,
-    noWa VARCHAR(20) NOT NULL,
-    email VARCHAR(255) NOT NULL
+    noWa VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL
 );
 
 -- siswa
 CREATE TABLE siswa (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nama VARCHAR(50) NOT NULL,
+    nama VARCHAR(200) NOT NULL,
     tokenKelas VARCHAR(30) NOT NULL,
-    noWa VARCHAR(20) NOT NULL,
-    email VARCHAR(255) NOT NULL,
+    noWa VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL,
     password VARCHAR(200) NOT NULL
 );
 

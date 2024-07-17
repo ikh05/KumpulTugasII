@@ -1,5 +1,5 @@
 <?php 
-
+// soal yang sudah di jawab tetapi terlambat menjawab
 class Model_jawaban{
 	protected $db;
 	protected $tabel = 'jawaban';

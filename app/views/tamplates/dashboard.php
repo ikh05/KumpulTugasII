@@ -54,6 +54,9 @@
                         <a href="<?= BASE_URL ?>Guru/soalku" class="nav-link ms-3 py-0 <?= ($data['offcanvas'] === 'soalKu') ? 'active' : '' ?>"><i class="fa-solid fa-file-code"></i> Soal Ku</a>
                         <a href="<?= BASE_URL ?>Guru/bankSoal" class="nav-link ms-3 py-0 disabled <?= ($data['offcanvas'] === 'bankSoal') ? 'active' : '' ?>"><i class="fa-solid fa-bank"></i> Bank Soal</a>
 
+                        <div class="fw-bold mt-4">Jurnal</div>
+                        <a href="<?= BASE_URL ?>Guru/jurnal" class="nav-link ms-3 py-0 disabled <?= ($data['offcanvas'] === 'jurnal') ? 'active' : '' ?>"><i class="fa-solid fa-file-code"></i>Jurnal Mengajar</a>
+
                     </div>
                 </div>
                 <div class="mb-3 pt-2 border-primary border-top ps-2" style="width: inherit;">
