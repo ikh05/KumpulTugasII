@@ -6,13 +6,11 @@ class Home extends Controller{
 		if(isset($_POST)) $this->dataClear = $this->clearData($_POST);
 	}
 	public function index (){
-
-
-
 		if(!$this->model('Model_message')->cek()){
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
 		}
 		if(isset($_SESSION[C_SISWA])){
+			var_dump($_SESSION[C_SISWA]);
 			$this->data['siswa'] = $this->model('Model_siswa')->getSession();
 			$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($this->data['siswa']['tokenKelas']);
 			$this->data['tugas'] = $this->model('Model_tugas')->getByToken($this->data['siswa']['tokenKelas']);
