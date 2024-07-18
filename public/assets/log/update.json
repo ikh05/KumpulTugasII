@@ -64,5 +64,13 @@
 		"changes":[
 			"fiks bug UI dasbord guru di android"
 		]
+	},
+	{
+		"version":"2.3.2",
+		"date":"18-7-2024",
+		"changes":[
+			"fiks UI siswa (menggani btn masuk untuk guru menjadi lebih jelas)",
+			"fiks ajax siswa untuk mengambil data saat mengirim jawaban"
+		]
 	}
 ]
