@@ -33,7 +33,9 @@ class Encrypt{
 		return FALSE;
 	}
 	public function array(&$data, $methode){
-		$this->loopArray($data, $methode.'_string');
+		if(is_array($data)){
+			$this->loopArray($data, $methode.'_string');
+		}
 	}
 	protected function loopArray(&$data, $methode){
 		foreach ($data as $key => $value) {
