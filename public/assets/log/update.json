@@ -72,5 +72,14 @@
 			"fiks UI siswa (menggani btn masuk untuk guru menjadi lebih jelas)",
 			"fiks ajax siswa untuk mengambil data saat mengirim jawaban"
 		]
+	},
+	{
+		"version":"2.3.3",
+		"date":"18-7-2024",
+		"changes":[
+			"fiks bug core encrypt array",
+			"menambahkan fitur membersihkan data siswa yang error kumpultugasii.ich.free.nf/public/Home/clear",
+			"mengubah tampilan hitung mundur waktu tugas"
+		]
 	}
 ]

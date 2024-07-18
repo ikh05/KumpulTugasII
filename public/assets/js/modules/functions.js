@@ -180,3 +180,72 @@ export function ajax (el, f=null){
 	ajax.setRequestHeader('X-Requested-With', 'KTII_Ajax');
 	ajax.send();
 }
+
+export function set_countdown() {
+	let now = new Date();
+	let allCountDown = document.querySelectorAll('.countdown');
+	allCountDown.forEach( function(element, index){
+		let down = element.getAttribute('down').split(/[\s\-:]/);
+		down = new Date(down[0], down[1]-1, down[2], down[3], down[4], down[5]);
+		let times = (down-now<0) ? 0 : Math.floor((down-now)/1000);
+		console.log(times);
+		element.innerHTML = "<div style='width:100%; display: flex; gap: .5rem; justify-content:space-around;'></div>";
+		if(element.hasAttribute('tahun')){
+			t = Math.floor(times/60/60/24/30/12);
+			times = times%(60*60*24*30*12);
+			element.children[0].innerHTML = "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='tahun' min-dig='1' nilai='31104000'>"+t+"</p><p style='margin:0; font-size: 1rem;'>Tahun</p></div>";
+		}
+		// nanti di cek berapa banyak hari dari bulan yang dilalui
+		if(element.hasAttribute('bulan')){
+			t = Math.floor(times/60/60/24/30);
+			times = times%(60*60*24*30);
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='bulan' min-dig='1' nilai='2592000'>"+t+"</p><p style='margin:0; font-size: 1rem;'>Bulan</p></div>";
+		}
+		if(element.hasAttribute('hari')){
+			t = Math.floor(times/60/60/24);
+			times = times%(60*60*24);
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='hari' min-dig='1' nilai='86400'>"+t+"</p><p style='margin:0; font-size: 1rem;'>Hari</p></div>";
+		}
+		if(element.hasAttribute('jam')){
+			t = Math.floor(times/60/60);
+			times = times%(60*60);
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='jam' min-dig='2' nilai='3600' >"+t+"</p><p style='margin:0; font-size: 1rem;'>Jam</p></div>";
+		}
+		if(element.hasAttribute('menit')){
+			t = Math.floor(times/60);
+			times = times%60;
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='menit' min-dig='2' nilai='60' >"+t+"</p><p style='margin:0; font-size: 1rem;'>Menit</p></div>";
+		}
+		element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='detik' min-dig='2' nilai='1'>"+times+"</p><p style='margin:0; font-size: 1rem;'>Detik</p></div>";
+
+		// update
+		setInterval(function(){
+			// mengurangkan detik
+			let detik = element.querySelector('[countdown-type=detik]');
+			detik.innerHTML = detik.innerHTML-1;
+			if(detik.innerHTML < 0) detik.innerHTML = 0;
+
+			// cek detik, dll
+			[...detik.parentElement.parentElement.children]
+			 .map(e=>e.children[0])
+			 .map((e,i,a)=>{
+				// jaga digit
+				if(e.innerHTML <= 0 && i!= 0){
+					if(a[i-1].innerHTML != 0){
+						ne = e.getAttribute('nilai');
+						ns = a[i-1].getAttribute('nilai');
+						nh = ns/ne;
+						a[i-1].innerHTML -= 1;
+						e.innerHTML = nh;
+					}
+				}
+			});
+			[...detik.parentElement.parentElement.children]
+			 .map(e=>{
+			 	e = e.children[0];
+				e.innerHTML = (e.innerHTML.length < e.getAttribute('min-dig') ? "0" : "")+e.innerHTML;
+			});
+		}, 1000)
+	});
+
+}

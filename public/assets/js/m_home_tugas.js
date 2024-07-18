@@ -1,4 +1,4 @@
-import {ajax, cekGambar} from './modules/functions.js';
+import {ajax, cekGambar, set_countdown} from './modules/functions.js';
 const modalJawab = document.getElementById('jawabTugas');
 document.addEventListener('click', ev =>{
 	let el = ev.target;
@@ -92,3 +92,4 @@ document.addEventListener('click', ev =>{
 	}
 })
 cekGambar()
+set_countdown();

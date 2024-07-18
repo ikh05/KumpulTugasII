@@ -10,7 +10,6 @@ class Home extends Controller{
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
 		}
 		if(isset($_SESSION[C_SISWA])){
-			var_dump($_SESSION[C_SISWA]);
 			$this->data['siswa'] = $this->model('Model_siswa')->getSession();
 			$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($this->data['siswa']['tokenKelas']);
 			$this->data['tugas'] = $this->model('Model_tugas')->getByToken($this->data['siswa']['tokenKelas']);
@@ -78,11 +77,7 @@ class Home extends Controller{
 		header("Location: ".BASE_URL);
 	}
 	public function clear(){
-		var_dump($_SESSION[C_SISWA]);
-		echo "__________";
 		unset($_SESSION[C_SISWA]);
-		echo "__________";
-		var_dump($_SESSION[C_SISWA]);
-
+		header("Location: ".BASE_URL);
 	}
 }
