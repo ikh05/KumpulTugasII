@@ -83,7 +83,7 @@ class Home extends Controller{
 		var_dump($_SESSION);
 		echo "__________";
 		unset($_SESSION);
-		echo "__________"
+		echo "__________";
 		var_dump($_SESSION);
 
 	}
