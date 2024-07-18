@@ -79,5 +79,7 @@ class Home extends Controller{
 		}
 		header("Location: ".BASE_URL);
 	}
-	
+	public function clear(){
+		unset($_SESSION);
+	}
 }
