@@ -78,7 +78,7 @@
 		"date":"18-7-2024",
 		"changes":[
 			"fiks bug core encrypt array",
-			"menambahkan fitur membersihkan data siswa yang error kumpultugasii.ich.free.nf/public/Home/clear",
+			"menambahkan fitur membersihkan data siswa yang error di https://kumpultugasii.ich.free.nf/public/Home/clear",
 			"mengubah tampilan hitung mundur waktu tugas"
 		]
 	}

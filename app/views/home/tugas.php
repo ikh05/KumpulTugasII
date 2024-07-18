@@ -91,7 +91,7 @@
               <h5 class='card-text text-soal'><?= $value['soal'] ?></h5>
               <div class='form-modal' form-action='kumpulTugas/bkerja/<?= $value['id'] ?>'></div>
             </div>
-            <div class='card-footer p-3 text-body-secondary d-flex gap-2' style="justify-content: center;">
+            <div class='card-footer p-3 text-body-secondary d-flex gap-2 flex-md-row flex-column' style="justify-content: center;">
               <!-- <div class="countdown w-100" hari jam menit detik down="<?= $value['batas'] ?>"></div> -->
               <iframe class="w-100" id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" height="80" style="display: block; margin: 0px a uto; border: 0px; overflow: hidden;"></iframe>
               <button class="btn btn-outline-secondary" status-tugas='bkerja' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['id'] ?>/bkerja">Jawaban</button>
@@ -193,7 +193,7 @@
                   <p class="m-0">alasan: <?= $value['ket'] ?>, tolong perbaiki!</p>
                 </div>
               </div>
-              <div class='card-footer border-warning p-3 text-body-secondary d-flex gap-2'>
+              <div class='card-footer border-warning p-3 text-body-secondary d-flex gap-2 flex-md-row flex-column'>
               <!-- <div class="countdown w-100" hari jam menit detik down="<?= $value['batas'] ?>"></div> -->
                 <iframe class="w-100" id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" height="80" style="display: block; margin: 0px a uto; border: 0px; overflow: hidden;"></iframe>
                 <button class="btn btn-outline-warning" status-tugas='ditolak' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['idTugas'] ?>/ditolak">Jawaban</button>
