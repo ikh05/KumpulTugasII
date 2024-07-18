@@ -78,11 +78,11 @@ class Home extends Controller{
 		header("Location: ".BASE_URL);
 	}
 	public function clear(){
-		var_dump($_SESSION);
+		var_dump($_SESSION[C_SISWA]);
 		echo "__________";
-		unset($_SESSION);
+		unset($_SESSION[C_SISWA]);
 		echo "__________";
-		var_dump($_SESSION);
+		var_dump($_SESSION[C_SISWA]);
 
 	}
 }
