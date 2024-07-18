@@ -171,7 +171,8 @@ export function ajax (el, f=null){
 			console.log(response);
 			response = JSON.parse(response);
 			console.log(response);
-			Array.from(a).map(f => typeof(f) === 'function' ? f(response, el) : f)
+			if(typeof(f) === 'function') f(response, el);
+			// Array.from(a).map(f => typeof(f) === 'function' ? f(response, el) : f)
 		}
 	};
 	ajax.open('GET', url, true);
