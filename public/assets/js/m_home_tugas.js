@@ -5,26 +5,26 @@ document.addEventListener('click', ev =>{
 	while (el !== document.querySelector('body') && el!==null) {
 		if(el.hasAttribute('href-ajax')){
 			// console.log(el.getAttribute('status-tugas'));
-			modalJawab.querySelector('.modal-header').classList.remove('text-bg-secondary');
-			modalJawab.querySelector('.modal-header').classList.remove('text-bg-warning');
-			modalJawab.querySelector('.modal-header').classList.remove('text-bg-danger');
-			modalJawab.querySelector('.modal-header').classList.remove('text-bg-primary');
 			modalJawab.querySelector('[name=status-tugas]').value = el.getAttribute('status-tugas');
-			modalJawab.querySelector('.modal-form').innerHTML = `
-				<div class='input-group mb-3'>
-					<input type='file' accept='image/*' name='file-1' id='gambar-1' required class='form-control'>
-					<!--- <button type='button' class='btn btn-outline-primary' cek-img>Review</button> --->
-					<button type='button' class='btn btn-outline-danger' delete-gambar>X</button>
-				</div>`;
-			let ket = modalJawab.querySelector('[name=ket]') /*required vaue='' type='text'*/
-			ket.setAttribute('type', 'text');
-			ket.value = '';
-			ket.setAttribute('required', '');
-			let gambar_jawaban = modalJawab.querySelector('.gambar-jawaban');
-			modalJawab.querySelector('.ket-ditolak').classList.add('d-none');
-			gambar_jawaban.innerHTML = '';
 			ajax(el, (res)=>{
 				if(modalJawab.getAttribute('active-id') != res['tugas']['id']){
+					modalJawab.querySelector('.modal-form').innerHTML = `
+						<div class='input-group mb-3'>
+							<input type='file' accept='image/*' name='file-1' id='gambar-1' required class='form-control'>
+							<!--- <button type='button' class='btn btn-outline-primary' cek-img>Review</button> --->
+							<button type='button' class='btn btn-outline-danger' delete-gambar>X</button>
+						</div>`;
+					let ket = modalJawab.querySelector('[name=ket]') /*required vaue='' type='text'*/
+					ket.setAttribute('type', 'text');
+					ket.value = '';
+					ket.setAttribute('required', '');
+					let gambar_jawaban = modalJawab.querySelector('.gambar-jawaban');
+					modalJawab.querySelector('.ket-ditolak').classList.add('d-none');
+					gambar_jawaban.innerHTML = '';
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-secondary');
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-warning');
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-danger');
+					modalJawab.querySelector('.modal-header').classList.remove('text-bg-primary');
 					modalJawab.querySelector('.modal-title').textContent = res['tugas']['nama'];
 					modalJawab.setAttribute('active-id', res['tugas']['id'])
 					modalJawab.querySelector('[name=idTugas]').value = res['tugas']['id'];
