@@ -80,6 +80,11 @@ class Home extends Controller{
 		header("Location: ".BASE_URL);
 	}
 	public function clear(){
+		var_dump($_SESSION);
+		echo "__________";
 		unset($_SESSION);
+		echo "__________"
+		var_dump($_SESSION);
+
 	}
 }
