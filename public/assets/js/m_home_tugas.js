@@ -9,9 +9,6 @@ document.addEventListener('click', ev =>{
 			modalJawab.querySelector('.modal-header').classList.remove('text-bg-warning');
 			modalJawab.querySelector('.modal-header').classList.remove('text-bg-danger');
 			modalJawab.querySelector('.modal-header').classList.remove('text-bg-primary');
-			modalJawab.querySelector('.modal-title').textContent = res['tugas']['nama'];
-			modalJawab.setAttribute('active-id', res['tugas']['id'])
-			modalJawab.querySelector('[name=idTugas]').value = res['tugas']['id'];
 			modalJawab.querySelector('[name=status-tugas]').value = e.getAttribute('status-tugas');
 			modalJawab.querySelector('.modal-form').innerHTML = `
 				<div class='input-group mb-3'>
@@ -27,6 +24,9 @@ document.addEventListener('click', ev =>{
 			modalJawab.querySelector('.ket-ditolak').classList.add('d-none');
 			gambar_jawaban.innerHTML = '';
 			ajax(el, (res, e)=>{
+				modalJawab.querySelector('.modal-title').textContent = res['tugas']['nama'];
+				modalJawab.setAttribute('active-id', res['tugas']['id'])
+				modalJawab.querySelector('[name=idTugas]').value = res['tugas']['id'];
 				if(modalJawab.getAttribute('active-id') != res['tugas']['id']){
 					if(e.getAttribute('status-tugas') == 'bkerja'){
 						modalJawab.querySelector('.modal-header').classList.add('text-bg-secondary');
