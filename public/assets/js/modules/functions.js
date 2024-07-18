@@ -188,8 +188,8 @@ export function set_countdown() {
 		let down = element.getAttribute('down').split(/[\s\-:]/);
 		down = new Date(down[0], down[1]-1, down[2], down[3], down[4], down[5]);
 		let times = (down-now<0) ? 0 : Math.floor((down-now)/1000);
-		console.log(times);
 		element.innerHTML = "<div style='width:100%; display: flex; gap: .5rem; justify-content:space-around;'></div>";
+		let t = 0;
 		if(element.hasAttribute('tahun')){
 			t = Math.floor(times/60/60/24/30/12);
 			times = times%(60*60*24*30*12);
