@@ -193,30 +193,30 @@ export function set_countdown() {
 		if(element.hasAttribute('tahun')){
 			t = Math.floor(times/60/60/24/30/12);
 			times = times%(60*60*24*30*12);
-			element.children[0].innerHTML = "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='tahun' min-dig='1' nilai='31104000'>"+t+"</p><p style='margin:0; font-size: 1rem;'>Tahun</p></div>";
+			element.children[0].innerHTML = "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 1; font-weight: bold;' countdown-type='tahun' min-dig='1' nilai='31104000'>"+t+"</p><p style='margin:0; font-size: 0.6rem;'>Tahun</p></div>";
 		}
 		// nanti di cek berapa banyak hari dari bulan yang dilalui
 		if(element.hasAttribute('bulan')){
 			t = Math.floor(times/60/60/24/30);
 			times = times%(60*60*24*30);
-			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='bulan' min-dig='1' nilai='2592000'>"+t+"</p><p style='margin:0; font-size: 1rem;'>Bulan</p></div>";
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 1; font-weight: bold;' countdown-type='bulan' min-dig='1' nilai='2592000'>"+t+"</p><p style='margin:0; font-size: 0.6rem;'>Bulan</p></div>";
 		}
 		if(element.hasAttribute('hari')){
 			t = Math.floor(times/60/60/24);
 			times = times%(60*60*24);
-			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='hari' min-dig='1' nilai='86400'>"+t+"</p><p style='margin:0; font-size: 1rem;'>Hari</p></div>";
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 1; font-weight: bold;' countdown-type='hari' min-dig='1' nilai='86400'>"+t+"</p><p style='margin:0; font-size: 0.6rem;'>Hari</p></div>";
 		}
 		if(element.hasAttribute('jam')){
 			t = Math.floor(times/60/60);
 			times = times%(60*60);
-			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='jam' min-dig='2' nilai='3600' >"+t+"</p><p style='margin:0; font-size: 1rem;'>Jam</p></div>";
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 1; font-weight: bold;' countdown-type='jam' min-dig='2' nilai='3600' >"+t+"</p><p style='margin:0; font-size: 0.6rem;'>Jam</p></div>";
 		}
 		if(element.hasAttribute('menit')){
 			t = Math.floor(times/60);
 			times = times%60;
-			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='menit' min-dig='2' nilai='60' >"+t+"</p><p style='margin:0; font-size: 1rem;'>Menit</p></div>";
+			element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 1; font-weight: bold;' countdown-type='menit' min-dig='2' nilai='60' >"+t+"</p><p style='margin:0; font-size: 0.6rem;'>Menit</p></div>";
 		}
-		element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 2rem; font-weight: bold;' countdown-type='detik' min-dig='2' nilai='1'>"+times+"</p><p style='margin:0; font-size: 1rem;'>Detik</p></div>";
+		element.children[0].innerHTML += "<div style='width:0px; overflow:visible; display: flex; justify-content: center; flex-direction: column;'><p style='margin:0; font-size: 1; font-weight: bold;' countdown-type='detik' min-dig='2' nilai='1'>"+times+"</p><p style='margin:0; font-size: 0.6rem;'>Detik</p></div>";
 
 		// update
 		setInterval(function(){
