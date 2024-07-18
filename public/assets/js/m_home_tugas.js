@@ -9,6 +9,7 @@ document.addEventListener('click', ev =>{
 			modalJawab.querySelector('.modal-header').classList.remove('text-bg-warning');
 			modalJawab.querySelector('.modal-header').classList.remove('text-bg-danger');
 			modalJawab.querySelector('.modal-header').classList.remove('text-bg-primary');
+			modalJawab.querySelector('[name=status-tugas]').value = el.getAttribute('status-tugas');
 			modalJawab.querySelector('.modal-form').innerHTML = `
 				<div class='input-group mb-3'>
 					<input type='file' accept='image/*' name='file-1' id='gambar-1' required class='form-control'>
@@ -22,19 +23,18 @@ document.addEventListener('click', ev =>{
 			let gambar_jawaban = modalJawab.querySelector('.gambar-jawaban');
 			modalJawab.querySelector('.ket-ditolak').classList.add('d-none');
 			gambar_jawaban.innerHTML = '';
-			ajax(el, (res, e)=>{
-				modalJawab.querySelector('[name=status-tugas]').value = e.getAttribute('status-tugas');
-				modalJawab.querySelector('.modal-title').textContent = res['tugas']['nama'];
-				modalJawab.setAttribute('active-id', res['tugas']['id'])
-				modalJawab.querySelector('[name=idTugas]').value = res['tugas']['id'];
+			ajax(el, (res)=>{
 				if(modalJawab.getAttribute('active-id') != res['tugas']['id']){
-					if(e.getAttribute('status-tugas') == 'bkerja'){
+					modalJawab.querySelector('.modal-title').textContent = res['tugas']['nama'];
+					modalJawab.setAttribute('active-id', res['tugas']['id'])
+					modalJawab.querySelector('[name=idTugas]').value = res['tugas']['id'];
+					if(res['sTugas'] == 'bkerja'){
 						modalJawab.querySelector('.modal-header').classList.add('text-bg-secondary');
 						ket.setAttribute('type', 'hidden');
 						ket.removeAttribute('required')
-					}else if(e.getAttribute('status-tugas') == 'terlambat'){
+					}else if(res['sTugas'] == 'terlambat'){
 						modalJawab.querySelector('.modal-header').classList.add('text-bg-danger');
-					}else if(e.getAttribute('status-tugas') == 'ditolak'){
+					}else if(res['sTugas'] == 'ditolak'){
 						modalJawab.querySelector('.modal-header').classList.add('text-bg-warning');
 						ket.setAttribute('readonly', '');
 						ket.value = res['jawaban']['ket'];
@@ -45,7 +45,7 @@ document.addEventListener('click', ev =>{
 							div.innerHTML = tamp;
 							gambar_jawaban.appendChild(div);
 						})
-					}else if(e.getAttribute('status-tugas') == 'dikumpul'){
+					}else if(res['sTugas'] == 'dikumpul'){
 						modalJawab.querySelector('.modal-header').classList.add('text-bg-primary');
 						res['jawaban']['gambar'].forEach(namaGambar =>{
 							let div = document.createElement('div');

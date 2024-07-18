@@ -48,7 +48,7 @@ class Ajax extends Controller{
 		}
 	}
 
-	public function getTugas ($idTugas){
+	public function getTugas ($idTugas, $status){
 		if($this->cekAjax(C_SISWA)){
 			$tugas = $this->model('Model_tugas')->getById($idTugas);
 			$siswa = $this->model('Model_siswa')->getSession();
@@ -60,6 +60,7 @@ class Ajax extends Controller{
 
 			$tugas[0]['soal'] = $this->model('Model_soal')->tempelGambar($tugas[0]['soal']);
 			$this->res['tugas'] = $tugas[0];
+			$this->res['sTugas'] = $status;
 			$jawaban = $this->model('Model_jawaban')->getBySiswa_Tugas($siswa,$idTugas);
 			if($jawaban !== FALSE) $jawaban['gambar'] = json_decode($jawaban['gambar']);
 			$this->res ['jawaban'] = $jawaban;

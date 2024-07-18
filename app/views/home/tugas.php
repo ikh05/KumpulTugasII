@@ -93,7 +93,7 @@
             </div>
             <div class='card-footer p-3 text-body-secondary d-flex gap-2' style="justify-content: center;">
               <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" width="360" height="80" style="display: block; margin: 0px a uto; border: 0px;"></iframe>
-              <button class="btn btn-outline-secondary" status-tugas='bkerja' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['id'] ?>">Jawaban</button>
+              <button class="btn btn-outline-secondary" status-tugas='bkerja' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['id'] ?>/bkerja">Jawaban</button>
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@
                 </div>
               </div>
               <div class='card-footer border-primary p-3 text-body-secondary d-flex gap-2 justify-content-end'>
-                <button class="btn btn-outline-primary" status-tugas='dikumpul' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['idTugas'] ?>">Cek</button>
+                <button class="btn btn-outline-primary" status-tugas='dikumpul' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['idTugas'] ?>/dikumpul">Cek</button>
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@
               </div>
               <div class='card-footer border-warning p-3 text-body-secondary d-flex gap-2'>
                 <iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/id/#<?= str_replace(' ','T',$value['batas'])?>@Asia%2FMakassar" width="360" height="80" style="display: block; margin: 0px a uto; border: 0px; overflow: hidden;"></iframe>
-                <button class="btn btn-outline-warning" status-tugas='ditolak' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['idTugas'] ?>">Jawaban</button>
+                <button class="btn btn-outline-warning" status-tugas='ditolak' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['idTugas'] ?>/ditolak">Jawaban</button>
               </div>
             </div>
           </div>
@@ -227,7 +227,7 @@
                 </div>
               </div>
               <div class='card-footer border-danger p-3 text-body-denger d-flex gap-2'>
-                <button class="btn btn-outline-danger" status-tugas='terlambat' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['id'] ?>">Jawaban</button>
+                <button class="btn btn-outline-danger" status-tugas='terlambat' data-bs-toggle="modal" data-bs-target="#jawabTugas" href-ajax="<?= BASE_URL ?>Ajax/getTugas/<?= $value['id'] ?>/terlambat">Jawaban</button>
               </div>
             </div>
           </div>
