@@ -4,7 +4,7 @@
   	<div class="container-fluid container">
     	<a class="navbar-brand" href="#">KumpulTugas II</a>
 		<div class="d-flex">
-        	<a href="<?=BASE_URL?>Guru" class="btn btn-outline-primary">Masuk</a>
+        	<a href="<?=BASE_URL?>Guru" class="btn btn-outline-primary">Saya Guru</a>
       	</div>
     </div>
   </div>
@@ -50,7 +50,7 @@
 								<i class="fa-solid fa-eye-slash d-none"></i>
 							</button>
 							<button id="btn-cari" class="btn btn-success" type="submit" disabled>
-								<i class="fa-solid fa-magnifying-glass"></i>
+								<i class="fa-solid fa-magnifying-glass"></i> Cari Siswa
 							</button>
 						</div>
 					</div>

@@ -161,7 +161,7 @@ function f__ (nav) {
 }
 
 
-export function ajax (el){
+export function ajax (el, f=null){
 	let ajax = new XMLHttpRequest();
 	let url = el.getAttribute('href-ajax');
 	let a = arguments;
@@ -171,7 +171,7 @@ export function ajax (el){
 			console.log(response);
 			response = JSON.parse(response);
 			console.log(response);
-			Array.from(a).map(f => typeof(f) === 'function' ? f(response, el) : '')
+			Array.from(a).map(f => typeof(f) === 'function' ? f(response, el) : f)
 		}
 	};
 	ajax.open('GET', url, true);
