@@ -81,5 +81,13 @@
 			"menambahkan fitur membersihkan data siswa yang error di https://kumpultugasii.ich.free.nf/public/Home/clear",
 			"mengubah tampilan hitung mundur waktu tugas"
 		]
+	},
+	{
+		"version":"2.3.4",
+		"date":"21-7-2024",
+		"changes":[
+			"fiks bug nama siswa hanya bisa menggunakan simbol yang masuk akan (.,-')",
+			"fiks bug nomor hp hanya bisa menggunakan simbol (+-)"
+		]
 	}
 ]

@@ -10,11 +10,24 @@ class Model_siswa{
 		$this->db = new Database();
 		$this->enc = new Encrypt (['noWa', 'email']);
 	}
-	protected function bersihkan(&$data){
+	protected function bersihkan(&$data, $key=''){
 		if(is_array($data)){
-			foreach ($data as $key => $value) $data[$key] = $this->bersihkan($value);
+			foreach ($data as $key => $value) $data[$key] = $this->bersihkan($value, $key);
 		}
-		elseif (is_string($data)) $data = htmlspecialchars($data);
+		elseif (is_string($data)){
+			switch ($key) {
+				case 'nama':
+					// hilangkan semua karekter kecuali . ,a-zA-Z'-
+					$data = preg_replace("/[^a-zA-Z' ,.\-]/", "", $data);
+					break;
+				case 'noWa':
+					$data = preg_replace("/[^0-9+\-]/", "", $data);
+					break;
+				default:
+					$data = htmlspecialchars($data);
+					break;
+			}
+		}
 		return $data; 
 	}
 
