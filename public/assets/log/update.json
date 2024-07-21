@@ -89,5 +89,12 @@
 			"fiks bug nama siswa hanya bisa menggunakan simbol yang masuk akan (.,-')",
 			"fiks bug nomor hp hanya bisa menggunakan simbol (+-)"
 		]
+	},
+	{
+		"version":"2.4.0",
+		"date":"21-7-2024",
+		"changes":[
+			"Menambahkan daftar siswa dan dapat menghapus siswa (hati-hati menghapus siswa karena akan menghapus tugas yang telah dikimpul)"
+		]
 	}
 ]

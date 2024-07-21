@@ -123,9 +123,24 @@ class Guru extends Controller{
 
 		$_SESSION[C_KELAS] = $tokenKelas;
 		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
-		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_MATHJAX_JS, CDN_SHEET_JS, 'sheet'];
+		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS, CDN_SHEET_JS, 'sheet'];
 		$this->view('tamplates/header', $this->data);
 		$this->func_dashoard('daftarNilai', $_SESSION[C_KELAS]);
+		$this->view('tamplates/footer', $this->data);
+	}
+	public function daftarSiswa($tokenKelas){
+		// kelas
+		$this->data ['kelas'] = $this->model('Model_kelas')->getByToken($tokenKelas);
+		// guru
+		$this->data ['guru'] = $this->model('Model_guru')->getSession();
+		// siswa
+		$this->data ['siswa'] = $this->model('Model_siswa')->getAllByTokenKelas($tokenKelas, 'nama ASC');
+
+		$_SESSION[C_KELAS] = $tokenKelas;
+		$this->data ['css'] = [CDN_BOOTSTRAP_CSS, CDN_FONTAWESOME_CSS];
+		$this->data ['js'] = [CDN_POPPER_JS, CDN_BOOTSTRAP_JS, CDN_FONTAWESOME_JS];
+		$this->view('tamplates/header', $this->data);
+		$this->func_dashoard('daftarSiswa', $_SESSION[C_KELAS]);
 		$this->view('tamplates/footer', $this->data);
 	}
 
@@ -196,7 +211,9 @@ class Guru extends Controller{
 			unset($_SESSION[C_DELETE]);
 			$this->model('Model_'.$delete)->deleteById($id);
 			switch ($delete) {
-				case 'siswa': break;
+				case 'siswa':
+					$this->model('Model_jawaban')->delete('idSiswa',$id);
+					$asal= 'daftarTugas/'.$_SESSION[C_KELAS]; break;
 				case 'soal': 
 					$asal = 'soalKu'; break;
 				case 'kelas': break;

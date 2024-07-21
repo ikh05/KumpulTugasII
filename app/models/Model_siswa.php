@@ -99,4 +99,9 @@ class Model_siswa{
 
 		if($set) $data = $data[0];
 	}
+	public function deleteById($id){
+		$this->db->query("DELETE FROM $this->tabel WHERE id=:id");
+		$this->db->bind('id', $id);
+		$this->db->execute();
+	}
 }
