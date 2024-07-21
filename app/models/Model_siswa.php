@@ -70,6 +70,7 @@ class Model_siswa{
 	}
 
 	public function cekSiswa($data){
+		$this->bersihkan($data);
 		$this->db->query("SELECT * FROM $this->tabel WHERE nama=:nama AND tokenKelas=:tokenKelas");
 		$this->db->bind('nama', $data['nama']);
 		$this->db->bind('tokenKelas', $data['tokenKelas']);

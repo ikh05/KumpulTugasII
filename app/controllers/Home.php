@@ -1,10 +1,6 @@
 <?php 
 
 class Home extends Controller{
-	protected $dataClear = [];
-	function __construct(){
-		if(isset($_POST)) $this->dataClear = $this->clearData($_POST);
-	}
 	public function index (){
 		if(!$this->model('Model_message')->cek()){
 			$this->model('Model_message')->set('Silahkan lengkapi identitas anda!', 'primary', 'Selamat Datang' );
@@ -49,30 +45,30 @@ class Home extends Controller{
 	// mekanisme
 	public function masuk(){
 		unset($_SESSION[C_SISWA]);
-		if($this->model('Model_kelas')->getByToken($this->dataClear['tokenKelas']) === FALSE)
+		if($this->model('Model_kelas')->getByToken($_POST['tokenKelas']) === FALSE)
 			$this->model('Model_message')->error('Kelas tidak dikenali!', '');
-		switch ($this->model('Model_siswa')->cekSiswa($this->dataClear)) {
+		switch ($this->model('Model_siswa')->cekSiswa($_POST)) {
 			case 'passwordSalah':
 				$this->model('Model_message')->error("Password salah!");
 				break;
 			case 'noSiswa':
-				$this->model('Model_siswa')->simpan($this->dataClear);
-				$_SESSION[C_SISWA] = $this->model('Model_siswa')->getByNama_token($this->dataClear['nama'], $this->dataClear['tokenKelas'])['id'];
-				$this->model('Model_message')->success("Berhasil menambahkan {$this->dataClear['nama']} ke kelas {$this->dataClear['tokenKelas']}!");
+				$this->model('Model_siswa')->simpan($_POST);
+				$_SESSION[C_SISWA] = $this->model('Model_siswa')->getByNama_token($_POST['nama'], $_POST['tokenKelas'])['id'];
+				$this->model('Model_message')->success("Berhasil menambahkan {$_POST['nama']} ke kelas {$_POST['tokenKelas']}!");
 				break;
 			default:
-				$this->model('Model_message')->success("Selamat Datang Kembali {$this->dataClear['nama']} di kelas {$this->dataClear['tokenKelas']}!");
+				$this->model('Model_message')->success("Selamat Datang Kembali {$_POST['nama']} di kelas {$_POST['tokenKelas']}!");
 				break;
 		}
 		header("Location: ".BASE_URL);
 	}
 	public function simpanTugas($tokenKelas){
-		if($this->dataClear['status-tugas'] === 'terlambat'){
+		if($_POST['status-tugas'] === 'terlambat'){
 			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
-			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas, $this->dataClear['ket']);
+			$this->model('Model_jawaban')->kumpul($namaGambar, $_POST['idTugas'], $tokenKelas, $_POST['ket']);
 		}else {
 			$namaGambar = $this->model('Model_gambar')->upload_siswa($_FILES);
-			$this->model('Model_jawaban')->kumpul($namaGambar, $this->dataClear['idTugas'], $tokenKelas);
+			$this->model('Model_jawaban')->kumpul($namaGambar, $_POST['idTugas'], $tokenKelas);
 		}
 		header("Location: ".BASE_URL);
 	}
