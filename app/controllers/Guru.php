@@ -213,7 +213,7 @@ class Guru extends Controller{
 			switch ($delete) {
 				case 'siswa':
 					$this->model('Model_jawaban')->delete('idSiswa',$id);
-					$asal= 'daftarTugas/'.$_SESSION[C_KELAS]; break;
+					$asal= 'daftarSiswa/'.$_SESSION[C_KELAS]; break;
 				case 'soal': 
 					$asal = 'soalKu'; break;
 				case 'kelas': break;
