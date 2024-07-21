@@ -30,10 +30,10 @@
 												<!-- <button class="btn btn-secondary dropdown-toggle w-auto form-control text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
 			  									<ul class="dropdown-menu">
 										    		<li>
-										    			<a class="dropdown-item disabled" data-bs-toggle="modal" data-bs-target="#form-modal" href-ajax="<?= BASE_URL ?>Ajax/editSoal/<?= $v['id'] ?>">Edit</a>
+										    			<a class="dropdown-item disabled" data-bs-toggle="modal" data-bs-target="#form-modal" href-ajax="<?= BASE_URL ?>Ajax/editSoal/<?= $siswa['id'] ?>">Edit</a>
 													</li>
 													<li>
-					  									<a class="dropdown-item" href="<?= BASE_URL ?>Guru/delete/soal/<?= $v['id'] ?>">Delete</a>
+					  									<a class="dropdown-item" href="<?= BASE_URL ?>Guru/delete/soal/<?= $siswa['id'] ?>">Delete</a>
 													</li>
 												</ul> -->
 												<a class="btn btn-danger" href="<?= BASE_URL ?>Guru/delete/siswa/<?= $siswa['id'] ?>">Hapus</a>
